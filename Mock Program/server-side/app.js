@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 //-----MODULE SETUP-----//
 const app = express();
 dotenv.config();
-// Allows API usage
+// Allows API connection between front and back end
 app.use(cors());
 // Allows sending data in json format
 app.use(express.json());
