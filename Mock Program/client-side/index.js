@@ -1,7 +1,14 @@
-// Called on page load
+/*
+    This is an event listener that is called when the page loads.
+*/
 document.addEventListener('DOMContentLoaded', function () {
+    // Setting the endpoint
+    fetch('http://localHost:5000/getAll')
+        // Converting response to json format
+        .then(response => response.json())
+        // Getting data back in json format and logging it to the console
+        .then(data => console.log(data));
     loadHTMLTable([]);
-
 })
 
 /* 
