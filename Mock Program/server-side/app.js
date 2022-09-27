@@ -2,6 +2,8 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+// Database service
+const dbService = require('./dbService');
 
 //-----MODULE SETUP-----//
 const app = express();
