@@ -6,15 +6,15 @@ dotenv.config();
 // Create a connection
 const connection = mysql.createConnection({
     host: process.env.HOST,
-    user: process.env.USERNAME,
+    port: process.env.DB_PORT,
+    user: process.env.USER,
     password: process.env.PASSWORD,
-    database: process.env.DATABASE,
-    port: process.env.DB_PORT
+    database: process.env.DATABASE
 });
 
 connection.connect((err) => {
     if (err) {
         console.log(err.message);
     }
-    console.log('db' + connection.state);
+    console.log('db ' + connection.state);
 });
