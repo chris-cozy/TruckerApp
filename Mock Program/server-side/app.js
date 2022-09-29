@@ -24,10 +24,10 @@ app.post('/insert', (request, response) => {
 
 // READ route
 app.get('/getAll', (request, response) => {
-    // Send a success response
-    response.json({
-        success: true
-    });
+    // Grab instance of db
+    const db = dbService.getInstance();
+
+    const result = db.getAllData();
 });
 
 // UPDATE route
