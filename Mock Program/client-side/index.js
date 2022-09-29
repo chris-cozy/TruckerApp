@@ -6,10 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('http://localHost:5000/getAll')
         // Converting response to json format
         .then(response => response.json())
-        // Getting data back in json format and logging it to the console
-        .then(data => console.log(data));
-    loadHTMLTable([]);
-})
+        // Getting data back in json format and logging it to the console. Must access the data key of the json file
+        .then(data => loadHTMLTable(data['data']));
+});
 
 /* 
     Function that takes in data and loads it into the table
