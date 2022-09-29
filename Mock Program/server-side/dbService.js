@@ -32,7 +32,7 @@ class dbService {
         The return statment checks if instance is not null. If it is, creates a new instance.
     */
     static getInstance() {
-        return instance ? instance : new deService();
+        return instance ? instance : new dbService();
     }
 
     /*
