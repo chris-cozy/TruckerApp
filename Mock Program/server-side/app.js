@@ -29,7 +29,8 @@ app.get('/getAll', (request, response) => {
 
     const result = db.getAllData();
 
-    // Return the promise to the fetch in a json
+    console.log(result);
+    // Return the promise to the fetch in a json for the api
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
