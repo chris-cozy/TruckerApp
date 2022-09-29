@@ -1,7 +1,12 @@
+//-----MODULE INITIATION-----//
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 
 dotenv.config();
+
+//-----GLOBALS-----//
+let instance = null;
+
 
 // Create a connection
 const connection = mysql.createConnection({
@@ -18,3 +23,18 @@ connection.connect((err) => {
     }
     console.log('db ' + connection.state);
 });
+
+//-----CLASSES-----//
+// This class will be used to hold the functions for manipulating the data
+class dbService {
+    /*
+        This function grabs the instance of the class. Without it, multiple instances would be made.
+        The return statment checks if instance is not null. If it is, creates a new instance.
+    */
+    static getInstance() {
+        return instance ? instance : new deService();
+    }
+}
+
+//-----MODULE EXPORT-----//
+module.exports = dbService;
