@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 // Database service
 const dbService = require('./dbService');
 
+
 //-----MODULE SETUP-----//
 const app = express();
 dotenv.config();
@@ -13,6 +14,7 @@ app.use(cors());
 // Allows sending data in json format
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 
 //-----MYSQL ROUTES-----//
 // CREATE route
@@ -31,6 +33,7 @@ app.get('/getAll', (request, response) => {
 // UPDATE route
 
 // DELETE route
+
 
 //-----SERVER STARTUP-----//
 app.listen(process.env.PORT, () => {
