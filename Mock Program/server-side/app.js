@@ -28,6 +28,11 @@ app.get('/getAll', (request, response) => {
     const db = dbService.getInstance();
 
     const result = db.getAllData();
+
+    // Return the promise to the fetch in a json
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
 });
 
 // UPDATE route
