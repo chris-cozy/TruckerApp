@@ -17,12 +17,21 @@ app.use(express.urlencoded({ extended: false }));
 
 
 //-----MYSQL ROUTES-----//
-// CREATE route
+// CREATE
 app.post('/insert', (request, response) => {
+    // Object destructuring
+    const { name } = request.body;
+
+    const db = dbService.getInstance();
+
+    const result = db.insertNewName(name);
+    result
+        .then(data => response.json({ success: true }))
+        .catch(err => console.log(err));
 
 });
 
-// READ route
+// READ
 app.get('/getAll', (request, response) => {
     // Grab instance of db
     const db = dbService.getInstance();
@@ -36,9 +45,9 @@ app.get('/getAll', (request, response) => {
         .catch(err => console.log(err));
 });
 
-// UPDATE route
+// UPDATE
 
-// DELETE route
+// DELETE
 
 
 //-----SERVER STARTUP-----//
