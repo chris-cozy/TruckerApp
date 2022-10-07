@@ -77,7 +77,11 @@ class dbService {
 
             // Return the ID, name, and date_added to the front-end
             console.log(insertID);
-            //return insertID;
+            return {
+                id: insertID,
+                name: name,
+                dateAdded: dateAdded
+            };
 
         } catch (error) {
             console.log(error);
