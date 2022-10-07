@@ -57,6 +57,32 @@ class dbService {
         }
 
     }
+
+    /*
+        This function sends a query to enter new name into the database table
+    */
+    async insertNewName(name) {
+        try {
+            const dateAdded = new Date();
+            const insertID = await new Promise((resolve, reject) => {
+
+                // Parameterized the values to protect against SQL injection
+                const query = "INSERT INTO mock_table (name, date_added) VALUES (?), (?)";
+
+                connection.query(query, [name, dateAdded], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.insertID);
+                });
+            });
+
+            // Return the ID, name, and date_added to the front-end
+            console.log(insertID);
+            //return insertID;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 //-----MODULE EXPORT-----//
