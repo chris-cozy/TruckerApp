@@ -36,8 +36,8 @@ class dbService {
     }
 
     /*
-        Grabs all of the data
-        If there is an error, logs it to the console
+        Grabs all of the data from the database table
+        If there is an error, logs it to the console, otherwise returns the result.
     */
     async getAllData() {
         try {
