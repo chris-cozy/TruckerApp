@@ -1,5 +1,5 @@
 /*
-    This is an event listener that is called when the page loads. It fetches the endpoint for tabe data.
+    This is an event listener that is called when the page loads. It fetches the endpoint for table data.
 */
 document.addEventListener('DOMContentLoaded', function () {
     // Setting the endpoint
