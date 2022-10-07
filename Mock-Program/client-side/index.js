@@ -31,7 +31,7 @@ addBtn.onclick = function () {
         method: 'POST',
         body: JSON.stringify({ name: name })
     })
-        .then(response => response.json)
+        .then(response => response.json())
         .then(data => insertRowIntoTable(data['data']));
 }
 
@@ -70,7 +70,7 @@ function insertRowIntoTable(data) {
     }
 }
 
-//-----TABLE LOADER-----//
+//-----HELPER FUNCTIONS-----//
 /* 
     Function that takes in data and loads it into the table
     Args: Array of data

@@ -43,7 +43,7 @@ class dbService {
         try {
             // Create a promise to handle the query. Using a resolve, reject. if query successful, it will resolve. If not, it will reject and transfer to the catch.
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM mock_table";
+                const query = "SELECT * FROM mock_table;";
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
@@ -67,9 +67,9 @@ class dbService {
             const insertID = await new Promise((resolve, reject) => {
 
                 // Parameterized the values to protect against SQL injection
-                const query = "INSERT INTO mock_table (name, date_added) VALUES (?), (?)";
+                const query = "INSERT INTO mock_table (name, date_added) VALUES (?, ?);";
 
-                connection.query(query, [name, dateAdded], (err, results) => {
+                connection.query(query, [name, dateAdded], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.insertID);
                 });
