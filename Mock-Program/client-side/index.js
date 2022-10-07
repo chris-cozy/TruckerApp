@@ -36,11 +36,38 @@ addBtn.onclick = function () {
 }
 
 /*
-    This function will take data and insert it into the table as a row.
+    This function will take data and insert it into the table as a new row. The purpose of this is the update the table once the add button is clicked, rather than needing to refresh.
     Takes in an array of data.
 */
 function insertRowIntoTable(data) {
+    const table = document.querySelector('table tbody');
+    const nonEmptyTable = table.querySelector('.no-data');
 
+    let tableHtml = "<tr>";
+
+    // Cannot use a forEach because we are dealing with an abject, not an array.
+    for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            if (key === 'dateAdded') {
+                data[key] = new Date(data[key]).toLocaleString();
+            }
+            tableHtml += `<td>${data[key]}</td>`;
+        }
+    }
+    // A button to delete the data
+    tableHtml += `<td><button class="delete-row-btn" data-id =${data.id}>Delete</button></td>`;
+    // A button to edit the data
+    tableHtml += `<td><button class="edit-row-btn" data-id =${data.id}>Edit</button></td>`;
+
+    tableHtml += "</tr>";
+
+    // If table is empty, add a new row
+    if (nonEmptyTable) {
+        table.innerHTML = tableHtml;
+    } else {
+        const newRow = table.insertRow();
+        newRow.innerHTML = tableHtml;
+    }
 }
 
 //-----TABLE LOADER-----//
@@ -52,8 +79,27 @@ function loadHTMLTable(data) {
     // Grab the table body
     const table = document.querySelector('table tbody');
 
-    // If there is no data, display that
+    // If there is no data
     if (data.length === 0) {
         table.innerHTML = "<tr><td class='no-data' colspan='5'>No Data</td></tr>";
+        return;
     }
+
+    // If there is data
+    let tableHtml = "";
+
+    data.forEach(function ({ id, name, date_added }) {
+        tableHtml += "<tr>";
+        tableHtml += `<td>${id}</td>`;
+        tableHtml += `<td>${name}</td>`;
+        tableHtml += `<td>${new Date(date_added).toLocaleString()}</td>`;
+        // A button to delete the data
+        tableHtml += `<td><button class="delete-row-btn" data-id =${id}>Delete</button></td>`;
+        // A button to edit the data
+        tableHtml += `<td><button class="edit-row-btn" data-id =${id}>Edit</button></td>`;
+        tableHtml += "</tr>"
+    });
+
+    // Updating the HTML
+    table.innerHTML = tableHtml;
 }
