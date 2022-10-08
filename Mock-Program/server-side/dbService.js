@@ -65,18 +65,18 @@ class dbService {
     async insertNewName(name) {
         try {
             const dateAdded = new Date();
-            const insertID = await new Promise((resolve, reject) => {
+            const insertId = await new Promise((resolve, reject) => {
                 // Parameterized the values to protect against SQL injection
                 const query = "INSERT INTO mock_table (name, date_added) VALUES (?, ?);";
 
                 connection.query(query, [name, dateAdded], (err, result) => {
                     if (err) reject(new Error(err.message));
-                    resolve(result.insertID);
+                    resolve(result.insertId);
                 });
             });
             // Return the ID, name, and date_added to the front-end
             return {
-                id: insertID,
+                id: insertId,
                 name: name,
                 dateAdded: dateAdded
             };
