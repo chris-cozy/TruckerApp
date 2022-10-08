@@ -25,12 +25,11 @@ app.post('/insert', (request, response) => {
     const db = dbService.getInstance();
 
     const result = db.insertNewName(name);
-    //console.log(result);
+
 
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
 });
 
 // READ

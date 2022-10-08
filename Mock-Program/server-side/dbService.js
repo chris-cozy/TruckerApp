@@ -66,7 +66,6 @@ class dbService {
         try {
             const dateAdded = new Date();
             const insertID = await new Promise((resolve, reject) => {
-
                 // Parameterized the values to protect against SQL injection
                 const query = "INSERT INTO mock_table (name, date_added) VALUES (?, ?);";
 
@@ -75,9 +74,7 @@ class dbService {
                     resolve(result.insertID);
                 });
             });
-
             // Return the ID, name, and date_added to the front-end
-            console.log(insertID);
             return {
                 id: insertID,
                 name: name,
