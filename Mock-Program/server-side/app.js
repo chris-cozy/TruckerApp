@@ -61,7 +61,7 @@ app.delete('/delete/:id', (request, response) => {
         .then(data => response.json({ success: data }))
         .catch(err => console.log(err));
 
-})
+});
 
 //-----SERVER STARTUP-----//
 app.listen(process.env.PORT, () => {

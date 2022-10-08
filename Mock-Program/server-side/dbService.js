@@ -86,6 +86,9 @@ class dbService {
         }
     }
 
+    /*
+        This method sends the delete query
+    */
     async deleteRowById(id) {
         id = parseInt(id, 10);
         try {
