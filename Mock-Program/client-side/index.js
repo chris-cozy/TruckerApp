@@ -45,7 +45,46 @@ document.querySelector('table tbody').addEventListener('click', function (event)
     if (event.target.className === 'delete-row-btn') {
         deleteRowById(event.target.dataset.id);
     }
+    if (event.target.className === 'edit-row-btn') {
+        handleEditRow(event.target.dataset.id);
+    }
 });
+
+/*
+    Sending the PATCH request, and if successful, reloading the page. Ideally this is not the best way to display the results but it will work for now.
+*/
+const updateBtn = document.querySelector('#update-row-btn');
+updateBtn.onclick = function () {
+    const updatedInput = document.querySelector('#update-input');
+
+    fetch('http://localhost:5000/update', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'PATCH',
+        body: JSON.stringify({
+            id: updateBtn.dataset.id,
+            name: updatedInput.value
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            }
+        })
+}
+
+//-----HELPER FUNCTIONS-----//
+/*
+    Show the UI and set the data id for the Update button. This links the update button to the corresponding database table row.
+*/
+function handleEditRow(id) {
+    const updateSection = document.querySelector("#update-row");
+    updateSection.hidden = false;
+    document.querySelector('#update-row-btn').dataset.id = id;
+}
+
 
 /*
     Calls server side to delete the row. If successful, reloads the page
@@ -62,8 +101,6 @@ function deleteRowById(id) {
         });
 
 }
-
-//-----HELPER FUNCTIONS-----//
 /*
     This function will take data and insert it into the table as a new row. The purpose of this is the update the table once the add button is clicked, rather than needing to refresh.
     Takes in an array of data.

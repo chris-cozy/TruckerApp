@@ -112,6 +112,31 @@ class dbService {
         }
 
     }
+
+    /*
+
+    */
+    async updateNameById(id, name) {
+        id = parseInt(id, 10);
+        try {
+            const response = await new Promise((resolve, reject) => {
+
+                // Parameterized the values to protect against SQL injection
+                const query = "UPDATE mock_table SET name = ? WHERE id = ?;";
+
+                connection.query(query, [name, id], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+            return response === 1 ? true : false;
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+
+    }
 }
 
 //-----MODULE EXPORT-----//
