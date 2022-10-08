@@ -50,6 +50,27 @@ class dbService {
                 });
             });
 
+            return response;
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    /*
+        The same process as getAll, but limiting the results to match the passed-in name argument
+    */
+    async searchByName(name) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM mock_table WHERE name = ?;";
+                connection.query(query, [name], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                });
+            });
+
             console.log(response);
             return response;
 
@@ -114,7 +135,7 @@ class dbService {
     }
 
     /*
-
+        This method sends the update query
     */
     async updateNameById(id, name) {
         id = parseInt(id, 10);

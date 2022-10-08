@@ -32,7 +32,7 @@ app.post('/insert', (request, response) => {
         .catch(err => console.log(err));
 });
 
-// READ
+// GET
 app.get('/getAll', (request, response) => {
     // Grab instance of db
     const db = dbService.getInstance();
@@ -41,6 +41,18 @@ app.get('/getAll', (request, response) => {
 
     //console.log(result);
     // Return the promise to the fetch in a json for the api
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
+app.get('/search/:name', (request, response) => {
+    const { name } = request.params;
+
+    const db = dbService.getInstance();
+
+    const result = db.searchByName(name);
+
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
@@ -61,7 +73,6 @@ app.patch('/update', (request, response) => {
 
 // DELETE
 app.delete('/delete/:id', (request, response) => {
-    console.log(request.params);
     const { id } = request.params;
 
     const db = dbService.getInstance();

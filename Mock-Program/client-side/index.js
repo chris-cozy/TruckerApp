@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
     There is no .catch or error handling, since we have that in the back-end.
 */
 const addBtn = document.querySelector('#add-btn');
-
 addBtn.onclick = function () {
     const nameInput = document.querySelector('#test-input');
     // Every time we grab value and send to back-end, reset value to empty string
@@ -73,6 +72,20 @@ updateBtn.onclick = function () {
                 location.reload();
             }
         })
+}
+
+/*
+    Sends the GET request, with the name parameter. If successful, returns the rows with the appropriate information.
+*/
+const searchBtn = document.querySelector('#search-btn');
+searchBtn.onclick = function () {
+    const searchValue = document.querySelector('#search-input').value;
+
+    fetch('http://localhost:5000/search/' + searchValue)
+        // Converting response to json format
+        .then(response => response.json())
+        // Getting data back in json format and logging it to the console. Must access the data key of the json file
+        .then(data => loadHTMLTable(data['data']));
 }
 
 //-----HELPER FUNCTIONS-----//
