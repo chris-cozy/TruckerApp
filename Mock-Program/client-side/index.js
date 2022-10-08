@@ -3,7 +3,7 @@
 */
 document.addEventListener('DOMContentLoaded', function () {
     // Setting the endpoint
-    fetch('http://localHost:5000/getAll')
+    fetch('http://localhost:5000/getAll')
         // Converting response to json format
         .then(response => response.json())
         // Getting data back in json format and logging it to the console. Must access the data key of the json file
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     There is no .catch or error handling, since we have that in the back-end.
 */
 const addBtn = document.querySelector('#add-btn');
+
 addBtn.onclick = function () {
     const nameInput = document.querySelector('#test-input');
     // Every time we grab value and send to back-end, reset value to empty string
@@ -24,7 +25,7 @@ addBtn.onclick = function () {
     nameInput.value = "";
 
     // Accesses the API and transmits the data to the back-end. After a response is recieved, fulfills the .then promises
-    fetch('http://localHost:5000/insert', {
+    fetch('http://localhost:5000/insert', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -35,6 +36,34 @@ addBtn.onclick = function () {
         .then(data => insertRowIntoTable(data['data']));
 }
 
+//-----DELETE-----//
+/*
+    Using an event listener for when the user decides to delete a row
+*/
+document.querySelector('table tbody').addEventListener('click', function (event) {
+    console.log(event.target);
+    if (event.target.className === 'delete-row-btn') {
+        deleteRowById(event.target.dataset.id);
+    }
+});
+
+/*
+    Calls server side to delete the row. If successful, reloads the page
+*/
+function deleteRowById(id) {
+    fetch('http://localhost:5000/delete/' + id, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+
+}
+
+//-----HELPER FUNCTIONS-----//
 /*
     This function will take data and insert it into the table as a new row. The purpose of this is the update the table once the add button is clicked, rather than needing to refresh.
     Takes in an array of data.
@@ -70,7 +99,6 @@ function insertRowIntoTable(data) {
     }
 }
 
-//-----HELPER FUNCTIONS-----//
 /* 
     Function that takes in data and loads it into the table
     Args: Array of data

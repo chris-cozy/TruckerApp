@@ -25,6 +25,8 @@ app.post('/insert', (request, response) => {
     const db = dbService.getInstance();
 
     const result = db.insertNewName(name);
+    //console.log(result);
+
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
@@ -38,7 +40,7 @@ app.get('/getAll', (request, response) => {
 
     const result = db.getAllData();
 
-    console.log(result);
+    //console.log(result);
     // Return the promise to the fetch in a json for the api
     result
         .then(data => response.json({ data: data }))
@@ -48,7 +50,19 @@ app.get('/getAll', (request, response) => {
 // UPDATE
 
 // DELETE
+app.delete('/delete/:id', (request, response) => {
+    console.log(request.params);
+    const { id } = request.params;
 
+    const db = dbService.getInstance();
+
+    const result = db.deleteRowById(id);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
+
+})
 
 //-----SERVER STARTUP-----//
 app.listen(process.env.PORT, () => {
