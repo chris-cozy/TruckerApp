@@ -36,14 +36,14 @@ class dbService {
     }
 
     /*
-        Grabs all of the data
-        If there is an error, logs it to the console
+        Grabs all of the data from the database table
+        If there is an error, logs it to the console, otherwise returns the result.
     */
     async getAllData() {
         try {
             // Create a promise to handle the query. Using a resolve, reject. if query successful, it will resolve. If not, it will reject and transfer to the catch.
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM mock_table";
+                const query = "SELECT * FROM mock_table;";
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
@@ -54,6 +54,107 @@ class dbService {
 
         } catch (error) {
             console.log(error);
+        }
+
+    }
+
+    /*
+        The same process as getAll, but limiting the results to match the passed-in name argument
+    */
+    async searchByName(name) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM mock_table WHERE name = ?;";
+                connection.query(query, [name], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                });
+            });
+
+            console.log(response);
+            return response;
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    /*
+        This function sends a query to enter new name into the database table
+    */
+    async insertNewName(name) {
+        try {
+            const dateAdded = new Date();
+            const insertId = await new Promise((resolve, reject) => {
+                // Parameterized the values to protect against SQL injection
+                const query = "INSERT INTO mock_table (name, date_added) VALUES (?, ?);";
+
+                connection.query(query, [name, dateAdded], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.insertId);
+                });
+            });
+            // Return the ID, name, and date_added to the front-end
+            return {
+                id: insertId,
+                name: name,
+                dateAdded: dateAdded
+            };
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    /*
+        This method sends the delete query
+    */
+    async deleteRowById(id) {
+        id = parseInt(id, 10);
+        try {
+            const response = await new Promise((resolve, reject) => {
+
+                // Parameterized the values to protect against SQL injection
+                const query = "DELETE FROM mock_table WHERE id = ?;";
+
+                connection.query(query, [id], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+
+            console.log(response);
+            return response === 1 ? true : false;
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+
+    }
+
+    /*
+        This method sends the update query
+    */
+    async updateNameById(id, name) {
+        id = parseInt(id, 10);
+        try {
+            const response = await new Promise((resolve, reject) => {
+
+                // Parameterized the values to protect against SQL injection
+                const query = "UPDATE mock_table SET name = ? WHERE id = ?;";
+
+                connection.query(query, [name, id], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+            return response === 1 ? true : false;
+
+        } catch (error) {
+            console.log(error);
+            return false;
         }
 
     }

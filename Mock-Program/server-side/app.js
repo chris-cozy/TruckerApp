@@ -17,29 +17,73 @@ app.use(express.urlencoded({ extended: false }));
 
 
 //-----MYSQL ROUTES-----//
-// CREATE route
+// CREATE
 app.post('/insert', (request, response) => {
+    // Object destructuring
+    const { name } = request.body;
 
+    const db = dbService.getInstance();
+
+    const result = db.insertNewName(name);
+
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
 });
 
-// READ route
+// GET
 app.get('/getAll', (request, response) => {
     // Grab instance of db
     const db = dbService.getInstance();
 
     const result = db.getAllData();
 
-    console.log(result);
+    //console.log(result);
     // Return the promise to the fetch in a json for the api
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
 });
 
-// UPDATE route
+app.get('/search/:name', (request, response) => {
+    const { name } = request.params;
 
-// DELETE route
+    const db = dbService.getInstance();
 
+    const result = db.searchByName(name);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
+// UPDATE
+app.patch('/update', (request, response) => {
+    const { id, name } = request.body;
+    const db = dbService.getInstance();
+
+    const result = db.updateNameById(id, name);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
+
+});
+
+// DELETE
+app.delete('/delete/:id', (request, response) => {
+    const { id } = request.params;
+
+    const db = dbService.getInstance();
+
+    const result = db.deleteRowById(id);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
+
+});
 
 //-----SERVER STARTUP-----//
 app.listen(process.env.PORT, () => {
