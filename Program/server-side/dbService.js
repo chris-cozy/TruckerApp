@@ -35,7 +35,17 @@ class dbService {
         return instance ? instance : new dbService();
     }
 
-    //-----QUERIES-----//
+    //-----GET QUERIES-----//
+
+
+    //-----CREATE QUERIES-----//
+
+
+    //-----EDIT QUERIES-----//
+
+
+    //-----DELETE QUERIES-----//
+
 
 }
 
