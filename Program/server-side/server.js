@@ -17,6 +17,10 @@ app.post('/addUser', (request, response) => {
 });
 
 //-----GET ROUTES-----//
+app.get('/getAllAccounts', (request, response) => {
+    console.log('YES');
+});
+
 app.get('/getAllDrivers', (request, response) => {
 
 });
