@@ -97,3 +97,21 @@ nav .fa{
         padding: 30px;
     }
 }
+.button {
+    background-color: rgb(101, 1, 144, 0.0);
+    border: white;
+    border-width:1px;
+    border-style:solid;
+    border-color:rgb(255, 255, 255);
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .button:hover{
+    background-color: #ed7c0c;
+  }
