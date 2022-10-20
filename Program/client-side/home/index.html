@@ -1,11 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Good Driver Incentive Program</title>
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Driver | Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">    
 </head>
 <body>
-<script type="text/javascript" src="index.js"></script>
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <br><br>
+        <div class="text-box">
+            <h1>Welcome!</h1>
+            <p>Please click the appropriate button below to login.</p>
+        </div>
+        <center>
+        <a href="https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/login?client_id=5g4pb7a3is4s1hcbltlsfojuf9&response_type=code&scope=aws.cognito.signin.user.admin&redirect_uri=https://team21.cpsc4911.com/driver/" class="button">I'm a Driver</a>
+        <a href="https://team-21-sponsor.auth.us-east-1.amazoncognito.com/login?client_id=3nd0gqg60v9e2c2frlfpbrpf1s&response_type=code&scope=aws.cognito.signin.user.admin&redirect_uri=https://team21.cpsc4911.com/sponsor/" class="button">I'm a Sponsor</a>
+        <a href="https://good-driver-admin.auth.us-east-1.amazoncognito.com/login?client_id=61dugs6ila0n4p68t42g0jeqem&response_type=code&scope=aws.cognito.signin.user.admin&redirect_uri=https://team21.cpsc4911.com/admin" class="button">I'm an Admin</a>
+        </center>
+
+<!-- JS for Toggling Nav Menu -->
+<script >
+var navLinks = document.getElementById("navLinks");
+    function showMenu(){
+        navLinks.style.right = "0";
+    }
+    function hideMenu(){
+        navLinks.style.right = "-400px";
+    }
+</script>
+
 </body>
 </html>
-          >
