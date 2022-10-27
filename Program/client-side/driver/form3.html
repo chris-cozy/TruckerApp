@@ -26,13 +26,13 @@
             <form>
                 <h2>Almost done, please enter your shipping address so we know where to send your rewards!</h2><br><br>
                 <label>Street:</label>
-                <input type="text" id="street" name="street" maxlength="50"><br>
+                <input type="text" id="street" name="street" maxlength="50" required><br>
                 <label>City:</label>
-                <input type="text" id="city" name="city" maxlength="25"><br>
+                <input type="text" id="city" name="city" maxlength="25" required><br>
                 <label>State:</label>
-                <input type="text" id="state" name="state" maxlength="25"><br>
+                <input type="text" id="state" name="state" maxlength="25" required><br>
                 <label>Zip Code:</label>
-                <input type="text" id="zip" name="zip" maxlength="5"><br><br>
+                <input type="text" id="zip" name="zip" maxlength="5" required><br><br>
 
                 <input type="reset" value="Reset Form" name="reset" id="reset">
                 <input type="submit" value="Submit Application" id="submit" name="submit">
@@ -51,6 +51,11 @@
     }
     function hideMenu(){
         navLinks.style.right = "-400px";
+    }
+
+    //need to implement
+    function validateForm(){
+        return
     }
 
 </script>
