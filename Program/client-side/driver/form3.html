@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good Driver | Driver Home</title>
+    <title>Good Driver | Apply</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +23,8 @@
         </nav>
 
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
-            <form>
-                <h2>Almost done, please enter your shipping address so we know where to send your rewards!</h2><br><br>
+            <form onsubmit=validateForm() action="submit.html">
+                <h2>Almost done, please enter your shipping address so we know where to send your rewards! You can make changes later.</h2><br><br>
                 <label>Street:</label>
                 <input type="text" id="street" name="street" maxlength="50" required><br>
                 <label>City:</label>

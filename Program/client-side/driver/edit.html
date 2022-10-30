@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good Driver | Apply</title>
+    <title>Good Driver | Edit Profile</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +16,6 @@
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
                 <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="points.html">POINTS</a></li>
-                    <li><a href="products.html">PRODUCTS</a></li>
                     <li><a href="profile.html">PROFILE</a></li>
                 </ul>
             </div>
@@ -26,27 +23,10 @@
         </nav>
 
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
-            <form onsubmit=validateForm() action="form2.html">
-                <h2>First, we need some basic information about you. Please fill in the information below. You can make changes later.</h2><br><br>
-
-                <label for="fname">First Name:   </label>
-                <input type="text" id="fname" name="fname" maxlength="20" required>
-
-                <label for="lname">Last Name:    </label>
-                <input type="text" id="lname" name="lname" maxlength="20" required><br><br>
-
-                <label for="date">Birthday:    </label>
-                <input type="month" id="bday" name="bday" required>
-
-                <label>Email:    </label>
-                <input type="email" id="email" name="email" maxlength="30" required><br><br>
-
-                <label>Phone:    </label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" value="XXXXXXXXXX" maxlength="10" required><br><br>
-
-                <input type="reset" value="Reset Form" name="reset" id="reset">
-                <input type="submit" value="Next Step" id="next" name="next">
-                
+            <form onsubmit=validateForm() action="submit2.html">
+                <h2>Please update any information you would like, and remember to save changes!</h2><br><br>
+                <h2>(This is where we would display driver info that is currently in the db in a form that the driver can alter and submit)</h2><br><br>
+                <input type="submit" value="Save Changes" id="update" name="next">
             </form>
         </div>    
 
