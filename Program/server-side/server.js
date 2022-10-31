@@ -12,8 +12,14 @@ app.use(express.urlencoded({ extended: false }));
 
 
 //-----CREATE ROUTES-----//
-app.post('/addUser', (request, response) => {
+app.post('/getTest', (request, response) => {
+    console.log('TEST AFFIRMED.');
 
+});
+
+//-----TEST ROUTE-----//
+app.get('/getAllAccounts', (request, response) => {
+    console.log('YES');
 });
 
 //-----GET ROUTES-----//
