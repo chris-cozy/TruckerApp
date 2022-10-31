@@ -27,7 +27,8 @@ if(!empty($points)){
         $statmnt->bind_result($points);
         $statmnt->store_result();
 
-        #unfinished
+        #unfinished -- 
+        # Need to add info from Points Management table once a point change form is filled out and submitted
     }
 }
 else{
