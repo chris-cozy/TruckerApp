@@ -26,7 +26,7 @@
         </nav>
 
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
-            <form onsubmit=validateForm() action="form2.html">
+            <form onsubmit="return validateForm()" action="form2.html">
                 <h2>First, we need some basic information about you. Please fill in the information below. You can make changes later.</h2><br><br>
 
                 <label for="fname">First Name:   </label>
@@ -63,7 +63,7 @@
         navLinks.style.right = "-400px";
     }
 
-    //need to implement
+    //might implement in the future if needed
     function validateForm(){
         return
     }
