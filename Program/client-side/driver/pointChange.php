@@ -6,7 +6,7 @@ if(!empty($points)){
     $host = "team21-database2.cobd8enwsupz.us-east-1.rds.amazonaws.com";
     $databaseUser = "admin";
     $databasePassword = "QNAXni7AkACXrEWencp9";
-    $databaseName = "Driver Account";
+    $databaseName = "official_db";
 
     # creating connection
     $conn = new mysqli($host, $databaseUser, $databasePassword, $databaseName);
@@ -17,7 +17,7 @@ if(!empty($points)){
     }
     # choose points from the driver account database
     else {
-        $SELECT = "SELECT points From Driver Account Where points = ?";
+        $SELECT = "SELECT points From Driver Account Where driverID = ?";
 
         # TODO: Add connection to Points_Management table, so sponsors/admins who make a change are identified
         # TODO: Grab the point change data from Points_Management once form is filled out to specify new point value, reason, etc
