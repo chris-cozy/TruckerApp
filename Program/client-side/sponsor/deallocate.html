@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good Driver | Points</title>
+    <title>Good Driver | Remove Points</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,22 +23,26 @@
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>
-
+        </nav>  
         
+        <div class="text-box" style="text-align:left;display:block;float:inline-start;">
+            <form onsubmit="return validateForm()" action="pointChangeSuccess.html">
+                <h2>Enter the amount of points you would like to remove, the driver to subtract them from, and a reason for subtraction.</h2><br><br>
 
-        <div class="text-box">
-            <h1>Points</h1>
-            <p>*display point history here*</p>
-        </div>    
-        <!-- Buttons for cart and such -->
-        <!-- currently only link to this page, not implemented-->
-        <div style = "float: right; transform: translate(-50%,+50%);">
-            <a href="allocate.html" class="button">Allocate Points</a>
-            <a href="deallocate.html" class="button">Remove Points</a>
-            <a href="points.html" class="button">Edit Point Value</a>
-            <a href="points.html" class="button">Order History</a>
-        </div>
+                <label for="subtractPoints">Points Amount:   </label>
+                <input type="number" id="subtractPoints" name="subtractPoints" required><br><br>
+
+                <label for="driverToLose">Driver ID:    </label>
+                <input type="text" id="driverToLose" name="driverToLose" maxlength="30" required><br><br>
+
+                <label>Please give a reason for removing points from this driver.</label><br><br>
+                <textarea name="reason" maxLength = "240" required>-Type Here-</textarea><br><br>
+
+                <input type="reset" value="Reset Form" name="reset" id="reset">
+                <input type="submit" value="Remove Points" id="subtract" name="subtract">
+                
+            </form>
+        </div> 
 
     </section>
 
@@ -51,6 +55,11 @@
     }
     function hideMenu(){
         navLinks.style.right = "-400px";
+    }
+
+    //might implement in the future if needed
+    function validateForm(){
+        return
     }
 
 </script>
