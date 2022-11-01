@@ -32,6 +32,19 @@
 
     </section>
 
+    <table>
+        <tr>
+            <th>points</th>
+        </tr>
+        <?php
+        $conn = mysqli_connect("localhost", "admin", "", "Driver_Account");
+        # TODO: Link driverID to current user from login info
+        # TODO: Use driverID to specify which user to check the points of
+
+        # Gather point value from table
+        $pts = "SELECT * From Driver_Account Where driverID = ?";
+        ?>
+
 <!-- JS for Toggling Nav Menu -->
 <script>
 
