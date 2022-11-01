@@ -37,7 +37,7 @@
             <th>points</th>
         </tr>
         <?php
-        $conn = mysqli_connect("team21-database2.cobd8enwsupz.us-east-1.rds.amazonaws.com", "admin", "QNAXni7AkACXrEWencp9", "Driver_Account");
+        $conn = mysqli_connect("team21-database2.cobd8enwsupz.us-east-1.rds.amazonaws.com", "admin", "QNAXni7AkACXrEWencp9", "official_db");
         # TODO: Link driverID to current user from login info
         # TODO: Use driverID to specify which user to check the points of
 
