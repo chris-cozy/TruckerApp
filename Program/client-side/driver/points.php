@@ -26,7 +26,7 @@
         </nav>
 
         <div class="text-box">
-            <h1>MyPoints *insert total*</h1>
+            <h1>MyPoints 0</h1>
             <p>Here would be a table comprised of point related information</p>
         </div>    
 
