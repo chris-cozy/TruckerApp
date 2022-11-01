@@ -37,13 +37,31 @@
             <th>points</th>
         </tr>
         <?php
-        $conn = mysqli_connect("localhost", "admin", "", "Driver_Account");
+        $conn = mysqli_connect("team21-database2.cobd8enwsupz.us-east-1.rds.amazonaws.com", "admin", "QNAXni7AkACXrEWencp9", "Driver_Account");
         # TODO: Link driverID to current user from login info
         # TODO: Use driverID to specify which user to check the points of
 
         # Gather point value from table
-        $pts = "SELECT * From Driver_Account Where driverID = ?";
+        $pts = "SELECT points From Driver_Account Where driverID = ?";
+
+        # Store result
+        $result = $conn->query($pts);
+
+        # If there is a result in the table, display it on the webpage
+        if($result->num_rows > 0){
+            if($row = $result-> fetch_assoc()){
+                echo "<tr><td>" . $row["points"] "</td></tr>";
+            }
+        }
+        # If not, display an error
+        else{
+            echo "Error: No result.";
+        }
+
+        # Closing connection
+        $conn->close();
         ?>
+    </table>
 
 <!-- JS for Toggling Nav Menu -->
 <script>
