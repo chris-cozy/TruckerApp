@@ -31,7 +31,7 @@ class dbService {
         Grabs the instance of the class. Without it, multiple instances would be made.
         The return statment checks if instance is not null. If it is, creates a new instance.
     */
-    static getInstance() {
+    static get_instance() {
         return instance ? instance : new dbService();
     }
 
@@ -42,7 +42,29 @@ class dbService {
 
 
     //-----EDIT QUERIES-----//
+    /*
+    @desc: Send query to update driver account information
+    @params: driverID, object containing profile information
+    @return: an int denoting success(1) or failure(0)
+    */
+    async update_profile_info(driverID, profileInfo) {
+        try {
+            const response = await new Promise((resolve, reject) => {
 
+                const query = "UPDATE Driver_Account SET firstName = ?, lastName = ?, email = ?, phoneNum = ?, shippingStreet = ?, shippingCity = ?, shippingState = ?, shippingZip = ? WHERE driverID = ?;";
+
+                connection.query(query, [profileInfo.firstName, profileInfo.lastName, profileInfo.email, profileInfo.phoneNum, profileInfo.shippingAddress.shippingStreet, profileInfo.shippingAddress.shippingCity, profileInfo.shippingAddress.shippingState, profileInfo.shippingAddress.shippingZip, driverID], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+            return response === 1 ? true : false;
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
 
     //-----DELETE QUERIES-----//
 

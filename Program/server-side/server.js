@@ -44,8 +44,16 @@ app.get('/search/:name', (request, response) => {
 });
 
 // UPDATE
-app.patch('/updateName', (request, response) => {
+app.patch('/updateProfileInfo', (request, response) => {
+    const driverID = request.body.id;
+    const profileInfo = request.body.body;
+    const db = dbService.get_instance();
 
+    const result = db.update_profile_info(driverID, profileInfo);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
 
 });
 
