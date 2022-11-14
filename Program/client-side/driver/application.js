@@ -35,7 +35,10 @@ submitBtn.onclick = function () {
             shippingState: shippingStateInput.value,
             shippingZip: shippingZipInput.value
         },
-        reason: reason.value
+        // Sub this for the chosen sponsor's ID
+        sponsorID: 'c9e2d249-af19-4dfd-a091-831d27e81e29',
+        reason: reason.value,
+        initialStatus: 0
     }
 
     console.log(applicationInfo);
@@ -44,7 +47,7 @@ submitBtn.onclick = function () {
         headers: {
             'Content-type': 'application/json'
         },
-        method: 'PATCH',
+        method: 'PUT',
         body: JSON.stringify({
             // sub this for the current user's id
             id: '41147626-3056-4454-895e-60027f449388',

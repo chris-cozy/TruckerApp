@@ -1,6 +1,7 @@
 //-----MODULE INITIATION-----//
 const mysql = require('mysql');
 const dotenv = require('dotenv');
+const { application } = require('express');
 
 dotenv.config();
 
@@ -39,7 +40,30 @@ class dbService {
 
 
     //-----CREATE QUERIES-----//
+    /*
+    @desc: Send query to create a new application
+    @params: driverID, object containing application information
+    @return: an int denoting success(1) or failure(0)
+    */
+    async send_application(driverID, applicationInfo) {
+        try {
+            const dateAdded = new Date();
+            const response = await new Promise((resolve, reject) => {
 
+                const query = "INSERT INTO Applications (driverID, sponsorID, reason, status, dateCreated) VALUES (?, ?, ?, ?, ?);";
+
+                connection.query(query, [driverID, applicationInfo.sponsorID, applicationInfo.reason, applicationInfo.initialStatus, dateAdded], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+            return response === 1 ? true : false;
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
 
     //-----EDIT QUERIES-----//
 
