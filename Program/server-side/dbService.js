@@ -32,7 +32,7 @@ class dbService {
         Grabs the instance of the class. Without it, multiple instances would be made.
         The return statment checks if instance is not null. If it is, creates a new instance.
     */
-    static getInstance() {
+    static get_instance() {
         return instance ? instance : new dbService();
     }
 

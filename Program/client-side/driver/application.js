@@ -47,7 +47,7 @@ submitBtn.onclick = function () {
         headers: {
             'Content-type': 'application/json'
         },
-        method: 'PUT',
+        method: 'POST',
         body: JSON.stringify({
             // sub this for the current user's id
             id: '41147626-3056-4454-895e-60027f449388',

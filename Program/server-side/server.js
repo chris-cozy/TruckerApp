@@ -17,7 +17,6 @@ app.post('/getTest', (request, response) => {
 });
 
 app.post('/sendApplication', (request, response) => {
-
     const driverID = request.body.id;
     const applicationInfo = request.body.body;
     const db = dbService.get_instance();
