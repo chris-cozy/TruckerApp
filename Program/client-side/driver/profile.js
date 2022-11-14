@@ -47,7 +47,7 @@ updateBtn.onclick = function () {
         },
         method: 'PATCH',
         body: JSON.stringify({
-            // sub this for current user id
+            // sub this for the current user's id
             id: '41147626-3056-4454-895e-60027f449388',
             body: profileInfo
         })
