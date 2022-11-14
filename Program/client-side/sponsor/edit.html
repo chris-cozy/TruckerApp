@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good Driver | Remove Points</title>
+    <title>Good Driver | Edit Profile</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,33 +19,35 @@
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
                 <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="points.html">POINTS</a></li>
-                    <li><a href="products.html">PRODUCTS</a></li>
                     <li><a href="profile.html">PROFILE</a></li>
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>  
-        
+        </nav>
+
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
-            <form onsubmit="return validateForm()" action="pointChangeSuccess.html">
-                <h2>Enter the amount of points you would like to remove, the driver to subtract them from, and a reason for subtraction.</h2><br><br>
+            <form onsubmit="return validateForm()" action="submit2.html">
+                <br><br><br><h2>Please update any information you would like, and remember to save changes!</h2><br><br>
 
-                <label for="subtractPoints">Points Amount:   </label>
-                <input type="number" id="subtractPoints" name="subtractPoints" required><br><br>
+                <label for="fname">First Name:   </label>
+                <input type="text" id="fname" name="fname" maxlength="20">
 
-                <label for="driverToLose">Driver ID:    </label>
-                <input type="text" id="driverToLose" name="driverToLose" maxlength="30" required><br><br>
-
-                <label>Please give a reason for removing points from this driver.</label><br><br>
-                <textarea name="reason" maxLength = "240" required>-Type Here-</textarea><br><br>
-
-                <input type="reset" value="Reset Form" name="reset" id="reset">
-                <input type="submit" value="Remove Points" id="subtract" name="subtract">
+                <label for="lname">    Last Name:    </label>
+                <input type="text" id="lname" name="lname" maxlength="20"><br><br>
                 
+                <!-- The fetch stuff here is temporary-->
+                <label>Email:    </label>
+                <input type="email" id="email" name="email" maxlength="30" required value="return fetchEmail()">
+                <label>    Phone:    </label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" required value="return fetchPhone()"><br><br>
+
+                <label>About Me: </label><br><br>
+                <textarea id="desc" name="reason" maxLength = "300" required>-Type Here-</textarea><br>
+                
+                <input type="submit" value="Save Changes" id="update" name="update">
+            
             </form>
-        </div> 
+        </div>    
 
     </section>
 
