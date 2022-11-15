@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Edit Profile</title>
@@ -27,22 +28,25 @@
 
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
             <form onsubmit="return validateForm()" action="submit2.html">
-                <br><br><br><h2>Please update any information you would like, and remember to save changes!</h2><br><br>
+                <br><br><br>
+                <h2>Please update any information you would like, and remember to save changes!</h2><br><br>
 
-                <label for="fname">First Name:   </label>
+                <label for="fname">First Name: </label>
                 <input type="text" id="fname" name="fname" maxlength="20">
 
-                <label for="lname">    Last Name:    </label>
+                <label for="lname"> Last Name: </label>
                 <input type="text" id="lname" name="lname" maxlength="20"><br><br>
 
-                <h2>(This is where we would display driver info that is currently in the db in a form that the driver can alter and submit)</h2><br><br>
-                
-                <label>Email:    </label>
-                <input type="email" id="email" name="email" maxlength="30" required value="return fetchEmail()">
-                <label>    Phone:    </label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" required value="return fetchPhone()"><br><br>
+                <h2>(This is where we would display driver info that is currently in the db in a form that the driver
+                    can alter and submit)</h2><br><br>
 
-                <label>Driving Experience (in years):    </label>
+                <label>Email: </label>
+                <input type="email" id="email" name="email" maxlength="30" required value="return fetchEmail()">
+                <label> Phone: </label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" required
+                    value="return fetchPhone()"><br><br>
+
+                <label>Driving Experience (in years): </label>
                 <input type="number" id="exp" name="exp" min="0" max="30" required value="return fetchExp"><br><br>
                 <label>Preferred Sponsors: </label><br><br>
                 <input type="checkbox" id="s1" name="s1" value="s1">
@@ -56,37 +60,40 @@
                 <label>Shipping Address</label><br>
                 <label>Street:</label>
                 <input type="text" id="street" name="street" maxlength="50" required value="return fetchStreet()">
-                <label>    City:</label>
+                <label> City:</label>
                 <input type="text" id="city" name="city" maxlength="25" required value="return fetchCity()"><br>
                 <label>State:</label>
                 <input type="text" id="state" name="state" maxlength="25" required value="return fetchState()">
-                <label>    Zip Code:</label>
-                <input type="text" id="zip" name="zip" minlength="5" maxlength="5" pattern="[0-9]{5}" required value="return fetchZip()"><br><br>
-                
+                <label> Zip Code:</label>
+                <input type="text" id="zip" name="zip" minlength="5" maxlength="5" pattern="[0-9]{5}" required
+                    value="return fetchZip()"><br><br>
+
                 <input type="submit" value="Save Changes" id="update" name="update">
-            
+
             </form>
-        </div>    
+        </div>
 
     </section>
 
-<!-- JS for Toggling Nav Menu -->
-<script>
+    <!-- JS for Toggling Nav Menu -->
+    <script>
 
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
 
-    //might implement in the future if needed
-    function validateForm(){
-        return
-    }
+        //might implement in the future if needed
+        function validateForm() {
+            return
+        }
 
-</script>
+    </script>
+    <script src="profile.js"></script>
 
 </body>
+
 </html>
