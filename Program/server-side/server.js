@@ -13,8 +13,19 @@ app.use(express.urlencoded({ extended: false }));
 
 //-----CREATE ROUTES-----//
 app.post('/getTest', (request, response) => {
-    console.log('TEST AFFIRMED.');
 
+});
+
+app.post('/sendApplication', (request, response) => {
+    const driverID = request.body.id;
+    const applicationInfo = request.body.body;
+    const db = dbService.get_instance();
+
+    const result = db.send_application(driverID, applicationInfo);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
 });
 
 //-----TEST ROUTE-----//

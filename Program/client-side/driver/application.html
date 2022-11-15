@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Apply</title>
@@ -30,14 +31,15 @@
 
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
             <form onsubmit="return validateForm()" action="submit.html">
-                <br><br><br><h2>Please fill in the information below. You can make changes later.</h2><br>
+                <br><br><br>
+                <h2>Please fill in the information below. You can make changes later.</h2><br>
 
-                <label>Email:    </label>
+                <label>Email: </label>
                 <input type="email" id="email" name="email" maxlength="30" required>
-                <label>    Phone:    </label>
+                <label> Phone: </label>
                 <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10" required><br><br>
 
-                <label>Driving Experience (in years):    </label>
+                <label>Driving Experience (in years): </label>
                 <input type="number" id="exp" name="exp" min="0" max="30" required><br><br>
                 <label>Select the sponsors you would like to apply for: </label><br><br>
                 <input type="checkbox" id="s1" name="s1" value="s1">
@@ -51,41 +53,43 @@
                 <label>Please enter your shipping address so we know where to send your rewards!</label><br><br>
                 <label>Street:</label>
                 <input type="text" id="street" name="street" maxlength="50" required>
-                <label>    City:</label>
+                <label> City:</label>
                 <input type="text" id="city" name="city" maxlength="25" required><br>
                 <label>State:</label>
                 <input type="text" id="state" name="state" maxlength="25" required>
-                <label>   Zip Code:</label>
+                <label> Zip Code:</label>
                 <input type="text" id="zip" name="zip" minlength="5" maxlength="5" pattern="[0-9]{5}" required><br><br>
 
                 <label>Please give a short description of what makes you a safe driver.</label><br><br>
-                <textarea id="desc" name="reason" minLength = "20" maxLength = "240" required>-Type Here-</textarea><br>
+                <textarea id="desc" name="reason" minLength="20" maxLength="240" required>-Type Here-</textarea><br>
 
                 <input type="reset" value="Reset Form" name="reset" id="reset">
                 <input type="submit" value="Submit Application" id="submit" name="submit">
-                
+
             </form>
-        </div>    
+        </div>
 
     </section>
 
-<!-- JS for Toggling Nav Menu -->
-<script>
+    <!-- JS for Toggling Nav Menu -->
+    <script>
 
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
 
-    //might implement in the future if needed
-    function validateForm(){
-        return
-    }
+        //might implement in the future if needed
+        function validateForm() {
+            return
+        }
 
-</script>
+    </script>
+    <script src="application.js"></script>
 
 </body>
+
 </html>
