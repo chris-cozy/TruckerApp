@@ -112,3 +112,25 @@ nav .fa{
   .button:hover{
     background-color: #ed7c0c;
   }
+
+
+  
+  .big {
+    width:90%;
+    text-align:left;
+}
+@media only screen and (max-width: 600px) {
+    body {
+      font-size:0.8em;
+    }
+    input {
+      width: 30%;
+      font-size: 1.0em;
+    }
+    input[type="submit"] {
+      width: 25%;
+    }
+    input[type="reset"] {
+        width: 25%
+    }
+}

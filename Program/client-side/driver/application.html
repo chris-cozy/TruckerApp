@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
     <section class="header">
-        <nav>
+        <nav class = "big">
             <a href="index.html"><img src="logo.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
@@ -30,7 +30,7 @@
         </nav>
 
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
-            <form onsubmit="return validateForm()" action="submit.html">
+            <form onsubmit="return validateForm()" action="submit.html" class="big">
                 <br><br><br>
                 <h2>Please fill in the information below. You can make changes later.</h2><br>
 
@@ -41,7 +41,7 @@
 
                 <label>Driving Experience (in years): </label>
                 <input type="number" id="exp" name="exp" min="0" max="30" required><br><br>
-                <label>Select the sponsors you would like to apply for: </label><br><br>
+                <label>Select the sponsors you would like to apply for: </label><br>
                 <input type="checkbox" id="s1" name="s1" value="s1">
                 <label for="s1"> Dummy Sponsor 1</label><br>
                 <input type="checkbox" id="s2" name="s2" value="s2">
@@ -50,7 +50,7 @@
                 <label for="s3"> Dummy Sponsor 3</label>
                 </select><br><br>
 
-                <label>Please enter your shipping address so we know where to send your rewards!</label><br><br>
+                <label>Please enter your shipping address so we know where to send your rewards!</label><br>
                 <label>Street:</label>
                 <input type="text" id="street" name="street" maxlength="50" required>
                 <label> City:</label>
@@ -60,11 +60,11 @@
                 <label> Zip Code:</label>
                 <input type="text" id="zip" name="zip" minlength="5" maxlength="5" pattern="[0-9]{5}" required><br><br>
 
-                <label>Please give a short description of what makes you a safe driver.</label><br><br>
+                <label>Please give a short description of what makes you a safe driver.</label><br>
                 <textarea id="desc" name="reason" minLength="20" maxLength="240" required>-Type Here-</textarea><br>
 
-                <input type="reset" value="Reset Form" name="reset" id="reset">
-                <input type="submit" value="Submit Application" id="submit" name="submit">
+                <input type="reset" value="Reset" name="reset" id="reset">
+                <input type="submit" value="Submit" id="submit" name="submit">
 
             </form>
         </div>
