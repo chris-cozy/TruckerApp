@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* Shows all point management actions by a given sponsor, for drivers to view their points history
     To be used for reference in js code
-    const displayPointDistribution(sponsorID) {
+    async displayPointDistribution(sponsorID) {
         if (sponsorID == NULL) {
             alert("Invalid Sponsor.");
         }
@@ -28,3 +28,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     */
+
+    
