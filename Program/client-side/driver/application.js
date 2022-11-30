@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 */
 function load_sponsor_list(data) {
     // Grab the table body
-    const sponsorSelect = document.querySelector('#sponsor-select');
+    const sponsorSelect = document.querySelector('table tbody');
 
     // If there is no data
     if (data.length === 0) {
