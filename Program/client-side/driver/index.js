@@ -36,8 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
         userSub: userInfo.sub,
         userEmail: userInfo.email
     };
+
     console.log(currentUser);
 
     const welcome = document.querySelector('#welcome-msg');
-    welcome.innerHTML = 'Welcome ' + currentUser;
+    welcome.innerHTML = 'Welcome ' + currentUser.userName;
 });
