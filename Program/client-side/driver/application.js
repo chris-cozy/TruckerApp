@@ -1,6 +1,42 @@
-document.addEventListener('DOMContentLoaded', function () {
+// const { response } = require("express");
 
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('http://localhost:5000/getAllSponsors')
+        .then(response => response.json())
+        .then(data => load_sponsor_list(data['data']));
 });
+//-----GET-----//
+/*
+    @desc: When called, loads a list of the active sponsors into the table
+    @params: Data object of sponsors, from database query
+    @return: Nothing
+*/
+function load_sponsor_list(data) {
+    // Grab the table body
+    const sponsorSelect = document.querySelector('#sponsor-select');
+
+    // If there is no data
+    if (data.length === 0) {
+        sponsorSelect.innerHTML = "<p class='no-data'>No Available Sponsors</p>";
+        return;
+    }
+
+    // If there is data
+    let tableHTML = "";
+
+    data.forEach(function ({ username, firstName, lastName, organization }) {
+        tableHTML += "<tr>";
+        tableHTML += `<td>${firstName}</td>`;
+        tableHTML += `<td>${lastName}</td>`;
+        tableHTML += `<td>${organization}</td>`;
+        // A button to select the sponsor
+        tableHTML += `<td><input type="checkbox" class="select-sponsor-btn" data-id=${username} name=${username} value=${username}></input><td>`;
+        tableHTML += "</tr>"
+    });
+
+    // Updating the HTML
+    sponsorSelect.innerHTML = tableHTML;
+}
 
 //-----POST-----//
 /*
