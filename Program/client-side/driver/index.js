@@ -31,7 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     });
 
-    let currentUser = userInfo.username;
+    let currentUser = {
+        userName: userInfo.username,
+        userSub: userInfo.sub,
+        userEmail: userInfo.email
+    };
     console.log(currentUser);
 
     const welcome = document.querySelector('#welcome-msg');
