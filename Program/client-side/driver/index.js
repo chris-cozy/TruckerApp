@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function () {
             Method: 'GET',
             Headers: {
                 'Authorization': response.access_token
-            })
+            }
+        })
     });
 
     let currentUser = userInfo.username;
