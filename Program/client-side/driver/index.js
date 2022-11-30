@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const userInfo = await fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userinfo', {
             Method: 'GET',
             Headers: {
-                'Authorization': response.access_token
+                'Authorization': 'Bearer ' + response.access_token
             }
         })
     });
