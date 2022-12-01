@@ -205,14 +205,14 @@ class dbService {
     @params: driverID, object containing application information
     @return: an int denoting success(1) or failure(0)
     */
-    async send_application(driverID, applicationInfo) {
+    async send_application(applicationInfo) {
         try {
             const dateAdded = new Date();
             const response = await new Promise((resolve, reject) => {
 
                 const query = "INSERT INTO Applications (driverID, sponsorID, reason, status, dateCreated) VALUES (?, ?, ?, ?, ?);";
 
-                connection.query(query, [driverID, applicationInfo.sponsorID, applicationInfo.reason, applicationInfo.initialStatus, dateAdded], (err, result) => {
+                connection.query(query, [applicationInfo.driverID, applicationInfo.sponsorID, applicationInfo.reason, applicationInfo.initialStatus, dateAdded], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.affectedRows);
                 });
