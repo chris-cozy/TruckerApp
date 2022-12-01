@@ -1,41 +1,48 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Ubuntu', sans-serif;
 }
-.header{
+
+.header {
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(131, 0, 187, 0.849),rgba(0, 0, 0, 0.849));
+    background-image: linear-gradient(rgba(131, 0, 187, 0.849), rgba(0, 0, 0, 0.849));
     background-position: center;
     background-size: cover;
     position: relative;
 }
-nav{
+
+nav {
     display: flex;
     padding: 2% 6%;
     justify-content: space-between;
     align-items: center;
 }
-nav img{
+
+nav img {
     width: 150px;
 }
-.nav-links{
+
+.nav-links {
     flex: 1;
     text-align: right;
 }
-.nav-links ul li{
+
+.nav-links ul li {
     list-style: none;
     display: inline-block;
     padding: 8px 12px;
     position: relative;
 }
-.nav-links ul li a{
+
+.nav-links ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
 }
-.nav-links ul li::after{
+
+.nav-links ul li::after {
     content: '';
     width: 0%;
     height: 2px;
@@ -44,41 +51,49 @@ nav img{
     margin: auto;
     transition: 0.2s;
 }
-.nav-links ul li:hover::after{
+
+.nav-links ul li:hover::after {
     width: 100%;
 }
-.text-box{
+
+.text-box {
     width: 90%;
     color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     text-align: center;
 }
-.text-box h1{
+
+.text-box h1 {
     font-size: 70px;
 }
-.text-box h2{
+
+.text-box h2 {
     font-size: 18px;
 }
-.text-box p{
+
+.text-box p {
     margin: 10px 0 40px;
     font-size: 14px;
     color: #fff;
 }
-nav .fa{
+
+nav .fa {
     display: none;
 }
 
-@media(max-width: 700px){
-    .text-box h1{
+@media(max-width: 700px) {
+    .text-box h1 {
         font-size: 22px;
     }
-    .nav-links ul li{
+
+    .nav-links ul li {
         display: block;
     }
-    .nav-links{
+
+    .nav-links {
         position: absolute;
         background: rgb(0, 0, 0);
         height: 100vh;
@@ -89,23 +104,26 @@ nav .fa{
         z-index: 2;
         transition: 0.8s;
     }
-    nav .fa{
+
+    nav .fa {
         display: block;
         color: #fff;
         margin: 10px;
         font-size: 24px;
         cursor: pointer;
     }
-    .nav-links{
+
+    .nav-links {
         padding: 30px;
     }
 }
+
 .button {
     background-color: rgb(101, 1, 144, 0.0);
     border: white;
-    border-width:1px;
-    border-style:solid;
-    border-color:rgb(255, 255, 255);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
     color: white;
     padding: 15px 15px;
     text-align: center;
@@ -114,13 +132,14 @@ nav .fa{
     font-size: 18px;
     margin: 4px 2px;
     cursor: pointer;
-  }
-  .button:hover{
-    background-color: #ed7c0c;
-  }
+}
 
-  
-input [type=text]{
+.button:hover {
+    background-color: #ed7c0c;
+}
+
+
+input [type=text] {
     width: 40%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -128,17 +147,20 @@ input [type=text]{
     border: none;
     border-bottom: 2px solid #ed7c0c;
 }
+
 input[type=text]:focus {
     border: 3px solid #ed7c0c;
 }
 
 
-input[type=button], input[type=submit], input[type=reset] {
+input[type=button],
+input[type=submit],
+input[type=reset] {
     background-color: rgb(101, 1, 144, 0.0);
     border: white;
-    border-width:1px;
-    border-style:solid;
-    border-color:rgb(255, 255, 255);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
     color: white;
     padding: 15px 15px;
     text-align: center;
@@ -148,7 +170,10 @@ input[type=button], input[type=submit], input[type=reset] {
     margin: 4px 2px;
     cursor: pointer;
 }
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
+
+input[type=button]:hover,
+input[type=submit]:hover,
+input[type=reset]:hover {
     background-color: #ed7c0c;
 }
 
@@ -168,21 +193,37 @@ textarea {
 
 
 .big {
-    width:90%;
-    text-align:left;
+    width: 90%;
+    text-align: left;
 }
+
 @media only screen and (max-width: 600px) {
     body {
-      font-size:0.8em;
+        font-size: 0.8em;
     }
+
     input {
-      width: 30%;
-      font-size: 1.0em;
+        width: 30%;
+        font-size: 1.0em;
     }
+
     input[type="submit"] {
-      width: 25%;
+        width: 25%;
     }
+
     input[type="reset"] {
         width: 25%
     }
+}
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    border: 1px solid white;
+}
+
+th,
+td {
+    padding: 5px;
 }

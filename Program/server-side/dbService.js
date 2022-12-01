@@ -58,6 +58,29 @@ class dbService {
 
     }
 
+    /*
+        Grabs all of the sponsors from the database table
+        If there is an error, logs it to the console, otherwise returns the result.
+    */
+    async get_all_sponsors() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM Sponsor_Account;";
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                });
+            });
+
+            console.log(response);
+            return response;
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
     async getAllMyDrivers(sponsorID) {
         try {
             // Grabs information on drivers for a specific sponsor
@@ -84,7 +107,7 @@ class dbService {
     // Finds the driver with the given username and displays their information
     async searchDriverByUsername(username) {
         if (username == NULL) {
-                    alert("Invalid Driver.");
+            alert("Invalid Driver.");
         }
         try {
             const response = await new Promise((resolve, reject) => {
@@ -107,7 +130,7 @@ class dbService {
     // Finds a driver with the exact ID, in order to link to their account in the database
     async searchByID(driverID) {
         if (driverID == NULL) {
-                    alert("Invalid Driver.");
+            alert("Invalid Driver.");
         }
 
         try {
@@ -169,8 +192,8 @@ class dbService {
             });
 
             console.log(response);
-            return(response);
-        } catch (error){
+            return (response);
+        } catch (error) {
             console.log(error);
         }
     }
@@ -230,7 +253,7 @@ class dbService {
         }
     }
     */
-    
+
 
     //-----EDIT QUERIES-----//
     /*
@@ -270,7 +293,7 @@ class dbService {
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "UPDATE Driver_Account SET points = ? WHERE driverID = ?";
-                connection.query(query, [(currentPoints+pointChangeAmount), driverID], (err, result) => {
+                connection.query(query, [(currentPoints + pointChangeAmount), driverID], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result);
                 });
@@ -280,7 +303,7 @@ class dbService {
             return response;
         } catch (error) {
             console.log(error);
-        
+
         }
     }
 
@@ -324,8 +347,8 @@ class dbService {
             });
 
             console.log(response);
-            return(response);
-        } catch(error){
+            return (response);
+        } catch (error) {
             console.log(error);
         }
     }

@@ -43,7 +43,13 @@ app.get('/getAllDrivers', (request, response) => {
 });
 
 app.get('/getAllSponsors', (request, response) => {
+    const db = dbService.get_instance();
 
+    const result = db.get_all_sponsors();
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
 });
 
 app.get('/getDrivers/:sponsorId', (request, response) => {
