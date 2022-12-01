@@ -1,3 +1,5 @@
+const user = require('./user');
+
 document.addEventListener('DOMContentLoaded', function () {
 
 });
@@ -40,6 +42,7 @@ updateBtn.onclick = function () {
     }
 
     console.log(profileInfo);
+    const currentUser = user.get_instance();
 
     fetch('http://localhost:5000/updateProfileInfo', {
         headers: {
@@ -48,7 +51,7 @@ updateBtn.onclick = function () {
         method: 'PATCH',
         body: JSON.stringify({
             // sub this for the current user's id
-            id: '41147626-3056-4454-895e-60027f449388',
+            id: currentUser.userSub,
             body: profileInfo
         })
     })

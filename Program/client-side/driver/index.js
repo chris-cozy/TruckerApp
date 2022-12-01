@@ -1,6 +1,7 @@
-let currentUser;
+//-----GLOBALS-----//
 let response;
 let userInfo;
+let instance = null;
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('LOGGED IN');
@@ -35,14 +36,31 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     };
 
-    let currentUser = {
-        userName: userInfo.username,
-        userSub: userInfo.sub,
-        userEmail: userInfo.email
-    };
-
-    console.log(currentUser);
+    console.log(userInfo);
+    const currentUser = user.get_instance();
 
     const welcome = document.querySelector('#welcome-msg');
     welcome.innerHTML = 'Welcome ' + currentUser.userName;
 });
+
+//-----CLASS-----//
+//This class will be used to hold the information for the current user of the application
+class user {
+    constructor(userName, userSub, userEmail) {
+        this.userName = userName;
+        this.userSub = userSub;
+        this.userEmail = userEmail;
+    }
+    /*
+    Grabs the instance of the class. Without it, multiple instances would be made.
+    The return statment checks if instance is not null. If it is, creates a new instance.
+    */
+    static get_instance() {
+        return instance ? instance : new user(userInfo.username, userInfo.sub, userInfo.email);
+    }
+
+
+}
+
+//-----MODULE EXPORT-----//
+module.exports = user;

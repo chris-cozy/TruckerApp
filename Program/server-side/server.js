@@ -17,11 +17,10 @@ app.post('/getTest', (request, response) => {
 });
 
 app.post('/sendApplication', (request, response) => {
-    const driverID = request.body.id;
-    const applicationInfo = request.body.body;
+    const applicationInfo = request.body;
     const db = dbService.get_instance();
 
-    const result = db.send_application(driverID, applicationInfo);
+    const result = db.send_application(applicationInfo);
 
     result
         .then(data => response.json({ success: data }))

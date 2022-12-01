@@ -1,4 +1,4 @@
-// const { response } = require("express");
+const user = require('./user');
 
 document.addEventListener('DOMContentLoaded', function () {
     fetch('http://localhost:5000/getAllSponsors')
@@ -72,6 +72,8 @@ function load_sponsor_list(data) {
 */
 const submitBtn = document.querySelector('#submit');
 submitBtn.onclick = function () {
+    const currentUser = user.get_instance();
+
     const emailInput = document.querySelector('#email');
     const phoneNumInput = document.querySelector('#phone');
 
@@ -90,6 +92,7 @@ submitBtn.onclick = function () {
     const sponsor = document.querySelector('#sponsor-select')
 
     const applicationInfo = {
+        driverID: currentUser.userSub,
         email: emailInput.value,
         phoneNum: phoneNumInput.value,
         drivingExp: drivingExpInput.value,
@@ -112,11 +115,7 @@ submitBtn.onclick = function () {
             'Content-type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify({
-            // sub this for the current user's id
-            id: '41147626-3056-4454-895e-60027f449388',
-            body: applicationInfo
-        })
+        body: JSON.stringify({ applicationInfo })
     })
         .then(response => response.json())
         .then(data => {
