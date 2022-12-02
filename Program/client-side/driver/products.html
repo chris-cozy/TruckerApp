@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Products</title>
@@ -10,11 +11,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <body>
     <section class="header">
-        <nav class = "big">
+        <nav class="big">
             <a href="index.html"><img src="logo.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
@@ -28,15 +27,23 @@
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
 
-        
+
 
         <div class="text-box" style="text-align: left;">
             <h1>Products</h1>
-            <p>*display products here*</p>
-        </div>    
+            <table>
+                <thead>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Condition</th>
+                    <th>Price (USD)</th>
+                </thead>
+                <tbody id="product-table"></tbody>
+            </table>
+        </div>
         <!-- Buttons for cart and such -->
         <!-- currently only link to this page, not implemented-->
-        <div style = "float: right; transform: translate(-50%,+50%);">
+        <div style="float: right; transform: translate(-50%,+50%);">
             <a href="products.html" class="button">My Cart</a>
             <a href="products.html" class="button">My Orders</a>
             <a href="products.html" class="button">Checkout</a>
@@ -44,18 +51,20 @@
 
     </section>
 
-<!-- JS for Toggling Nav Menu -->
-<script>
+    <!-- JS for Toggling Nav Menu -->
+    <script src="products.js"></script>
+    <script>
 
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
 
-</script>
+    </script>
 
 </body>
+
 </html>
