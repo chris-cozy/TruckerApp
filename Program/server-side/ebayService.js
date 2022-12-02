@@ -30,8 +30,8 @@ class ebayService {
                     .then((data) => {
                         ebay.searchItems({
                             keyword: item,
-                            limit: 3
-                            //filter: { price: '[300..800]', priceCurrency: 'USD' }
+                            limit: 3,
+                            filter: { priceCurrency: 'USD' }
                         })
                             .then((data) => {
                                 let response = JSON.parse(data)

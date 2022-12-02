@@ -34,10 +34,11 @@ app.get('/getAllAccounts', (request, response) => {
 });
 
 //-----GET ROUTES-----//
-app.get('/ebaySearch', (request, response) => {
+app.get('/ebaySearch/:keyword', (request, response) => {
+    const { keyword } = request.params;
     const ebay = ebayService.get_instance();
 
-    const result = ebay.search('bag');
+    const result = ebay.search(keyword);
 
     result
         .then(data => response.json({ data: data }))
