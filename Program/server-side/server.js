@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const dbService = require('./dbService');
+const ebayService = require('./ebayService');
 
 const app = express();
 dotenv.config();
@@ -33,8 +34,18 @@ app.get('/getAllAccounts', (request, response) => {
 });
 
 //-----GET ROUTES-----//
+app.get('/ebaySearch', (request, response) => {
+    const ebay = ebayService.get_instance();
+
+    const result = ebay.search('bag');
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
 app.get('/getAllAccounts', (request, response) => {
-    console.log('YES');
+
 });
 
 app.get('/getAllDrivers', (request, response) => {
