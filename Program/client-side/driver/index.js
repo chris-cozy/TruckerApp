@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { tokens = data })
         .then(() => {
-            console.log(tokens.access_token);
+            console.log(tokens);
             fetch('http://localhost:5000/getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
                 .then(data => { userInfo = data })
@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     welcome.innerHTML = 'Welcome ' + currentUser.userName;
                     */
                 })
+                .catch(error => console.log(error));
         })
 });
 

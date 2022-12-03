@@ -60,7 +60,8 @@ fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth
         result
             .then(data => response.json({ data: data }))
             .catch(err => console.log(err));
-    });
+    })
+    .catch( error => console.log(error) );
 
     */
 
