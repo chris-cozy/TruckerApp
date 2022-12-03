@@ -47,9 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     /*
                     const currentUser = user.get_instance();
 
-                    const welcome = document.querySelector('#welcome-msg');
-                    welcome.innerHTML = 'Welcome ' + currentUser.userName;
+                    
                     */
+                    const welcome = document.querySelector('#welcome-msg');
+                    welcome.innerHTML = 'Welcome ' + userInfo;
                 })
                 .catch(error => console.log(error));
         })

@@ -39,7 +39,7 @@ app.get('/getUserInfo/:token', (request, response) => {
     const { token } = request.params;
     console.log(token);
 
-    const result = 9000;
+
 
 
 
@@ -62,6 +62,8 @@ app.get('/getUserInfo/:token', (request, response) => {
         })
         */
         .catch(error => console.log(error));
+
+    const result = 9000;
 
     result
         .then(data => response.json({ data: data }))
