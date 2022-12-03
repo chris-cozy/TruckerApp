@@ -59,10 +59,10 @@ app.get('/getUserInfo/:token', (request, response) => {
         .catch(error => console.log(error));
 
     */
-    const result = {
+    const result = Promise.resolve({
         test: '9000',
         token: token
-    };
+    });
 
     result
         .then(data => response.json({ data: data }))
