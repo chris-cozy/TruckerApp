@@ -40,30 +40,32 @@ app.get('/getUserInfo/:token', (request, response) => {
     console.log('HERE')
     const { accessToken } = request.params;
 
+    /*
     const result = 9000;
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
-    /*
-fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userinfo', {
-    method: 'GET',
-    headers: {
-        'Authorization': 'Bearer ' + accessToken
-    }
-})
-    .then(res => res.json())
-    .then(json => {
-        console.log(json);
-        const result = json;
-
-        result
-            .then(data => response.json({ data: data }))
-            .catch(err => console.log(err));
-    })
-    .catch( error => console.log(error) );
-
     */
+
+
+    fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userinfo', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        }
+    })
+        .then(res => res.json())
+        .then(json => {
+            console.log(json);
+            const result = json;
+
+            result
+                .then(data => response.json({ data: data }))
+                .catch(err => console.log(err));
+        })
+        .catch(error => console.log(error));
+
+
 
 });
 
