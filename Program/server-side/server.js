@@ -37,7 +37,7 @@ app.get('/getAllAccounts', (request, response) => {
 //-----GET ROUTES-----//
 app.get('/getUserInfo/:token', (request, response) => {
     const { accessToken } = request.params;
-
+    console.log(accessToken);
     /*
     const result = 9000;
     result
