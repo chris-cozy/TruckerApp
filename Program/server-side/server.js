@@ -36,6 +36,8 @@ app.get('/getAllAccounts', (request, response) => {
 
 //-----GET ROUTES-----//
 app.get('/getUserInfo/:token', (request, response) => {
+
+    console.log('HERE')
     const { accessToken } = request.params;
 
     fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userinfo', {
