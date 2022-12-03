@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => { tokens = data })
         .then(() => {
             console.log(tokens);
-            fetch('http://localhost:5000/getUserInfo/' + tokens.access_token)
+            fetch('http://localhost:5000/getAllSponsors')
                 .then(response => response.json())
                 .then(data => { userInfo = data })
                 .then(() => {
