@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => { tokens = data })
         .then(() => {
             console.log(tokens);
-            fetch('https://cors-anywhere.herokuapp.com/corsdemo/https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userinfo', {
+            fetch('https://cors-anywhere.herokuapp.com/https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userinfo', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + tokens.access_token
