@@ -36,8 +36,6 @@ app.get('/getAllAccounts', (request, response) => {
 
 //-----GET ROUTES-----//
 app.get('/getUserInfo/:token', (request, response) => {
-
-    console.log('HERE')
     const { accessToken } = request.params;
 
     /*
@@ -54,7 +52,8 @@ app.get('/getUserInfo/:token', (request, response) => {
             'Authorization': 'Bearer ' + accessToken
         }
     })
-        .then(res => res.json())
+        .then(res => console.log(res))
+        /*
         .then(json => {
             console.log(json);
             const result = json;
@@ -63,6 +62,7 @@ app.get('/getUserInfo/:token', (request, response) => {
                 .then(data => response.json({ data: data }))
                 .catch(err => console.log(err));
         })
+        */
         .catch(error => console.log(error));
 
 
