@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     
                     */
                     const welcome = document.querySelector('#welcome-msg');
-                    welcome.innerHTML = 'Welcome ' + userInfo;
+                    welcome.innerHTML = 'Welcome ' + userInfo.test;
                 })
                 .catch(error => console.log(error));
         })
