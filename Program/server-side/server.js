@@ -34,6 +34,24 @@ app.get('/getAllAccounts', (request, response) => {
 });
 
 //-----GET ROUTES-----//
+app.get('/getUserInfo/:token', (request, response) => {
+    const { accessToken } = request.params;
+
+    const result = fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userinfo', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        }
+    })
+        .then(response => response.json())
+        .then(data => console.log(data));
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+
+});
+
 app.get('/ebaySearch/:keyword', (request, response) => {
     const { keyword } = request.params;
     const ebay = ebayService.get_instance();

@@ -38,21 +38,18 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { tokens = data })
         .then(() => {
-            console.log(tokens);
-            fetch('https://cors-anywhere.herokuapp.com/https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userinfo', {
-                method: 'GET',
-                headers: {
-                    'Authorization': 'Bearer ' + tokens.access_token
-                }
-            })
+            console.log(tokens.access_token);
+            fetch('http://localhost:5000/getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
                 .then(data => { userInfo = data })
                 .then(() => {
                     console.log(userInfo);
+                    /*
                     const currentUser = user.get_instance();
 
                     const welcome = document.querySelector('#welcome-msg');
                     welcome.innerHTML = 'Welcome ' + currentUser.userName;
+                    */
                 })
         })
 });
