@@ -42,7 +42,7 @@ app.get('/getUserInfo/:token', (request, response) => {
     fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userInfo', {
         method: 'GET',
         headers: {
-            'Authorization': 'Bearer ' + token
+            'Authorization': 'Bearer '
         }
     })
         .then(res => console.log(res))
