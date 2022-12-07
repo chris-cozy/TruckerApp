@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fetch(corsHeader + publicDNS + 'getCurrentUser')
         .then(response => response.json())
-        .then(data => { currentUser = data[0] })
+        .then(data => { currentUser = data['RowDataPacket'] })
         .then(() => {
             console.log(currentUser);
             firstNameInput.defaultValue = 'a';
