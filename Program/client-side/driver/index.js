@@ -85,7 +85,7 @@ class user {
     The return statment checks if instance is not null. If it is, creates a new instance.
     */
     static get_instance() {
-        return instance ? instance : new user(userInfo.username, userInfo.sub, userInfo.email);
+        return instance ? instance : new user(userInfo.data.username, userInfo.data.sub, userInfo.data.email);
     }
 
 
