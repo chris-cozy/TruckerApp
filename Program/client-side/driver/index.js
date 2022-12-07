@@ -3,7 +3,7 @@ let tokens;
 let userInfo;
 let instance = null;
 
-const publicDNS = 'https://cors-everywhere.herokuapp.com/http://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
+const publicDNS = 'https://cors-everywhere.herokuapp.com/http://54.87.82.227:3306/';
 const localHost = 'http://localhost:5000/';
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => { tokens = data })
         .then(() => {
             console.log(tokens);
-            fetch(localHost + 'getUserInfo/' + tokens.access_token)
+            fetch(publicDNS + 'getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
                 .then(data => { userInfo = data })
                 .then(() => {
