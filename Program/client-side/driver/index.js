@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => { tokens = data })
         .then(() => {
             console.log(tokens);
-            fetch(publicDNS + 'getUserInfo/' + tokens.access_token)
+            fetch(localHost + 'getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
                 .then(data => { userInfo = data })
                 .then(() => {
