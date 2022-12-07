@@ -20,3 +20,6 @@ Sam Sprenkle - This is my first commit.
 Jordan Towery - This is my first commit.
 Kyle Kissane - This is my first commit.
 Yuna Zhao - This is my first commit. 
+
+# EC2 SSH Command
+ssh -i C:\Users\cjsan\Documents\TruckerSystem\Team21-Key.pem ubuntu@54.87.82.227

@@ -3,7 +3,7 @@ let tokens;
 let userInfo;
 let instance = null;
 
-const publicDNS = 'https://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
+const publicDNS = 'ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
 const localHost = 'http://localhost:5000/';
 
 document.addEventListener('DOMContentLoaded', function () {
