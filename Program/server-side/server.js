@@ -82,6 +82,8 @@ app.get('/getUserInfo/:token', (request, response) => {
 });
 
 app.get('/getCurrentUser', (request, response) => {
+    console.log('CURRENT USER');
+    console.log(user);
     const db = dbService.get_instance();
 
     const result = db.searchDriverByUsername(user.user.username);
