@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(tokens);
             fetch(corsHeader + publicDNS + 'getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
-                .then(data => { userInfo = data })
+                .then(data => console.log(data))
                 .then(() => {
                     console.log(userInfo);
 
