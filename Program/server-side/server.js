@@ -60,8 +60,10 @@ app.get('/getUserInfo/:token', (request, response) => {
     */
 
     const result = Promise.resolve({
-        test: '9000',
-        token: token
+        sub: "687fee21-09e3-4aeb-a5c5-dd2e003f04ac",
+        email_verified: "true",
+        email: "csande9@clemson.edu",
+        username: "test_driver"
     });
 
     result

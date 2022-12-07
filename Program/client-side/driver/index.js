@@ -57,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log(userInfo);
 
 
-                    //const currentUser = user.get_instance();
+                    const currentUser = user.get_instance();
 
 
 
                     const welcome = document.querySelector('#welcome-msg');
-                    welcome.innerHTML = 'Welcome ' + userInfo.test;
+                    welcome.innerHTML = 'Welcome ' + currentUser.userName;
                 })
                 .catch(error => console.log(error));
 
