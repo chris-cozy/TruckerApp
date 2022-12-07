@@ -44,12 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { tokens = data })
         .then(() => {
+            /*
             fetch(corsHeader + publicDNS + 'getAllAccounts/')
                 .then(response => console.log(response));
+            */
 
-            /*
             console.log(tokens);
-            fetch(publicDNS + 'getUserInfo/' + tokens.access_token)
+            fetch(corsHeader + publicDNS + 'getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
                 .then(data => { userInfo = data })
                 .then(() => {
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     welcome.innerHTML = 'Welcome ' + userInfo.test;
                 })
                 .catch(error => console.log(error));
-                */
+
         })
 
 });
