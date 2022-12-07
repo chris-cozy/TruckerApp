@@ -4,7 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const dbService = require('./dbService');
 const ebayService = require('./ebayService');
-const userService = require('/userService');
+const userService = require('./userService');
 const fetch = require('node-fetch');
 
 const app = express();
