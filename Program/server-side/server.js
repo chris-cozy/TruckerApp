@@ -36,6 +36,7 @@ app.get('/getAllAccounts', (request, response) => {
 
 //-----GET ROUTES-----//
 app.get('/getUserInfo/:token', (request, response) => {
+    response.header('Access-Control-Allow-Origin', '*');
     const { token } = request.params;
     console.log(token);
 
