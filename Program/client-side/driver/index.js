@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 //-----GLOBALS-----//
 let tokens;
 let userInfo;
