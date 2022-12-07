@@ -28,19 +28,19 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(() => {
             console.log(currentUser);
             firstNameInput.defaultValue = currentUser.firstName;
-            lastNameInput.defaultValue = 'a';
-            emailInput.defaultValue = 'a';
-            phoneNumInput.defaultValue = 'a';
+            lastNameInput.defaultValue = currentUser.lastName;
+            emailInput.defaultValue = currentUser.email;
+            phoneNumInput.defaultValue = currentUser.phoneNum;
 
-            drivingExpInput.defaultValue = 'a';
+            //drivingExpInput.defaultValue = 'a';
 
-            shippingStreetInput.defaultValue = 'a';
+            shippingStreetInput.defaultValue = currentUser.shippingStreet;
 
-            shippingCityInput.defaultValue = 'a';
+            shippingCityInput.defaultValue = currentUser.shippingCity;
 
-            shippingStateInput.defaultValue = 'a';
+            shippingStateInput.defaultValue = currentUser.shippingState;
 
-            shippingZipInput.defaultValue = 'a';
+            shippingZipInput.defaultValue = currentUser.shippingZip;
         })
 
 
