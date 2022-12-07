@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
                     const welcome = document.querySelector('#welcome-msg');
-                    welcome.innerHTML = 'Welcome ' + currentUser.userName;
+                    welcome.innerHTML = 'Welcome ' + currentUser.username;
                 })
                 .catch(error => console.log(error));
 
@@ -76,13 +76,24 @@ document.addEventListener('DOMContentLoaded', function () {
 //This class will be used to hold the information for the current user of the application
 class user {
     constructor(userName, userSub, userEmail) {
-        this.userName = userName;
-        this.userSub = userSub;
-        this.userEmail = userEmail;
+        this.username = userName;
+        this.driverID = userSub;
+        this.email = userEmail;
 
         fetch(corsHeader + publicDNS + 'getDriver/' + userName)
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => {
+                this.firstName = data.firstName,
+                    this.lastName = data.lastName,
+                    this.phoneNum = data.phoneNum,
+                    this.shippingAddress = {
+                        shippingStreet: data.shippingStreet,
+                        shippingCity: data.shippingCity,
+                        shippingState: data.shippingState,
+                        shippingZip: data.shippingZip
+                    }
+
+            });
     }
     /*
     Grabs the instance of the class. Without it, multiple instances would be made.
