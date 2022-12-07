@@ -1,10 +1,7 @@
 //-----GLOBALS-----//
 let tokens;
 let userInfo;
-let instance;
-
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
-
 const publicDNS = 'http://54.87.82.227:3306/';
 const localHost = 'http://localhost:5000/';
 
@@ -12,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const cognitoAuth = new URLSearchParams(window.location.search);
     const authCode = cognitoAuth.get('code');
 
-    console.log('AuthCode: ' + authCode);
+    //console.log('AuthCode: ' + authCode);
 
     body = {
         'grant_type': 'authorization_code',
@@ -27,9 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let encodedValue = encodeURIComponent(body[property]);
         formBody.push(encodedKey + "=" + encodedValue);
     }
-
     formBody = formBody.join("&");
-    console.log(formBody);
+    //console.log(formBody);
 
 
     fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/token', {
@@ -44,59 +40,28 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { tokens = data })
         .then(() => {
-            /*
-            fetch(corsHeader + publicDNS + 'getAllAccounts/')
-                .then(response => console.log(response));
-            */
-
             console.log(tokens);
+
             fetch(corsHeader + publicDNS + 'getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
                 .then(data => { userInfo = data })
                 .then(() => {
                     console.log(userInfo);
 
-
-                    const currentUser = user.get_instance();
-                    console.log(currentUser);
-
-
                     const welcome = document.querySelector('#welcome-msg');
-                    welcome.innerHTML = 'Welcome ' + currentUser.username;
+                    welcome.innerHTML = 'Welcome ' + userInfo.data.username;
+
+                    fetch(corsHeader + publicDNS + 'setCurrentUser', {
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        method: 'POST',
+                        body: JSON.stringify({ userInfo })
+                    })
+                        .then(response => console.log(response));
                 })
                 .catch(error => console.log(error));
 
         })
 
 });
-
-
-
-//-----CLASS-----//
-//This class will be used to hold the information for the current user of the application
-class user {
-    constructor(userName, userSub, userEmail) {
-        this.username = userName;
-        this.driverID = userSub;
-        this.email = userEmail;
-
-        fetch(corsHeader + publicDNS + 'getDriver/' + userName)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-
-            });
-    }
-    /*
-    Grabs the instance of the class. Without it, multiple instances would be made.
-    The return statment checks if instance is not null. If it is, creates a new instance.
-    */
-    static get_instance() {
-        return instance ? instance : new user(userInfo.data.username, userInfo.data.sub, userInfo.data.email);
-    }
-
-
-}
-
-//-----MODULE EXPORT-----//
-module.exports = user;

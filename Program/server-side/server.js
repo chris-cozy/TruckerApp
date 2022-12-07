@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const dbService = require('./dbService');
 const ebayService = require('./ebayService');
+const userService = require('/userService');
 const fetch = require('node-fetch');
 
 const app = express();
@@ -11,6 +12,11 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+//-----TEST ROUTE-----//
+app.get('/getAllAccounts', (request, response) => {
+    console.log('ALL ACCOUNTS');
+});
 
 //-----CREATE ROUTES-----//
 app.post('/getTest', (request, response) => {
@@ -28,10 +34,11 @@ app.post('/sendApplication', (request, response) => {
         .catch(err => console.log(err));
 });
 
-//-----TEST ROUTE-----//
-app.get('/getAllAccounts', (request, response) => {
-    console.log('ALL ACCOUNTS');
-});
+app.post('/setCurrentUser', (request, response) => {
+    const currentUserInfo = request.body;
+    const user = user.get_instance(currentUserInfo);
+    console.log(user);
+})
 
 //-----GET ROUTES-----//
 app.get('/getUserInfo/:token', (request, response) => {
