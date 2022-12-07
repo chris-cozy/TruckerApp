@@ -83,15 +83,7 @@ class user {
         fetch(corsHeader + publicDNS + 'getDriver/' + userName)
             .then(response => response.json())
             .then(data => {
-                this.firstName = data.firstName,
-                    this.lastName = data.lastName,
-                    this.phoneNum = data.phoneNum,
-                    this.shippingAddress = {
-                        shippingStreet: data.shippingStreet,
-                        shippingCity: data.shippingCity,
-                        shippingState: data.shippingState,
-                        shippingZip: data.shippingZip
-                    }
+                console.log(data);
 
             });
     }
