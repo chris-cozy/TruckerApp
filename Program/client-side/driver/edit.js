@@ -7,7 +7,9 @@ const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 document.addEventListener('DOMContentLoaded', function () {
     const currentUser = user.get_instance();
 
-    console.log(currentUser)
+    console.log(currentUser);
+
+
 
 });
 

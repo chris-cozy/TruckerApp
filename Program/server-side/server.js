@@ -36,7 +36,6 @@ app.get('/getAllAccounts', (request, response) => {
 //-----GET ROUTES-----//
 app.get('/getUserInfo/:token', (request, response) => {
     const { token } = request.params;
-    console.log(token);
 
     /*
     fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userInfo', {
@@ -85,6 +84,17 @@ app.get('/ebaySearch/:keyword', (request, response) => {
 
 app.get('/getAllAccounts', (request, response) => {
 
+});
+
+app.get('/getDriver/:username', (request, response) => {
+    const { username } = request.params;
+    const db = dbService.get_instance();
+
+    const result = db.searchDriverByUsername(username);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
 });
 
 app.get('/getAllDrivers', (request, response) => {

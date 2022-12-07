@@ -79,6 +79,10 @@ class user {
         this.userName = userName;
         this.userSub = userSub;
         this.userEmail = userEmail;
+
+        fetch(corsHeader + publicDNS + 'getDriver/' + userName)
+            .then(response => response.json())
+            .then(data => console.log(data));
     }
     /*
     Grabs the instance of the class. Without it, multiple instances would be made.
