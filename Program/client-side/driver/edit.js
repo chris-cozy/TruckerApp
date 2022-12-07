@@ -2,14 +2,32 @@
 const publicDNS = 'http://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
 const localHost = 'http://localhost:5000/';
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
+let currentUser = null;
+
+const firstNameInput = document.querySelector('#fname');
+const lastNameInput = document.querySelector('#lname');
+const emailInput = document.querySelector('#email');
+const phoneNumInput = document.querySelector('#phone');
+
+const drivingExpInput = document.querySelector('#exp');
+
+const shippingStreetInput = document.querySelector('#street');
+
+const shippingCityInput = document.querySelector('#city');
+
+const shippingStateInput = document.querySelector('#state');
+
+const shippingZipInput = document.querySelector('#zip');
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
     fetch(corsHeader + publicDNS + 'getCurrentUser')
         .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        });
+        .then(data => { currentUser = data })
+        .then(() => {
+            console.log(currentUser);
+        })
 
 
 
@@ -23,21 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
 */
 const updateBtn = document.querySelector('#update');
 updateBtn.onclick = function () {
-    const firstNameInput = document.querySelector('#fname');
-    const lastNameInput = document.querySelector('#lname');
-    const emailInput = document.querySelector('#email');
-    const phoneNumInput = document.querySelector('#phone');
-
-    const drivingExpInput = document.querySelector('#exp');
-
-    const shippingStreetInput = document.querySelector('#street');
-
-    const shippingCityInput = document.querySelector('#city');
-
-    const shippingStateInput = document.querySelector('#state');
-
-    const shippingZipInput = document.querySelector('#zip');
-
     const profileInfo = {
         firstName: firstNameInput.value,
         lastName: lastNameInput.value,
