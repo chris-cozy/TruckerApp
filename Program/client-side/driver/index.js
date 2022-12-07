@@ -3,6 +3,9 @@ let tokens;
 let userInfo;
 let instance = null;
 
+const publicDNS = 'https://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
+const localHost = 'http://localhost:5000/';
+
 document.addEventListener('DOMContentLoaded', function () {
     const cognitoAuth = new URLSearchParams(window.location.search);
     const authCode = cognitoAuth.get('code');
@@ -39,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => { tokens = data })
         .then(() => {
             console.log(tokens);
-            fetch('http://localhost:5000/getUserInfo/' + tokens.access_token)
+            fetch(publicDNS + 'getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
                 .then(data => { userInfo = data })
                 .then(() => {

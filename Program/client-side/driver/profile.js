@@ -1,5 +1,8 @@
 const user = require('./user');
 
+const publicDNS = 'https://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
+const localHost = 'http://localhost:5000/';
+
 document.addEventListener('DOMContentLoaded', function () {
 
 });
@@ -44,7 +47,7 @@ updateBtn.onclick = function () {
     console.log(profileInfo);
     const currentUser = user.get_instance();
 
-    fetch('http://localhost:5000/updateProfileInfo', {
+    fetch(publicDNS + '/updateProfileInfo', {
         headers: {
             'Content-type': 'application/json'
         },
