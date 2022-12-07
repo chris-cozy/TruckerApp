@@ -1,4 +1,4 @@
-let instance;
+let instance = null;
 
 
 //-----CLASS-----//
