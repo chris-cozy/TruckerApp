@@ -1,4 +1,4 @@
-const user = require('./user');
+const user = require('./index');
 
 const publicDNS = 'http://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
 const localHost = 'http://localhost:5000/';
@@ -8,6 +8,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentUser = user.get_instance();
 
     console.log(currentUser);
+
+    fetch(corsHeader + publicDNS + 'getDriver/test_driver')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+        });
 
 
 
