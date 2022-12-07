@@ -1,19 +1,14 @@
-const user = require('./index');
-
+//-----GLOBALS-----//
 const publicDNS = 'http://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
 const localHost = 'http://localhost:5000/';
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 
 document.addEventListener('DOMContentLoaded', function () {
-    const currentUser = user.get_instance();
 
-    console.log(currentUser);
-
-    fetch(corsHeader + publicDNS + 'getDriver/test_driver')
+    fetch(corsHeader + publicDNS + 'getCurrentUser')
         .then(response => response.json())
         .then(data => {
             console.log(data);
-
         });
 
 

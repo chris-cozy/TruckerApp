@@ -79,6 +79,18 @@ app.get('/getUserInfo/:token', (request, response) => {
 
 });
 
+app.get('/getCurrentUser', (request, response) => {
+    const user = userService.get_instance();
+    const db = dbService.get_instance();
+
+    const result = db.searchDriverByUsername(user.username);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+
+});
+
 app.get('/ebaySearch/:keyword', (request, response) => {
     const { keyword } = request.params;
     const ebay = ebayService.get_instance();
@@ -120,10 +132,6 @@ app.get('/getAllSponsors', (request, response) => {
 });
 
 app.get('/getDrivers/:sponsorId', (request, response) => {
-
-});
-
-app.get('/search/:name', (request, response) => {
 
 });
 
