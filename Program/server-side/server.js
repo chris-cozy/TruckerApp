@@ -12,6 +12,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
 
 //-----CREATE ROUTES-----//
 app.post('/getTest', (request, response) => {
@@ -36,7 +40,6 @@ app.get('/getAllAccounts', (request, response) => {
 
 //-----GET ROUTES-----//
 app.get('/getUserInfo/:token', (request, response) => {
-    response.header('Access-Control-Allow-Origin', '*');
     const { token } = request.params;
     console.log(token);
 
