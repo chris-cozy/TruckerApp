@@ -3,7 +3,7 @@ let tokens;
 let userInfo;
 let instance = null;
 
-const publicDNS = 'http://54.87.82.227:3306/';
+const publicDNS = 'https://cors-anywhere.herokuapp.com/http://54.87.82.227:3306/';
 const localHost = 'http://localhost:5000/';
 
 document.addEventListener('DOMContentLoaded', function () {
