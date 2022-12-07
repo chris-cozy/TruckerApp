@@ -1,7 +1,8 @@
 const user = require('./user');
 
-const publicDNS = 'https://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
+const publicDNS = 'http://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
 const localHost = 'http://localhost:5000/';
+const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 
 document.addEventListener('DOMContentLoaded', function () {
     fetch(publicDNS + '/getAllSponsors')
@@ -113,7 +114,7 @@ submitBtn.onclick = function () {
 
     console.log(applicationInfo);
 
-    fetch(publicDNS + 'sendApplication', {
+    fetch(corsHeader + publicDNS + 'sendApplication', {
         headers: {
             'Content-type': 'application/json'
         },
