@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { tokens = data })
         .then(() => {
-            fetch(publicDNS + 'getAllAccounts/')
+            fetch(corsHeader + publicDNS + 'getAllAccounts/')
                 .then(response => console.log(response));
 
             /*
