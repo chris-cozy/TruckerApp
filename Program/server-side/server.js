@@ -38,9 +38,9 @@ app.post('/sendApplication', (request, response) => {
 
 app.post('/setCurrentUser', (request, response) => {
     const currentUserInfo = request.body;
-    console.log(currentUserInfo);
+    //console.log(currentUserInfo);
     user = userService.get_instance(currentUserInfo);
-    console.log(user);
+    //console.log(user);
 })
 
 //-----GET ROUTES-----//
@@ -82,11 +82,10 @@ app.get('/getUserInfo/:token', (request, response) => {
 });
 
 app.get('/getCurrentUser', (request, response) => {
-    console.log('CURRENT USER');
     console.log(user);
     const db = dbService.get_instance();
 
-    const result = db.searchDriverByUsername(user.user.username);
+    const result = db.searchDriverByUsername(user.username);
 
     result
         .then(data => response.json({ data: data }))
