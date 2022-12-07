@@ -5,9 +5,9 @@ let instance;
 //This class will be used to hold the information for the current user of the application
 class user {
     constructor(userInfo = null) {
-        this.username = userInfo.data.username;
-        this.driverID = userInfo.data.sub;
-        this.email = userInfo.data.email;
+        this.username = userInfo.userInfo.data.username;
+        this.driverID = userInfo.userInfo.data.sub;
+        this.email = userInfo.userInfo.data.email;
     }
     /*
     Grabs the instance of the class. Without it, multiple instances would be made.
