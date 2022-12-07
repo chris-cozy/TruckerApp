@@ -1,7 +1,7 @@
 //-----GLOBALS-----//
 let tokens;
 let userInfo;
-let instance = null;
+let instance;
 
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 
