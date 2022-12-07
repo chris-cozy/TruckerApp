@@ -1,7 +1,10 @@
 const user = require('./user');
 
+const publicDNS = 'https://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
+const localHost = 'http://localhost:5000/';
+
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:5000/getAllSponsors')
+    fetch(publicDNS + '/getAllSponsors')
         .then(response => response.json())
         .then(data => load_sponsor_list(data['data']));
 });
@@ -110,7 +113,7 @@ submitBtn.onclick = function () {
 
     console.log(applicationInfo);
 
-    fetch('http://localhost:5000/sendApplication', {
+    fetch(publicDNS + 'sendApplication', {
         headers: {
             'Content-type': 'application/json'
         },

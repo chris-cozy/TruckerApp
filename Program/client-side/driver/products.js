@@ -1,3 +1,6 @@
+const publicDNS = 'https://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
+const localHost = 'http://localhost:5000/';
+
 document.addEventListener('DOMContentLoaded', function () {
 
 });
@@ -9,7 +12,7 @@ const searchBtn = document.querySelector('#search-btn');
 searchBtn.onclick = function () {
     const keyword = document.querySelector('#search-input').value;
 
-    fetch('http://localhost:5000/ebaySearch/' + keyword)
+    fetch(publicDNS + 'ebaySearch/' + keyword)
         // Converting response to json format
         .then(response => response.json())
         // Getting data back in json format and logging it to the console. Must access the data key of the json file
