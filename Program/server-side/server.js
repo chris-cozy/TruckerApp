@@ -36,7 +36,7 @@ app.post('/sendApplication', (request, response) => {
 
 app.post('/setCurrentUser', (request, response) => {
     const currentUserInfo = request.body;
-    const user = user.get_instance(currentUserInfo);
+    const user = userService.get_instance(currentUserInfo);
     console.log(user);
 })
 
