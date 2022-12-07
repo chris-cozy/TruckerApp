@@ -27,6 +27,20 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => { currentUser = data })
         .then(() => {
             console.log(currentUser);
+            firstNameInput.defaultValue = 'a';
+            lastNameInput = defaultValue = 'a';
+            emailInput = defaultValue = 'a';
+            phoneNumInput = defaultValue = 'a';
+
+            drivingExpInput = defaultValue = 'a';
+
+            shippingStreetInput = defaultValue = 'a';
+
+            shippingCityInput = defaultValue = 'a';
+
+            shippingStateInput = defaultValue = 'a';
+
+            shippingZipInput = defaultValue = 'a';
         })
 
 
