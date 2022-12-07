@@ -60,7 +60,7 @@ updateBtn.onclick = function () {
         method: 'PATCH',
         body: JSON.stringify({
             // sub this for the current user's id
-            id: currentUser.userSub,
+            id: currentUser.driverID,
             body: profileInfo
         })
     })
