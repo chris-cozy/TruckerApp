@@ -106,7 +106,7 @@ class dbService {
 
     // Finds the driver with the given username and displays their information
     async searchDriverByUsername(username) {
-        if (username == NULL) {
+        if (username == null) {
             alert("Invalid Driver.");
         }
         try {
