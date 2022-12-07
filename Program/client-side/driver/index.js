@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
                     const currentUser = user.get_instance();
-
+                    console.log(currentUser);
 
 
                     const welcome = document.querySelector('#welcome-msg');
