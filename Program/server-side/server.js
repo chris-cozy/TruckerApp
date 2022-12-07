@@ -7,6 +7,8 @@ const ebayService = require('./ebayService');
 const userService = require('./userService');
 const fetch = require('node-fetch');
 
+let user = null;
+
 const app = express();
 dotenv.config();
 app.use(cors());
@@ -37,7 +39,7 @@ app.post('/sendApplication', (request, response) => {
 app.post('/setCurrentUser', (request, response) => {
     const currentUserInfo = request.body;
     console.log(currentUserInfo);
-    const user = userService.get_instance(currentUserInfo);
+    user = userService.get_instance(currentUserInfo);
     console.log(user);
 })
 
@@ -80,7 +82,6 @@ app.get('/getUserInfo/:token', (request, response) => {
 });
 
 app.get('/getCurrentUser', (request, response) => {
-    const user = userService.get_instance();
     const db = dbService.get_instance();
 
     const result = db.searchDriverByUsername(user.username);
