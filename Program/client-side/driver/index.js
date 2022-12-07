@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 //-----GLOBALS-----//
 let tokens;
 let userInfo;
@@ -31,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     formBody = formBody.join("&");
     console.log(formBody);
 
+
     fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/token', {
         method: 'POST',
         headers: {
@@ -43,22 +46,29 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { tokens = data })
         .then(() => {
+            fetch(publicDNS + 'getAllAccounts/')
+                .then(response => console.log(response));
+
+            /*
             console.log(tokens);
             fetch(publicDNS + 'getUserInfo/' + tokens.access_token)
                 .then(response => response.json())
                 .then(data => { userInfo = data })
                 .then(() => {
                     console.log(userInfo);
-                    /*
-                    const currentUser = user.get_instance();
 
-                    
-                    */
+
+                    //const currentUser = user.get_instance();
+
+
+
                     const welcome = document.querySelector('#welcome-msg');
                     welcome.innerHTML = 'Welcome ' + userInfo.test;
                 })
                 .catch(error => console.log(error));
+                */
         })
+
 });
 
 

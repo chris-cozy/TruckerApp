@@ -30,7 +30,7 @@ app.post('/sendApplication', (request, response) => {
 
 //-----TEST ROUTE-----//
 app.get('/getAllAccounts', (request, response) => {
-    console.log('YES');
+    console.log('ALL ACCOUNTS');
 });
 
 //-----GET ROUTES-----//
