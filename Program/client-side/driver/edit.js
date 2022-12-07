@@ -4,27 +4,27 @@ const localHost = 'http://localhost:5000/';
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 let currentUser = null;
 
-const firstNameInput = document.querySelector('#fname');
-const lastNameInput = document.querySelector('#lname');
-const emailInput = document.querySelector('#email');
-const phoneNumInput = document.querySelector('#phone');
+let firstNameInput = document.querySelector('#fname');
+let lastNameInput = document.querySelector('#lname');
+let emailInput = document.querySelector('#email');
+let phoneNumInput = document.querySelector('#phone');
 
-const drivingExpInput = document.querySelector('#exp');
+let drivingExpInput = document.querySelector('#exp');
 
-const shippingStreetInput = document.querySelector('#street');
+let shippingStreetInput = document.querySelector('#street');
 
-const shippingCityInput = document.querySelector('#city');
+let shippingCityInput = document.querySelector('#city');
 
-const shippingStateInput = document.querySelector('#state');
+let shippingStateInput = document.querySelector('#state');
 
-const shippingZipInput = document.querySelector('#zip');
+let shippingZipInput = document.querySelector('#zip');
 
 
 document.addEventListener('DOMContentLoaded', function () {
 
     fetch(corsHeader + publicDNS + 'getCurrentUser')
         .then(response => response.json())
-        .then(data => { currentUser = data })
+        .then(data => { currentUser = data[0] })
         .then(() => {
             console.log(currentUser);
             firstNameInput.defaultValue = 'a';
