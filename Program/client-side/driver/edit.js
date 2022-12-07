@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => { currentUser = data })
         .then(() => {
             console.log(currentUser);
-            firstNameInput.defaultValue = currentUser[0].firstName;
+            firstNameInput.defaultValue = currentUser.firstName;
             lastNameInput.defaultValue = 'a';
             emailInput.defaultValue = 'a';
             phoneNumInput.defaultValue = 'a';
