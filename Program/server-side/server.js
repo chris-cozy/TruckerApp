@@ -136,6 +136,6 @@ app.delete('/delete/:sponsorId', (request, response) => {
 });
 
 //-----SERVER STARTUP-----//
-app.listen(process.env.PORT, () => {
+app.listen(process.env.LOCAL_PORT, () => {
     console.log("The app is online on Port #: " + process.env.PORT);
 });
