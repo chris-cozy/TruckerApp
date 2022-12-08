@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function load_applications(data) {
     // Grab the table body
     const table = document.querySelector('table tbody');
+    data = JSON.parse(data);
 
     // If there is no data
     if (data == null || data.length === 0) {
