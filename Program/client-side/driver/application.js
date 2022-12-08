@@ -1,4 +1,4 @@
-const publicDNS = 'http://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
+const publicDNS = 'http://54.87.82.227:3306/';
 const localHost = 'http://localhost:5000/';
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 let currentUser = null;
@@ -129,7 +129,7 @@ submitBtn.onclick = function () {
 
             console.log(applicationInfo);
 
-            fetch(corsHeader + publicDNS + 'sendApp', {
+            fetch(corsHeader + publicDNS + '/sendApp', {
                 headers: {
                     'Content-type': 'application/json'
                 },
