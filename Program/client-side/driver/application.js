@@ -4,7 +4,7 @@ const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch(corsHeader + publicDNS + '/getAllSponsors')
+    fetch(corsHeader + publicDNS + 'getAllSponsors')
         .then(response => response.json())
         .then(data => load_sponsor_list(data['data']));
 
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function load_applications(data) {
     // Grab the table body
     const table = document.querySelector('table tbody');
-    data = JSON.parse(data);
 
     // If there is no data
     if (data == null || data.length === 0) {
@@ -129,7 +128,7 @@ submitBtn.onclick = function () {
 
             console.log(applicationInfo);
 
-            fetch(corsHeader + publicDNS + '/sendApp', {
+            fetch(corsHeader + publicDNS + 'sendApp', {
                 headers: {
                     'Content-type': 'application/json'
                 },
