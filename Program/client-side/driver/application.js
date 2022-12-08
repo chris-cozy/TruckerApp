@@ -6,6 +6,11 @@ const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', function () {
+    fetch(corsHeader + publicDNS + '/getAllSponsors')
+        .then(response => response.json())
+        .then(data => load_sponsor_list(data['data']));
+
+
     fetch(corsHeader + publicDNS + 'getCurrentUser')
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
