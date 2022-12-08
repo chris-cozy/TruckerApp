@@ -25,7 +25,7 @@ app.post('/getTest', (request, response) => {
 
 });
 
-app.post('/sendApplication', (request, response) => {
+app.post('/sendApp', (request, response) => {
     const applicationInfo = request.body;
     const db = dbService.get_instance();
 

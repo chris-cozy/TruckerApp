@@ -129,7 +129,7 @@ submitBtn.onclick = function () {
 
             console.log(applicationInfo);
 
-            fetch(corsHeader + publicDNS + 'sendApplication', {
+            fetch(corsHeader + publicDNS + 'sendApp', {
                 headers: {
                     'Content-type': 'application/json'
                 },
