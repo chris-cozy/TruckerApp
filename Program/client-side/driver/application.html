@@ -28,12 +28,26 @@
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-
+    </section>
+    <section>
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
-            <form onsubmit="return validateForm()" action="submit.html" class="big">
+            <h2>Applications</h2>
+            <br>
+            <table id="table">
+                <thead>
+                    <th>Sponsor</th>
+                    <th>Date Applied</th>
+                    <th>Status</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <br>
+            <form onsubmit="return validateForm()" action="application.html" class="big">
                 <br><br><br>
-                <h2>Please fill in the information below. You can make changes later.</h2><br>
+                <h2>Please fill in the information below.</h2><br>
 
+                <!--
                 <label>Email: </label>
                 <input type="email" id="email" name="email" maxlength="30" required>
                 <label> Phone: </label>
@@ -41,24 +55,6 @@
 
                 <label>Driving Experience (in years): </label>
                 <input type="number" id="exp" name="exp" min="0" max="30" required><br><br>
-
-                <label>Select the sponsors you would like to apply for: </label>
-                <br><br>
-                <select name="sponsor-select" id="sponsor-select">
-
-                </select>
-                <!--
-                <table id="sponsor-select">
-                    <thead>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Organization</th>
-                        <th>Select</th>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-                -->
-                <br><br>
 
                 <label>Please enter your shipping address so we know where to send your rewards!</label><br>
                 <label>Street:</label>
@@ -69,6 +65,14 @@
                 <input type="text" id="state" name="state" maxlength="25" required>
                 <label> Zip Code:</label>
                 <input type="text" id="zip" name="zip" minlength="5" maxlength="5" pattern="[0-9]{5}" required><br><br>
+                -->
+
+                <label>Select the sponsors you would like to apply for: </label>
+                <br><br>
+                <select name="sponsor-select" id="sponsor-select">
+
+                </select>
+                <br><br>
 
                 <label>Please give a short description of what makes you a safe driver.</label><br>
                 <textarea id="desc" name="reason" minLength="20" maxLength="240" required>-Type Here-</textarea><br>

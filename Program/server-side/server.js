@@ -104,7 +104,15 @@ app.get('/ebaySearch/:keyword', (request, response) => {
         .catch(err => console.log(err));
 });
 
-app.get('/getAllAccounts', (request, response) => {
+app.get('/getApplications/:driverID', (request, response) => {
+    const { driverID } = request.params;
+    const db = dbService.get_instance();
+
+    const result = db.get_driver_apps(driverID);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
 
 });
 

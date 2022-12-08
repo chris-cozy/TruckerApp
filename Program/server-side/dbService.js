@@ -150,6 +150,29 @@ class dbService {
         }
     }
 
+    // Finds a driver with the exact ID, in order to link to their account in the database
+    async get_driver_apps(driverID) {
+        if (driverID == null) {
+            alert("Invalid Driver.");
+        }
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * From Applications Where driverID = ?";
+
+                connection.query(query, [driverID], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result);
+                });
+            });
+
+            //console.log(response);
+            return response;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     // Display all info related to point changes, for use in reporting
     async pointChangeReport(driverID) {
         if (driverID == NULL) {
