@@ -137,7 +137,7 @@ submitBtn.onclick = function () {
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
+                    if (data != null) {
                         location.reload();
                     }
                 });

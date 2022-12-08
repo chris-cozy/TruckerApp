@@ -32,7 +32,7 @@ app.post('/sendApp', (request, response) => {
     const result = db.send_application(applicationInfo);
 
     result
-        .then(data => response.json({ success: data }))
+        .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
 });
 

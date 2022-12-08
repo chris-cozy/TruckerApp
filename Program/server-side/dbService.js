@@ -238,10 +238,17 @@ class dbService {
 
                 connection.query(query, [applicationInfo.driverID, applicationInfo.sponsorID, applicationInfo.reason, applicationInfo.initialStatus, dateAdded], (err, result) => {
                     if (err) reject(new Error(err.message));
-                    resolve(result.affectedRows);
+                    resolve(result.insertId);
                 });
             });
-            return response === 1 ? true : false;
+
+            // Return the ID, name, and date_added to the front-end
+            return {
+                driverID: applicationInfo.driverID,
+                sponsorID: applicationInfo.sponsorID,
+                reason: applicationInfo.reason,
+                dateAdded: dateAdded
+            };
 
         } catch (error) {
             console.log(error);
