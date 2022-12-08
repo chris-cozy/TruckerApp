@@ -231,6 +231,7 @@ class dbService {
     */
     async send_application(applicationInfo) {
         try {
+            console.log(applicationInfo);
             const dateAdded = new Date();
             const response = await new Promise((resolve, reject) => {
 
@@ -244,6 +245,7 @@ class dbService {
 
             // Return the ID, name, and date_added to the front-end
             return {
+                appId: response,
                 driverID: applicationInfo.driverID,
                 sponsorID: applicationInfo.sponsorID,
                 reason: applicationInfo.reason,
@@ -252,7 +254,6 @@ class dbService {
 
         } catch (error) {
             console.log(error);
-            return false;
         }
     }
 

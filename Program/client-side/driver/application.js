@@ -106,7 +106,7 @@ submitBtn.onclick = function () {
            const shippingZipInput = document.querySelector('#zip');
            */
 
-            const reason = document.querySelector('#desc');
+            const reason = document.querySelector('#reason');
             const sponsor = document.querySelector('#sponsor-select')
             const applicationInfo = {
                 driverID: currentUser.driverID,
@@ -133,7 +133,7 @@ submitBtn.onclick = function () {
                     'Content-type': 'application/json'
                 },
                 method: 'POST',
-                body: JSON.stringify({ applicationInfo })
+                body: JSON.stringify(applicationInfo)
             })
                 .then(response => response.json())
                 .then(data => {
