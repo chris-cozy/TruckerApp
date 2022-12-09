@@ -242,6 +242,7 @@ class dbService {
                 });
             });
 
+            console.log(response);
             // Return the ID, name, and date_added to the front-end
             return {
                 appId: response,
