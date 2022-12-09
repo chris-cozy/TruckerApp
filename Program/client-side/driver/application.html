@@ -42,11 +42,8 @@
                 </thead>
                 <tbody></tbody>
             </table>
-            <br>
+            <br><br>
             <form onsubmit="return validateForm()" action="application.html" class="big">
-                <br><br><br>
-                <h2>Please fill in the information below.</h2><br>
-
                 <!--
                 <label>Email: </label>
                 <input type="email" id="email" name="email" maxlength="30" required>
@@ -66,15 +63,16 @@
                 <label> Zip Code:</label>
                 <input type="text" id="zip" name="zip" minlength="5" maxlength="5" pattern="[0-9]{5}" required><br><br>
                 -->
-
-                <label>Select the sponsors you would like to apply for: </label>
+                <hr>
+                <br><br>
+                <label>Select the sponsor you would like to apply for: </label>
                 <br><br>
                 <select name="sponsor-select" id="sponsor-select">
 
                 </select>
                 <br><br>
 
-                <label>Please give a short description of what makes you a safe driver.</label><br>
+                <label>Give a short description of what makes you a safe driver.</label><br>
                 <textarea id="reason" name="reason" minLength="20" maxLength="240" required>-Type Here-</textarea><br>
                 <!--
                 <input type="reset" value="Reset" name="reset" id="reset">
