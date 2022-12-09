@@ -86,37 +86,29 @@ function load_sponsor_list(data) {
 const submitBtn = document.querySelector('#submit');
 submitBtn.onclick = function () {
 
-    fetch(corsHeader + publicDNS + 'getCurrentUser')
+    const reason = document.querySelector('#reason');
+    const sponsor = document.querySelector('#sponsor-select')
+
+    const applicationInfo = {
+        driverID: currentUser.driverID,
+        sponsorID: sponsor.value,
+        reason: reason.value,
+        initialStatus: 0
+    }
+
+    console.log(applicationInfo);
+
+    fetch(corsHeader + publicDNS + 'sendApp', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(applicationInfo)
+    })
         .then(response => response.json())
-        .then(data => { currentUser = data.data[0] })
-        .then(() => {
-            console.log(currentUser);
-            const reason = document.querySelector('#reason');
-            const sponsor = document.querySelector('#sponsor-select')
-            const applicationInfo = {
-                driverID: currentUser.driverID,
-                sponsorID: sponsor.value,
-                reason: reason.value,
-                initialStatus: 0
+        .then(data => {
+            if (data != null) {
+                location.reload();
             }
-
-            console.log(applicationInfo);
-
-            fetch(corsHeader + publicDNS + 'sendApp', {
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                method: 'POST',
-                body: JSON.stringify(applicationInfo)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data != null) {
-                        location.reload();
-                    }
-                });
-
         });
-
-
 }
