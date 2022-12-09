@@ -13,11 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
-            // Load user's applications
             fetch(corsHeader + publicDNS + 'getApplications/' + currentUser.driverID)
                 .then(response => response.json())
                 .then(data => load_applications(data['data']));
-
         });
 });
 //-----GET-----//
@@ -26,16 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
     Args: Array of data
 */
 function load_applications(data) {
-    // Grab the table body
     const table = document.querySelector('table tbody');
 
-    // If there is no data
     if (data == null || data.length === 0) {
         table.innerHTML = "<tr><td class='no-data' colspan='5'>No Applications</td></tr>";
         return;
     }
 
-    // If there is data
     let tableHtml = "";
 
     data.forEach(function ({ sponsorID, dateCreated, status, Key }) {
@@ -49,12 +44,11 @@ function load_applications(data) {
         } else if (status == -1) {
             tableHtml += `<td>Rejected</td>`;
         }
-        // A button to delete the data
+        // A button to delete the application
         tableHtml += `<td><button class="delete-row-btn" data-id =${Key}>Delete</button></td>`;
         tableHtml += "</tr>"
     });
 
-    // Updating the HTML
     table.innerHTML = tableHtml;
 }
 
@@ -97,31 +91,10 @@ submitBtn.onclick = function () {
         .then(data => { currentUser = data.data[0] })
         .then(() => {
             console.log(currentUser);
-            /*
-           const emailInput = document.querySelector('#email');
-           const phoneNumInput = document.querySelector('#phone');
-           const drivingExpInput = document.querySelector('#exp');
-           const shippingStreetInput = document.querySelector('#street');
-           const shippingCityInput = document.querySelector('#city');
-           const shippingStateInput = document.querySelector('#state');
-           const shippingZipInput = document.querySelector('#zip');
-           */
-
             const reason = document.querySelector('#reason');
             const sponsor = document.querySelector('#sponsor-select')
             const applicationInfo = {
                 driverID: currentUser.driverID,
-                /*
-                email: emailInput.value,
-                phoneNum: phoneNumInput.value,
-                drivingExp: drivingExpInput.value,
-                shippingAddress: {
-                    shippingStreet: shippingStreetInput.value,
-                    shippingCity: shippingCityInput.value,
-                    shippingState: shippingStateInput.value,
-                    shippingZip: shippingZipInput.value
-                },
-                */
                 sponsorID: sponsor.value,
                 reason: reason.value,
                 initialStatus: 0
