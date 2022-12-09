@@ -18,7 +18,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => load_applications(data['data']));
         });
 });
-//-----GET-----//
+
+document.querySelector('table tbody').addEventListener('click', function (event) {
+    console.log(event.target);
+    if (event.target.className === 'delete-row-btn') {
+        delete_app_by_key(event.target.dataset.id);
+    }
+});
+
 /* 
     Function that takes in data and loads it into the table
     Args: Array of data
@@ -77,7 +84,19 @@ function load_sponsor_list(data) {
     // Updating the HTML
     sponsorSelect.innerHTML = optionHTML;
 }
-//-----POST-----//
+
+function delete_app_by_key(key) {
+    fetch(corsHeader + publicDNS + 'deleteApplication/' + key, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            }
+        });
+
+}
 /*
     @desc: After 'Save Changes' button is pressed, gathers the form information and places into an object 
     @params: N/A
