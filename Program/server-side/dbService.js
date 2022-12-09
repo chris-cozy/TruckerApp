@@ -387,6 +387,32 @@ class dbService {
 
 
     //-----DELETE QUERIES-----//
+    /*
+        This method sends the delete query
+    */
+    async delete_app_by_key(key) {
+        key = parseInt(key, 10);
+        try {
+            const response = await new Promise((resolve, reject) => {
+
+                // Parameterized the values to protect against SQL injection
+                const query = "DELETE FROM Applications WHERE Key = ?;";
+
+                connection.query(query, [key], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+
+            console.log(response);
+            return response === 1 ? true : false;
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+
+    }
 
     /*
         This method sends the delete query

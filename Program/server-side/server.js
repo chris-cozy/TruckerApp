@@ -167,6 +167,19 @@ app.patch('/updatePass', (request, response) => {
 });
 
 // DELETE
+app.delete('/deleteApplication/:key', (request, response) => {
+    const { key } = request.params;
+
+    const db = dbService.get_instance();
+
+    const result = db.delete_app_by_key(key);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
+
+});
+
 app.delete('/delete/:driverId', (request, response) => {
 
 });
