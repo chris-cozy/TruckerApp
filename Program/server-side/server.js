@@ -44,7 +44,7 @@ app.post('/setCurrentUser', (request, response) => {
 })
 
 //-----GET ROUTES-----//
-app.get('/getUserInfo/:token', (request, response) => {
+app.get('/getDriverUserInfo/:token', (request, response) => {
     const { token } = request.params;
 
     /*
@@ -73,6 +73,43 @@ app.get('/getUserInfo/:token', (request, response) => {
         email_verified: "true",
         email: "csande9@clemson.edu",
         username: "test_driver"
+    });
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+
+});
+
+app.get('/getSponsorUserInfo/:token', (request, response) => {
+    const { token } = request.params;
+
+    /*
+    fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/userInfo', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        }
+    })
+        .then(res => console.log(res))
+        
+        .then(json => {
+            console.log(json);
+            const result = json;
+
+            result
+                .then(data => response.json({ data: data }))
+                .catch(err => console.log(err));
+        })
+        
+        .catch(error => console.log(error));
+    */
+
+    const result = Promise.resolve({
+        sub: "e2c9d4fd-84aa-425d-99a9-8afdc15c36d5",
+        email_verified: "true",
+        email: "csande9@clemson.edu",
+        username: "test_sponsor"
     });
 
     result
