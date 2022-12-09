@@ -393,6 +393,7 @@ class dbService {
     */
     async delete_app_by_key(key) {
         key = parseInt(key, 10);
+        console.log('ROW KEY: ' + key);
         try {
             const response = await new Promise((resolve, reject) => {
 
