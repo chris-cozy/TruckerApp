@@ -397,7 +397,7 @@ class dbService {
             const response = await new Promise((resolve, reject) => {
 
                 // Parameterized the values to protect against SQL injection
-                const query = "DELETE FROM Applications WHERE Key = ?;";
+                const query = "DELETE FROM Applications WHERE appID = ?;";
 
                 connection.query(query, [key], (err, result) => {
                     if (err) reject(new Error(err.message));
