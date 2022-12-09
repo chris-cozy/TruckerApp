@@ -82,7 +82,7 @@ app.get('/getUserInfo/:token', (request, response) => {
 });
 
 app.get('/getCurrentUser', (request, response) => {
-    console.log(user);
+    //console.log(user);
     const db = dbService.get_instance();
 
     const result = db.search_by_id(user.driverID);
