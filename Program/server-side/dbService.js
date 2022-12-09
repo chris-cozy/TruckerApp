@@ -231,8 +231,6 @@ class dbService {
     */
     async send_application(applicationInfo) {
         try {
-            console.log('APPLICATION INFO');
-            console.log(applicationInfo);
             const dateAdded = new Date();
             const response = await new Promise((resolve, reject) => {
 

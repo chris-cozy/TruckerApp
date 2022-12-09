@@ -95,7 +95,7 @@ submitBtn.onclick = function () {
         reason: reason.value,
         initialStatus: 0
     }
-
+    console.log('FRONT');
     console.log(applicationInfo);
 
     fetch(corsHeader + publicDNS + 'sendApp', {
