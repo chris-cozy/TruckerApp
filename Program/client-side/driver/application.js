@@ -13,12 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
-            /*
             // Load user's applications
             fetch(corsHeader + publicDNS + 'getApplications/' + currentUser.driverID)
                 .then(response => response.json())
-                .then(data => load_applications(data));
-            */
+                .then(data => load_applications(data['data']));
+
         });
 });
 //-----GET-----//
