@@ -40,7 +40,7 @@ function load_applications(data) {
 
     let tableHtml = "";
 
-    data.forEach(function ({ sponsorID, dateCreated, status, Key }) {
+    data.forEach(function ({ sponsorID, dateCreated, status, appID }) {
         tableHtml += "<tr>";
         tableHtml += `<td>${sponsorID}</td>`;
         tableHtml += `<td>${new Date(dateCreated).toLocaleString()}</td>`;
@@ -52,7 +52,7 @@ function load_applications(data) {
             tableHtml += `<td>Rejected</td>`;
         }
         // A button to delete the application
-        tableHtml += `<td><button class="delete-row-btn" data-id =${Key}>Delete</button></td>`;
+        tableHtml += `<td><button class="delete-row-btn" data-id =${appID}>Delete</button></td>`;
         tableHtml += "</tr>"
     });
 
