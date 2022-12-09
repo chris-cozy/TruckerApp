@@ -392,6 +392,7 @@ class dbService {
     */
     async delete_app_by_key(key) {
         key = parseInt(key, 10);
+        console.log(key);
         try {
             const response = await new Promise((resolve, reject) => {
 
