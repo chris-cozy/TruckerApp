@@ -95,15 +95,15 @@ submitBtn.onclick = function () {
         reason: reason.value,
         initialStatus: 0
     }
-    console.log('FRONT');
-    console.log(applicationInfo);
+    appJson = JSON.stringify(applicationInfo);
+    console.log(appJson);
 
     fetch(corsHeader + publicDNS + 'sendApp', {
         headers: {
             'Content-type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify(applicationInfo)
+        body: appJson
     })
         .then(response => response.json())
         .then(data => {
