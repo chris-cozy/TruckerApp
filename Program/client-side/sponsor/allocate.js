@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
-            console.log("currentUser");
-            console.log(currentUser);
+            console.log(currentUser.sponsorID);
             fetch(corsHeader + publicDNS + 'getDrivers/' + currentUser.sponsorID)
                 .then(response => response.json())
                 .then(data => load_driver_list(data['data']));
