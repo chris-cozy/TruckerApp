@@ -353,7 +353,7 @@ class dbService {
                 sponsorID: pointInfo.sponsorID,
                 pointAmount: pointInfo.pointAmount,
                 reason: pointInfo.reason,
-                dateAdded: dateAdded
+                dateAdded: dateChanged
             };
 
         } catch (error) {
