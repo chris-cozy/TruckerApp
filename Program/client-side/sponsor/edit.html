@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Edit Profile</title>
@@ -14,7 +15,7 @@
 
 <body>
     <section class="header">
-        <nav class = "big">
+        <nav class="big">
             <a href="index.html"><img src="logo.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
@@ -27,46 +28,48 @@
 
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
             <form onsubmit="return validateForm()" action="submit2.html" class="big">
-                <br><br><br><h2>Please update any information you would like, and remember to save changes!</h2><br><br>
+                <br><br><br>
+                <h2>Please update any information you would like, and remember to save changes!</h2><br><br>
 
-                <label for="fname">First Name:   </label>
+                <label for="fname">First Name: </label>
                 <input type="text" id="fname" name="fname" maxlength="20">
 
-                <label for="lname">    Last Name:    </label>
+                <label for="lname"> Last Name: </label>
                 <input type="text" id="lname" name="lname" maxlength="20"><br><br>
-                
-                <label>Email:    </label>
+
+                <label>Email: </label>
                 <input type="email" id="email" name="email" maxlength="30">
-                <label>    Phone:    </label>
+                <label> Phone: </label>
                 <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" maxlength="10"><br><br>
 
                 <label>About Me: </label><br><br>
-                <textarea id="desc" name="reason" maxLength = "300">-Type Here-</textarea><br>
-                
+                <textarea id="bio" name="bio" maxLength="1000">-Type Here-</textarea><br>
+
                 <input type="submit" value="Save Changes" id="update" name="update">
-            
+
             </form>
-        </div>    
+        </div>
 
     </section>
 
-<!-- JS for Toggling Nav Menu -->
-<script>
+    <!-- JS for Toggling Nav Menu -->
+    <script>
 
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
 
-    //might implement in the future if needed
-    function validateForm(){
-        return
-    }
+        //might implement in the future if needed
+        function validateForm() {
+            return
+        }
 
-</script>
+    </script>
 
 </body>
+
 </html>
