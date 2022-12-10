@@ -37,6 +37,17 @@ app.post('/sendApp', (request, response) => {
         .catch(err => console.log(err));
 });
 
+app.post('/sendPoints', (request, response) => {
+    const pointInfo = request.body;
+    const db = dbService.get_instance();
+
+    const result = db.send_points(pointInfo);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
 app.post('/setCurrentUser', (request, response) => {
     const currentUserInfo = request.body;
     //console.log(currentUserInfo);
@@ -202,6 +213,15 @@ app.get('/getAllSponsors', (request, response) => {
 });
 
 app.get('/getDrivers/:sponsorId', (request, response) => {
+    const { sponsorID } = request.params;
+
+    const db = dbService.get_instance();
+
+    const result = db.get_drivers_by_sponsor(sponsorID);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
 
 });
 

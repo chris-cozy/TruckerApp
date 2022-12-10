@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Add Points</title>
@@ -14,7 +15,7 @@
 
 <body>
     <section class="header">
-        <nav class = "big">
+        <nav class="big">
             <a href="index.html"><img src="logo.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
@@ -26,46 +27,51 @@
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
-        </nav>  
-        
+        </nav>
+
         <div class="text-box" style="text-align:left;display:block;float:inline-start;">
-            <form onsubmit="return validateForm()" action="pointChangeSuccess.html" class="big">
-                <h2>Enter the amount of points you would like to add, the driver to allocate them to, and a reason for allocation.</h2><br><br>
+            <form onsubmit="return validateForm()" action="points.html" class="big">
+                <hr>
+                <br><br>
+                <label for="point-amt">Points Amount: </label>
+                <input type="number" id="point-amt" name="point-amt" min="-5" max="5" required><br><br>
 
-                <label for="addPoints">Points Amount:   </label>
-                <input type="number" id="addPoints" name="addPoints" required><br><br>
+                <label>Select the driver to assign points to: </label>
+                <br><br>
+                <select name="driver-select" id="driver-select">
 
-                <label for="driverToReceive">Driver ID:    </label>
-                <input type="text" id="driverToReceive" name="driverToReceive" maxlength="30" required><br><br>
+                </select>
+                <br><br>
 
                 <label>Please give a reason for adding points to this driver.</label><br><br>
-                <textarea name="reason" maxLength = "240" required>-Type Here-</textarea><br><br>
+                <textarea id="reason" name="reason" maxLength="240" required>-Type Here-</textarea><br><br>
 
-                <input type="reset" value="Reset Form" name="reset" id="reset">
-                <input type="submit" value="Add Points" id="add" name="add">
-                
+                <input type="submit" value="Submit" id="submit" name="submit">
+
             </form>
-        </div> 
+        </div>
 
     </section>
 
-<!-- JS for Toggling Nav Menu -->
-<script>
+    <!-- JS for Toggling Nav Menu -->
+    <script>
 
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
 
-    //might implement in the future if needed
-    function validateForm(){
-        return
-    }
+        //might implement in the future if needed
+        function validateForm() {
+            return
+        }
 
-</script>
+    </script>
+    <script src="allocate.js"></script>
 
 </body>
+
 </html>
