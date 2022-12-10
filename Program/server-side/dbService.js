@@ -196,6 +196,29 @@ class dbService {
         }
     }
 
+    // Finds a driver with the exact ID, in order to link to their account in the database
+    async get_sponsor_apps(sponsorID) {
+        if (sponsorID == null) {
+            alert("Invalid Sponsor.");
+        }
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * From Applications Where sponsorID = ?";
+
+                connection.query(query, [sponsorID], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result);
+                });
+            });
+
+            //console.log(response);
+            return response;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     // Display all info related to point changes, for use in reporting
     async pointChangeReport(driverID) {
         if (driverID == NULL) {
@@ -357,6 +380,31 @@ class dbService {
             console.log(error);
             return false;
         }
+    }
+
+    /*
+        This method sends the update query
+    */
+    async update_application(key, value) {
+        key = parseInt(key, 10);
+        try {
+            const response = await new Promise((resolve, reject) => {
+
+                // Parameterized the values to protect against SQL injection
+                const query = "UPDATE Applications SET status = ? WHERE appID = ?;";
+
+                connection.query(query, [value, key], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+            return response === 1 ? true : false;
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+
     }
 
     // Saves the values of the driver's current points and the alloted point change amount to update the driver's points
