@@ -235,7 +235,7 @@ app.patch('/updateSponsorInfo', (request, response) => {
 app.patch('/appDecision', (request, response) => {
     const { key, value } = request.body;
 
-    const db = dbService.getInstance();
+    const db = dbService.get_instance();
 
     const result = db.update_application(key, value);
 
