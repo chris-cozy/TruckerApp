@@ -212,7 +212,7 @@ app.get('/getAllSponsors', (request, response) => {
         .catch(err => console.log(err));
 });
 
-app.get('/getDrivers/:sponsorId', (request, response) => {
+app.get('/getDrivers/:sponsorID', (request, response) => {
     const { sponsorID } = request.params;
     console.log(sponsorID);
 
