@@ -219,6 +219,30 @@ class dbService {
         }
     }
 
+    // Finds a driver with the exact ID, in order to link to their account in the database
+    async get_drivers_by_sponsor(sponsorID) {
+        const approved = 1;
+        if (sponsorID == null) {
+            alert("Invalid Sponsor.");
+        }
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM Applications INNER JOIN Driver_Account ON Applications.driverID=Driver_Account.driverID WHERE Applications.sponsorID = ? AND Applications.status = ?;";
+
+                connection.query(query, [sponsorID, approved], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result);
+                });
+            });
+
+            //console.log(response);
+            return response;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     // Display all info related to point changes, for use in reporting
     async pointChangeReport(driverID) {
         if (driverID == NULL) {
@@ -295,6 +319,40 @@ class dbService {
                 driverID: applicationInfo.driverID,
                 sponsorID: applicationInfo.sponsorID,
                 reason: applicationInfo.reason,
+                dateAdded: dateAdded
+            };
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    /*
+    @desc: Send query to create a new application
+    @params: driverID, object containing application information
+    @return: an int denoting success(1) or failure(0)
+    */
+    async send_points(pointInfo) {
+        try {
+            const dateChanged = new Date();
+            const response = await new Promise((resolve, reject) => {
+
+                const query = "INSERT INTO Points_Log (driverID, sponsorID, pointAmount, reason, dateChanged) VALUES (?, ?, ?, ?, ?);";
+
+                connection.query(query, [pointInfo.driverID, pointInfo.sponsorID, pointInfo.pointAmount, pointInfo.reason, dateChanged], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.insertId);
+                });
+            });
+
+            console.log(response);
+            // Return the ID, name, and date_added to the front-end
+            return {
+                changeId: response,
+                driverID: pointInfo.driverID,
+                sponsorID: pointInfo.sponsorID,
+                pointAmount: pointInfo.pointAmount,
+                reason: pointInfo.reason,
                 dateAdded: dateAdded
             };
 
