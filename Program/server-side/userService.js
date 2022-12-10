@@ -6,7 +6,7 @@ let instance = null;
 class user {
     constructor(userInfo = null) {
         this.username = userInfo.userInfo.data.username;
-        this.driverID = userInfo.userInfo.data.sub;
+        this.sub = userInfo.userInfo.data.sub;
         this.email = userInfo.userInfo.data.email;
     }
     /*

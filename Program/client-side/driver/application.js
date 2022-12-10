@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => load_sponsor_list(data['data']));
 
 
-    fetch(corsHeader + publicDNS + 'getCurrentUser')
+    fetch(corsHeader + publicDNS + 'getCurrentDriverUser')
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {

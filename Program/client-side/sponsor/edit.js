@@ -9,20 +9,11 @@ let lastNameInput = document.querySelector('#lname');
 let emailInput = document.querySelector('#email');
 let phoneNumInput = document.querySelector('#phone');
 
-let drivingExpInput = document.querySelector('#exp');
-
-let shippingStreetInput = document.querySelector('#street');
-
-let shippingCityInput = document.querySelector('#city');
-
-let shippingStateInput = document.querySelector('#state');
-
-let shippingZipInput = document.querySelector('#zip');
-
+let bioInput = document.querySelector('#bio');
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    fetch(corsHeader + publicDNS + 'getCurrentDriverUser')
+    fetch(corsHeader + publicDNS + 'getCurrentSponsorUser')
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
@@ -31,16 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             lastNameInput.defaultValue = currentUser.lastName;
             emailInput.defaultValue = currentUser.email;
             phoneNumInput.defaultValue = currentUser.phoneNum;
-
-            //drivingExpInput.defaultValue = 'a';
-
-            shippingStreetInput.defaultValue = currentUser.shippingStreet;
-
-            shippingCityInput.defaultValue = currentUser.shippingCity;
-
-            shippingStateInput.defaultValue = currentUser.shippingState;
-
-            shippingZipInput.defaultValue = currentUser.shippingZip;
+            bioInput.defaultValue = currentUser.bio;
         })
 
 
@@ -60,25 +42,19 @@ updateBtn.onclick = function () {
         lastName: lastNameInput.value,
         email: emailInput.value,
         phoneNum: phoneNumInput.value,
-        drivingExp: drivingExpInput.value,
-        shippingAddress: {
-            shippingStreet: shippingStreetInput.value,
-            shippingCity: shippingCityInput.value,
-            shippingState: shippingStateInput.value,
-            shippingZip: shippingZipInput.value
-        }
+        bio: bioInput.value
     }
 
     console.log(profileInfo);
 
-    fetch(corsHeader + publicDNS + '/updateDriverInfo', {
+    fetch(corsHeader + publicDNS + '/updateSponsorInfo', {
         headers: {
             'Content-type': 'application/json'
         },
         method: 'PATCH',
         body: JSON.stringify({
             // sub this for the current user's id
-            id: currentUser.driverID,
+            id: currentUser.sponsorID,
             body: profileInfo
         })
     })

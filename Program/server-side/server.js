@@ -8,6 +8,7 @@ const userService = require('./userService');
 const fetch = require('node-fetch');
 
 let user = null;
+let sponsorUser = null;
 
 const app = express();
 dotenv.config();
@@ -118,11 +119,21 @@ app.get('/getSponsorUserInfo/:token', (request, response) => {
 
 });
 
-app.get('/getCurrentUser', (request, response) => {
-    //console.log(user);
+app.get('/getCurrentDriverUser', (request, response) => {
     const db = dbService.get_instance();
 
-    const result = db.search_by_id(user.driverID);
+    const result = db.get_driver(user.sub);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+
+});
+
+app.get('/getCurrentSponsorUser', (request, response) => {
+    const db = dbService.get_instance();
+
+    const result = db.get_sponsor(user.sub);
 
     result
         .then(data => response.json({ data: data }))
@@ -183,12 +194,25 @@ app.get('/getDrivers/:sponsorId', (request, response) => {
 });
 
 // UPDATE
-app.patch('/updateProfileInfo', (request, response) => {
+app.patch('/updateDriverInfo', (request, response) => {
     const driverID = request.body.id;
     const profileInfo = request.body.body;
     const db = dbService.get_instance();
 
-    const result = db.update_profile_info(driverID, profileInfo);
+    const result = db.update_driver_info(driverID, profileInfo);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
+
+});
+
+app.patch('/updateSponsorInfo', (request, response) => {
+    const sponsorID = request.body.id;
+    const profileInfo = request.body.body;
+    const db = dbService.get_instance();
+
+    const result = db.update_sponsor_info(sponsorID, profileInfo);
 
     result
         .then(data => response.json({ success: data }))
