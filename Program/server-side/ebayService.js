@@ -1,10 +1,6 @@
-//import Ebay from '/node_modules/ebay-node-api';
+//-----MODULE SETUP-----//
 const Ebay = require('ebay-node-api');
-
-//-----GLOBALS-----//
-let instance = null;
-
-let ebay = new Ebay({
+const ebay = new Ebay({
     clientID: 'YunaZhao-Driving-SBX-dd24d8a8b-916424cc',
     clientSecret: 'SBX-d24d8a8b72b6-a8f0-4aaa-aa8a-5dd9',
     env: 'SANDBOX',
@@ -14,15 +10,25 @@ let ebay = new Ebay({
     }
 });
 
+//-----GLOBALS-----//
+let instance = null;
+
+//-----EBAY CLASS-----//
 class ebayService {
     /*
-        Grabs the instance of the class. Without it, multiple instances would be made.
-        The return statment checks if instance is not null. If it is, creates a new instance.
+        @desc: Grabs instance of class. Keeps multiple instances from being made. The return statment checks if instance is not null. If it is, creates new instance.
+        @params: None
+        @return: Ebay class instance
     */
     static get_instance() {
         return instance ? instance : new ebayService();
     }
 
+    /*
+        @desc: Searches for item information based on a keyword
+        @params: item keyword
+        @return: object containing item information
+    */
     async search(item) {
         try {
             const promise = new Promise((resolve, reject) => {
@@ -36,22 +42,23 @@ class ebayService {
                             .then((data) => {
                                 let response = JSON.parse(data)
                                 resolve(response)
-
                             })
                     })
             })
-
             let results = await promise;
-
             return results;
-
         } catch (error) {
             console.log(error);
         }
-
     }
 
-    async searchByCategory() {
+    /*
+        UNFINISHED
+        @desc: Searches for item information based on a category
+        @params: item category keyword
+        @return: object containing item information
+    */
+    async search_by_category() {
         ebay.getAccessToken()
             .then((data) => {
                 ebay.getItemByItemGroup('158671')
@@ -62,9 +69,7 @@ class ebayService {
             })
             .catch((error) => { console.log(error) });
     }
-
 }
-
 
 
 //-----MODULE EXPORT-----//

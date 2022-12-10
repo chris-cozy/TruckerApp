@@ -27,8 +27,6 @@
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
 
-
-
         <div class="text-box" style="text-align: left;">
             <h1>Products</h1>
             <div>
@@ -46,8 +44,7 @@
                 <tbody id="product-table"></tbody>
             </table>
         </div>
-        <!-- Buttons for cart and such -->
-        <!-- currently only link to this page, not implemented-->
+
         <div style="float: right; transform: translate(-50%,+50%);">
             <a href="products.html" class="button">My Cart</a>
             <a href="products.html" class="button">My Orders</a>
@@ -56,10 +53,8 @@
 
     </section>
 
-    <!-- JS for Toggling Nav Menu -->
     <script src="products.js"></script>
     <script>
-
         var navLinks = document.getElementById("navLinks");
         function showMenu() {
             navLinks.style.right = "0";
@@ -67,7 +62,6 @@
         function hideMenu() {
             navLinks.style.right = "-400px";
         }
-
     </script>
 
 </body>

@@ -1,15 +1,13 @@
 //-----GLOBALS-----//
-let tokens;
-let userInfo;
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 const publicDNS = 'http://54.87.82.227:3306/';
 const localHost = 'http://localhost:5000/';
+let tokens;
+let userInfo;
 
 document.addEventListener('DOMContentLoaded', function () {
     const cognitoAuth = new URLSearchParams(window.location.search);
     const authCode = cognitoAuth.get('code');
-
-    //console.log('AuthCode: ' + authCode);
 
     body = {
         'grant_type': 'authorization_code',
@@ -25,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         formBody.push(encodedKey + "=" + encodedValue);
     }
     formBody = formBody.join("&");
-    //console.log(formBody);
 
 
     fetch('https://team21-good-driver-program.auth.us-east-1.amazoncognito.com/oauth2/token', {
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => { userInfo = data })
                 .then(() => {
                     console.log(userInfo);
-
                     const welcome = document.querySelector('#welcome-msg');
                     welcome.innerHTML = 'Welcome ' + userInfo.data.username;
 

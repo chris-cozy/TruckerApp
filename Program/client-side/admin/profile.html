@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Profile</title>
@@ -21,25 +22,25 @@
                 <ul>
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="profile.html">PROFILE</a></li>
-                    <!-- To be used when the proper html files are added to the program:
+                    <!-- 
                     <li><a href="logout.html">LOGOUT</a></li>
-                    <li><a href="points.html">POINTS</a></li>-->
-
+                    <li><a href="points.html">POINTS</a></li>
+                    -->
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
 
-        
+
 
         <div class="text-box">
             <h1>My Profile</h1>
             <p>*display profile info here*</p>
-        </div>    
+        </div>
         <!-- Buttons for administrative interactions and overview-->
         <!-- These currently only link to this page, not yet implemented-->
         <!-- Some of these may likely not be implemented here, but could be if necessary-->
-        <div style = "float: right; transform: translate(-50%,50%);">
+        <div style="float: right; transform: translate(-50%,50%);">
             <a href="https://team21.cpsc4911.com" class="button">Logout</a>
             <!-- Shows the admin their account info-->
             <a href="profile.html" class="button">Account Information</a>
@@ -61,7 +62,7 @@
 
             <!-- Displays any flags from sponsors or drivers to the admin-->
             <a href="profile.html" class="button">Flags</a>
-            
+
 
             <!-- Additional or experimental -->
             <a href="profile.html" class="button">Personal Info</a>
@@ -72,19 +73,15 @@
         </div>
 
     </section>
-
-<!-- JS for Toggling Nav Menu -->
-<script>
-
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
-
-</script>
-
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
+    </script>
 </body>
+
 </html>

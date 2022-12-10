@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Points</title>
@@ -14,7 +15,7 @@
 
 <body>
     <section class="header">
-        <nav class = "big">
+        <nav class="big">
             <a href="index.html"><img src="logo.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
@@ -31,36 +32,27 @@
         <div class="text-box">
             <h1>MyPoints 0</h1>
             <p>Here would be a table comprised of point related information</p>
-        </div>    
+        </div>
 
-        <!-- Buttons for driver interactions and such -->
-        <div style = "float: right; transform: translate(-50%, 0%);">
+        <div style="float: right; transform: translate(-50%, 0%);">
             <a href="https://team21.cpsc4911.com" class="button">Logout</a>
-
-            <!-- Button to display the current allotment of points to the driver-->
             <a href="points.html" class="button">Points</a>
-
-            <!-- Button to refresh the driver's current points by calling a get function -->
             <a href="points.html" class="button">Refresh</a>
-
-            <!-- Button that will display a history of points-->
             <a href="points.html" class="button">Points History</a>
         </div>
 
     </section>
-    
-<!-- JS for Toggling Nav Menu -->
-<script>
 
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
-
-</script>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
+    </script>
 
 </body>
+
 </html>

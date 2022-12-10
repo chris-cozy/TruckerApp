@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Admin Home</title>
@@ -14,7 +15,7 @@
 
 <body>
     <section class="header">
-        <nav class = "big">
+        <nav class="big">
             <a href="index.html"><img src="logo.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
@@ -25,30 +26,31 @@
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
 
-        <div class="text-box" style = "transform: translate(-50%, +50%)">
+        <div class="text-box" style="transform: translate(-50%, +50%)">
             <h1>Welcome Admin!</h1>
-            <p>Please click the button below to navigate to the AWS Management Console where you will have access to Cloudtrail and Cognito to manage users and reports.<p>
-        </div>    
+            <p>Please click the button below to navigate to the AWS Management Console where you will have access to
+                Cloudtrail and Cognito to manage users and reports.
+            <p>
+        </div>
         <br><br><br><br>
         <center>
-            <a href="https://274815321855.signin.aws.amazon.com/console" class="button" target="_blank">Take me to the AWS Management Console</a>
+            <a href="https://274815321855.signin.aws.amazon.com/console" class="button" target="_blank">Take me to the
+                AWS Management Console</a>
         </center>
 
     </section>
 
-<!-- JS for Toggling Nav Menu -->
-<script>
-
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
-
-</script>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
+    </script>
+    <script src="index.js"></script>
 
 </body>
-</html>
 
+</html>

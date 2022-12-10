@@ -1,15 +1,11 @@
-//-----MODULE INITIATION-----//
+//-----MODULE INITIATION AND SETUP-----//
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 const { application } = require('express');
-
 dotenv.config();
 
-//-----GLOBALS-----//
-let instance = null;
 
-
-//-----CONNECTION-----//
+//-----CONNECTION SETUP-----//
 const connection = mysql.createConnection({
     host: process.env.HOST,
     port: process.env.DB_PORT,
@@ -25,12 +21,16 @@ connection.connect((err) => {
     console.log('db ' + connection.state);
 });
 
-//-----CLASS-----//
-// This class will be used to hold the functions for manipulating the data
+//-----GLOBALS-----//
+let instance = null;
+
+//-----DATABASE CLASS-----//
 class dbService {
+
     /*
-        Grabs the instance of the class. Without it, multiple instances would be made.
-        The return statment checks if instance is not null. If it is, creates a new instance.
+        @desc: Grabs instance of class. Keeps multiple instances from being made. The return statment checks if instance is not null. If it is, creates new instance.
+        @params: None
+        @return: Database class instance
     */
     static get_instance() {
         return instance ? instance : new dbService();
@@ -38,96 +38,80 @@ class dbService {
 
     //-----GET QUERIES-----//
 
-    async getAllDrivers() {
+    /*
+        @desc: Grabs all driver accounts
+        @params: None
+        @return: object with all driver account information
+    */
+    async get_all_drivers() {
         try {
-            // Create a promise to handle the query. Using a resolve, reject. if query successful, it will resolve. If not, it will reject and transfer to the catch.
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM Driver_Account;";
+
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 });
             });
-
             console.log(response);
             return response;
-
         } catch (error) {
             console.log(error);
         }
-
     }
 
     /*
-        Grabs all of the sponsors from the database table
-        If there is an error, logs it to the console, otherwise returns the result.
+        @desc: Grabs all sponsor accounts
+        @params: None
+        @return: object with all sponsor account information
     */
     async get_all_sponsors() {
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM Sponsor_Account;";
+
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 });
             });
-
             console.log(response);
             return response;
-
         } catch (error) {
             console.log(error);
         }
-
     }
 
-    async getAllMyDrivers(sponsorID) {
-        try {
-            // Grabs information on drivers for a specific sponsor
-            const response = await new Promise((resolve, reject) => {
-                if (sponsorID == NULL) {
-                    alert("Invalid Sponsor.");
-                }
-                const query = "SELECT Driver_Username FROM Points_Management Where sponsorID = ?;";
-                connection.query(query, [sponsorID], (err, results) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(results);
-                });
-            });
-
-            console.log(response);
-            return response;
-
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-
-    // Finds the driver with the given username and displays their information
-    async searchDriverByUsername(username) {
+    /*
+        @desc: Grabs specific driver information based on username
+        @params: desired driver's username
+        @return: object with driver account information
+    */
+    async get_driver_by_username(username) {
         if (username == null) {
             alert("Invalid Driver.");
         }
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT * FROM Driver_Account WHERE username = ?;";
+
                 connection.query(query, [username], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 });
             });
-
             console.log(response);
             return response;
-
         } catch (error) {
             console.log(error);
         }
-
     }
 
-    // Finds a driver with the exact ID, in order to link to their account in the database
+    /*
+        @desc: Grabs specific driver information based on driverID
+        @params: desired driver's driverID
+        @return: object with driver account information
+    */
     async get_driver(driverID) {
         if (driverID == null) {
             alert("Invalid Driver.");
@@ -141,16 +125,18 @@ class dbService {
                     resolve(result);
                 });
             });
-
             console.log(response);
             return response;
-
         } catch (error) {
             console.log(error);
         }
     }
 
-    // Finds a driver with the exact ID, in order to link to their account in the database
+    /*
+        @desc: Grabs specific sponsor information based on sponsorID
+        @params: desired sponsor's sponsorID
+        @return: object with sponsor account information
+    */
     async get_sponsor(sponsorID) {
         if (sponsorID == null) {
             alert("Invalid Driver.");
@@ -164,16 +150,18 @@ class dbService {
                     resolve(result);
                 });
             });
-
             console.log(response);
             return response;
-
         } catch (error) {
             console.log(error);
         }
     }
 
-    // Finds a driver with the exact ID, in order to link to their account in the database
+    /*
+        @desc: Grabs all of the specified driver's applications
+        @params: desired driver's driverID
+        @return: object with application information
+    */
     async get_driver_apps(driverID) {
         if (driverID == null) {
             alert("Invalid Driver.");
@@ -187,16 +175,18 @@ class dbService {
                     resolve(result);
                 });
             });
-
-            //console.log(response);
+            console.log(response);
             return response;
-
         } catch (error) {
             console.log(error);
         }
     }
 
-    // Finds a driver with the exact ID, in order to link to their account in the database
+    /*
+        @desc: Grabs all of the specified sponsor's applications
+        @params: desired sponsor's sponsorID
+        @return: object with application information
+    */
     async get_sponsor_apps(sponsorID) {
         if (sponsorID == null) {
             alert("Invalid Sponsor.");
@@ -210,16 +200,18 @@ class dbService {
                     resolve(result);
                 });
             });
-
-            //console.log(response);
+            console.log(response);
             return response;
-
         } catch (error) {
             console.log(error);
         }
     }
 
-    // Finds a driver with the exact ID, in order to link to their account in the database
+    /*
+        @desc: Grabs all of the sponsor's drivers
+        @params: sponsor's sponsorID
+        @return: object with driver information
+    */
     async get_drivers_by_sponsor(sponsorID) {
         const approved = 1;
         if (sponsorID == null) {
@@ -234,29 +226,6 @@ class dbService {
                     resolve(result);
                 });
             });
-
-            //console.log(response);
-            return response;
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    // Display all info related to point changes, for use in reporting
-    async pointChangeReport(driverID) {
-        if (driverID == NULL) {
-            alert("Invalid Driver.");
-        }
-        try {
-            const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * From Points_Management Where driverID = ?";
-                connection.query(query, [driverID], (err, result) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(result);
-                });
-            });
-
             console.log(response);
             return response;
         } catch (error) {
@@ -264,27 +233,48 @@ class dbService {
         }
     }
 
-    // Shows all point management actions by a given sponsor, for drivers to view their points history
-    async displayPointDistribution(sponsorID) {
+    /*
+        @desc: Display all info related to point changes for a driver, for use in reporting
+        @params: desired driver's driverID
+        @return: object with point log information
+    */
+    async driver_point_report(driverID) {
+        if (driverID == NULL) {
+            alert("Invalid Driver.");
+        }
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * From Points_Log Where driverID = ?";
+
+                connection.query(query, [driverID], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result);
+                });
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    /*
+        @desc: Display all info related to point management actions for a sponsor, for use in reporting
+        @params: desired driver's sponsorID
+        @return: object with point log information
+    */
+    async sponsor_point_report(sponsorID) {
         if (sponsorID == NULL) {
             alert("Invalid Sponsor.");
         }
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * From Points_Management Where sponsorID = ?";
-                /*
-                 May need to only display the driver being managed and the point distribution to that driver:
-                    const query1 = "SELECT Driver_Username From Points_Management Where sponsorID = ?"; 
-                    const query2 = "SELECT points From Points_Management Where sponsorID = ?";
+                const query = "SELECT * From Points_Log Where sponsorID = ?";
 
-                    connection.query(query1, [sponsorID], (err, result) =>{...});
-                    connection.query(query2, [sponsorID], (err, result) =>{...});
-                */
                 connection.query(query, [sponsorID], (err, result) => {
                     if (err) reject(new Error(err.message));
                 });
             });
-
             console.log(response);
             return (response);
         } catch (error) {
@@ -295,15 +285,14 @@ class dbService {
 
     //-----CREATE QUERIES-----//
     /*
-    @desc: Send query to create a new application
-    @params: driverID, object containing application information
-    @return: an int denoting success(1) or failure(0)
+        @desc: Creates a new application entry
+        @params: object containing application information
+        @return: object with the application entry information
     */
     async send_application(applicationInfo) {
         try {
             const dateAdded = new Date();
             const response = await new Promise((resolve, reject) => {
-
                 const query = "INSERT INTO Applications (driverID, sponsorID, reason, status, dateCreated) VALUES (?, ?, ?, ?, ?);";
 
                 connection.query(query, [applicationInfo.driverID, applicationInfo.sponsorID, applicationInfo.reason, applicationInfo.initialStatus, dateAdded], (err, result) => {
@@ -311,9 +300,7 @@ class dbService {
                     resolve(result.insertId);
                 });
             });
-
             console.log(response);
-            // Return the ID, name, and date_added to the front-end
             return {
                 appId: response,
                 driverID: applicationInfo.driverID,
@@ -321,22 +308,20 @@ class dbService {
                 reason: applicationInfo.reason,
                 dateAdded: dateAdded
             };
-
         } catch (error) {
             console.log(error);
         }
     }
 
     /*
-    @desc: Send query to create a new application
-    @params: driverID, object containing application information
-    @return: an int denoting success(1) or failure(0)
+        @desc: Creates a new point event
+        @params: object containing point event information
+        @return: object with point log entry information
     */
     async send_points(pointInfo) {
         try {
             const dateChanged = new Date();
             const response = await new Promise((resolve, reject) => {
-
                 const query = "INSERT INTO Points_Log (driverID, sponsorID, pointAmount, reason, dateChanged) VALUES (?, ?, ?, ?, ?);";
 
                 connection.query(query, [pointInfo.driverID, pointInfo.sponsorID, pointInfo.pointAmount, pointInfo.reason, dateChanged], (err, result) => {
@@ -344,9 +329,7 @@ class dbService {
                     resolve(result.insertId);
                 });
             });
-
             console.log(response);
-            // Return the ID, name, and date_added to the front-end
             return {
                 changeId: response,
                 driverID: pointInfo.driverID,
@@ -355,52 +338,21 @@ class dbService {
                 reason: pointInfo.reason,
                 dateAdded: dateChanged
             };
-
         } catch (error) {
             console.log(error);
         }
     }
-
-    /*
-        This function sends a query to enter new user into the database table
-        --                       Still in progress                         --
-    
-    async insertNewUser(username) {
-        try {
-            const dateAdded = new Date();
-            const insertId = await new Promise((resolve, reject) => {
-                // Parameterized the values to protect against SQL injection
-                const query = "INSERT INTO mock_table (username, date_added) VALUES (?, ?);";
-
-                connection.query(query, [username, dateAdded], (err, result) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(result.insertId);
-                });
-            });
-            // Return the ID, name, and date_added to the front-end
-            return {
-                id: insertId,
-                name: username,
-                dateAdded: dateAdded
-            };
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    */
 
 
     //-----EDIT QUERIES-----//
     /*
-    @desc: Send query to update driver account information
-    @params: driverID, object containing profile information
-    @return: an int denoting success(1) or failure(0)
+        @desc: Updates driver account information
+        @params: driverID, object containing profile information
+        @return: an int denoting success(1) or failure(0)
     */
     async update_driver_info(driverID, profileInfo) {
         try {
             const response = await new Promise((resolve, reject) => {
-
                 const query = "UPDATE Driver_Account SET firstName = ?, lastName = ?, email = ?, phoneNum = ?, shippingStreet = ?, shippingCity = ?, shippingState = ?, shippingZip = ? WHERE driverID = ?;";
 
                 connection.query(query, [profileInfo.firstName, profileInfo.lastName, profileInfo.email, profileInfo.phoneNum, profileInfo.shippingAddress.shippingStreet, profileInfo.shippingAddress.shippingCity, profileInfo.shippingAddress.shippingState, profileInfo.shippingAddress.shippingZip, driverID], (err, result) => {
@@ -409,7 +361,6 @@ class dbService {
                 });
             });
             return response === 1 ? true : false;
-
         } catch (error) {
             console.log(error);
             return false;
@@ -417,14 +368,13 @@ class dbService {
     }
 
     /*
-    @desc: Send query to update driver account information
-    @params: driverID, object containing profile information
-    @return: an int denoting success(1) or failure(0)
+        @desc: Updates sponsor account information
+        @params: sponsorID, object containing profile information
+        @return: an int denoting success(1) or failure(0)
     */
     async update_sponsor_info(sponsorID, profileInfo) {
         try {
             const response = await new Promise((resolve, reject) => {
-
                 const query = "UPDATE Sponsor_Account SET firstName = ?, lastName = ?, email = ?, phoneNum = ?, bio = ? WHERE sponsorID = ?;";
 
                 connection.query(query, [profileInfo.firstName, profileInfo.lastName, profileInfo.email, profileInfo.phoneNum, profileInfo.bio, sponsorID], (err, result) => {
@@ -433,7 +383,6 @@ class dbService {
                 });
             });
             return response === 1 ? true : false;
-
         } catch (error) {
             console.log(error);
             return false;
@@ -441,14 +390,14 @@ class dbService {
     }
 
     /*
-        This method sends the update query
+        @desc: Updates application with new status
+        @params: appID, new status value
+        @return: an int denoting success(1) or failure(0)
     */
     async update_application(key, value) {
         key = parseInt(key, 10);
         try {
             const response = await new Promise((resolve, reject) => {
-
-                // Parameterized the values to protect against SQL injection
                 const query = "UPDATE Applications SET status = ? WHERE appID = ?;";
 
                 connection.query(query, [value, key], (err, result) => {
@@ -457,80 +406,81 @@ class dbService {
                 });
             });
             return response === 1 ? true : false;
-
         } catch (error) {
             console.log(error);
             return false;
         }
-
     }
 
-    // Saves the values of the driver's current points and the alloted point change amount to update the driver's points
-    async updatePoints(driverID) {
+    /*
+        UNFINISHED
+        @desc: Saves the values of the driver's current points and updates driver's total points after new change
+        @params: driver's driverID
+        @return: N/A
+    */
+    async update_points(driverID) {
         if (driverID == NULL) {
             alert("Invalid Driver.");
         }
-        // May need to use searchByID here to specify the driverID or add a query to get the ID, not sure
         const pointChangeAmount = "SELECT Change_Amount FROM Points_Management WHERE driverID = ?";
         const currentPoints = "SELECT points FROM Driver_Account WHERE driverID = ?";
-
-
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "UPDATE Driver_Account SET points = ? WHERE driverID = ?";
+
                 connection.query(query, [(currentPoints + pointChangeAmount), driverID], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result);
                 });
             });
-
             console.log(response);
             return response;
         } catch (error) {
             console.log(error);
-
         }
     }
 
     /*
-        This method sends the update query for a driver to update their username
+        NOTE: Doesn't affect cognito username
+        @desc: Updates driver username
+        @params: driver's driverID, new username
+        @return: an int denoting success(1) or failure(0)
     */
-    async updateUsernameById(id, username) {
-        id = parseInt(id, 10);
+    async update_driver_username(driverID, username) {
         try {
             const response = await new Promise((resolve, reject) => {
+                const query = "UPDATE Driver_Account SET username = ? WHERE driverID = ?;";
 
-                // Parameterized the values to protect against SQL injection
-                const query = "UPDATE Driver_Account SET username = ? WHERE id = ?;";
-
-                connection.query(query, [username, id], (err, result) => {
+                connection.query(query, [username, driverID], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.affectedRows);
                 });
             });
             return response === 1 ? true : false;
-
         } catch (error) {
             console.log(error);
             return false;
         }
-
     }
 
-
-    // Possible point refresh method. Need a designated button to call this
-    async pointRefresh(driverID) {
+    /*
+        @desc: Grabs driver's point count
+        @params: driver's driverID
+        @return: object containing point information
+    */
+    async grab_points(driverID) {
         if (driverID == NULL) {
             alert("Invalid Driver.");
         }
         try {
             const response = await new Promise((resolve, reject) => {
                 const query = "SELECT points From Driver_Account Where driverID = ?";
+
                 connection.query(query, [driverID], (err, result) => {
                     if (err) reject(new Error(err.message));
+                    resolve(result);
                 });
             });
-
             console.log(response);
             return (response);
         } catch (error) {
@@ -538,19 +488,16 @@ class dbService {
         }
     }
 
-
-
     //-----DELETE QUERIES-----//
     /*
-        This method sends the delete query
+        @desc: Deletes an application
+        @params: appID
+        @return: an int denoting success(1) or failure(0)
     */
     async delete_app_by_key(key) {
         key = parseInt(key, 10);
-        console.log('ROW KEY: ' + key);
         try {
             const response = await new Promise((resolve, reject) => {
-
-                // Parameterized the values to protect against SQL injection
                 const query = "DELETE FROM Applications WHERE appID = ?;";
 
                 connection.query(query, [key], (err, result) => {
@@ -558,42 +505,35 @@ class dbService {
                     resolve(result.affectedRows);
                 });
             });
-
             console.log(response);
             return response === 1 ? true : false;
-
         } catch (error) {
             console.log(error);
             return false;
         }
-
     }
 
     /*
-        This method sends the delete query
+        @desc: Deletes a driver
+        @params: driver's driverID
+        @return: an int denoting success(1) or failure(0)
     */
-    async deleteDriverById(id) {
-        id = parseInt(id, 10);
+    async delete_driver(driverID) {
         try {
             const response = await new Promise((resolve, reject) => {
+                const query = "DELETE FROM Driver_Account WHERE driverID = ?;";
 
-                // Parameterized the values to protect against SQL injection
-                const query = "DELETE FROM Driver_Account WHERE id = ?;";
-
-                connection.query(query, [id], (err, result) => {
+                connection.query(query, [driverID], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.affectedRows);
                 });
             });
-
             console.log(response);
             return response === 1 ? true : false;
-
         } catch (error) {
             console.log(error);
             return false;
         }
-
     }
 }
 

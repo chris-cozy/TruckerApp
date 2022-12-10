@@ -1,3 +1,4 @@
+//-----GLOBALS-----//
 const publicDNS = 'http://54.87.82.227:3306/';
 const localHost = 'http://localhost:5000/';
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
@@ -7,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch(corsHeader + publicDNS + 'getAllSponsors')
         .then(response => response.json())
         .then(data => load_sponsor_list(data['data']));
-
 
     fetch(corsHeader + publicDNS + 'getCurrentDriverUser')
         .then(response => response.json())
@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
+/*
+    @desc: Deletes an application
+    @params: Delete button pressed on application row
+    @return: Nothing
+*/
 document.querySelector('table tbody').addEventListener('click', function (event) {
     console.log(event.target);
     if (event.target.className === 'delete-row-btn') {
@@ -26,20 +31,19 @@ document.querySelector('table tbody').addEventListener('click', function (event)
     }
 });
 
-/* 
-    Function that takes in data and loads it into the table
-    Args: Array of data
+/*
+    @desc: Loads applcation data into html page
+    @params: object of application data
+    @return: Nothing
 */
 function load_applications(data) {
     const table = document.querySelector('table tbody');
-
     if (data == null || data.length === 0) {
         table.innerHTML = "<tr><td class='no-data' colspan='5'>No Applications</td></tr>";
         return;
     }
 
     let tableHtml = "";
-
     data.forEach(function ({ sponsorID, dateCreated, status, appID }) {
         tableHtml += "<tr>";
         tableHtml += `<td>${sponsorID}</td>`;
@@ -51,7 +55,6 @@ function load_applications(data) {
         } else if (status == -1) {
             tableHtml += `<td>Rejected</td>`;
         }
-        // A button to delete the application
         tableHtml += `<td><button class="delete-row-btn" data-id =${appID}>Delete</button></td>`;
         tableHtml += "</tr>"
     });
@@ -60,31 +63,32 @@ function load_applications(data) {
 }
 
 /*
-    @desc: When called, loads a list of the active sponsors into the select dropdown list
-    @params: Data object of sponsors, from database query
+    @desc: Loads sponsor names into the select dropdown list
+    @params: object of sponsor data
     @return: Nothing
 */
 function load_sponsor_list(data) {
-    // Grab the table body
     const sponsorSelect = document.querySelector('#sponsor-select');
 
-    // If there is no data
     if (data.length === 0) {
         sponsorSelect.innerHTML = "<p class='no-data'>No Available Sponsors</p>";
         return;
     }
 
-    // If there is data
     let optionHTML = "";
 
     data.forEach(function ({ username, firstName, lastName, organization, sponsorID }) {
         optionHTML += `<option value=${sponsorID}>${firstName} ${lastName}</option>`;
     });
 
-    // Updating the HTML
     sponsorSelect.innerHTML = optionHTML;
 }
 
+/*
+    @desc: Sends query to delete application
+    @params: appID
+    @return: Nothing
+*/
 function delete_app_by_key(key) {
     fetch(corsHeader + publicDNS + 'deleteApplication/' + key, {
         method: 'DELETE'
@@ -95,16 +99,15 @@ function delete_app_by_key(key) {
                 location.reload();
             }
         });
-
 }
-/*
-    @desc: After 'Save Changes' button is pressed, gathers the form information and places into an object 
-    @params: N/A
-    @return: An object containing the form data
-*/
-const submitBtn = document.querySelector('#submit');
-submitBtn.onclick = function () {
 
+const submitBtn = document.querySelector('#submit');
+/*
+    @desc: Sends the application
+    @params: Submit button clicked
+    @return: Nothing
+*/
+submitBtn.onclick = function () {
     const reason = document.querySelector('#reason');
     const sponsor = document.querySelector('#sponsor-select')
 
