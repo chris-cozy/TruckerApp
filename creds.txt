@@ -1,5 +1,0 @@
-# test_driver
-# !Password1
-
-# test_sponsor
-# !Password1

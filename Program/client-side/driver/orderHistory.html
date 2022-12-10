@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Order History</title>
@@ -14,7 +15,7 @@
 
 <body>
     <section class="header">
-        <nav class = "big">
+        <nav class="big">
             <a href="index.html"><img src="logo.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
@@ -31,22 +32,20 @@
         <div class="text-box">
             <h1>Order History</h1>
             <p>Driver order history will be displayed here</p>
-        </div>    
+        </div>
 
     </section>
 
-<!-- JS for Toggling Nav Menu -->
-<script>
-
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
-
-</script>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
+    </script>
 
 </body>
+
 </html>

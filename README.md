@@ -25,3 +25,10 @@ Yuna Zhao - This is my first commit.
 ssh -i C:\Users\cjsan\Documents\TruckerSystem\Team21-Key.pem ubuntu@54.87.82.227
 Before running application, need to get temporary access from the cors demo server at:
         https://cors-anywhere.herokuapp.com
+
+# Testing credentials
+test_driver
+!Password1
+
+test_sponsor
+!Password1

@@ -6,56 +6,22 @@ const dbService = require('./dbService');
 const ebayService = require('./ebayService');
 const userService = require('./userService');
 const fetch = require('node-fetch');
-
-let user = null;
-let sponsorUser = null;
-
 const app = express();
 dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//-----TEST ROUTE-----//
-app.get('/getAllAccounts', (request, response) => {
-    console.log('ALL ACCOUNTS');
-});
-
-//-----CREATE ROUTES-----//
-app.post('/getTest', (request, response) => {
-
-});
-
-app.post('/sendApp', (request, response) => {
-    const applicationInfo = request.body;
-    const db = dbService.get_instance();
-
-    const result = db.send_application(applicationInfo);
-
-    result
-        .then(data => response.json({ data: data }))
-        .catch(err => console.log(err));
-});
-
-app.post('/sendPoints', (request, response) => {
-    const pointInfo = request.body;
-    const db = dbService.get_instance();
-
-    const result = db.send_points(pointInfo);
-
-    result
-        .then(data => response.json({ data: data }))
-        .catch(err => console.log(err));
-});
-
-app.post('/setCurrentUser', (request, response) => {
-    const currentUserInfo = request.body;
-    //console.log(currentUserInfo);
-    user = userService.get_instance(currentUserInfo);
-    //console.log(user);
-})
+//-----GLOBALS-----//
+let user = null;
 
 //-----GET ROUTES-----//
+/*
+    UNFINISHED
+    @desc: Grabs basic info for the current driver user
+    @params: driver user pool access token
+    @return: an object containing basic driver user info (sub, email, username)
+*/
 app.get('/getDriverUserInfo/:token', (request, response) => {
     const { token } = request.params;
 
@@ -90,9 +56,14 @@ app.get('/getDriverUserInfo/:token', (request, response) => {
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    UNFINISHED
+    @desc: Grabs basic info for the current sponsor user
+    @params: sponsor user pool access token
+    @return: an object containing basic sponsor user info (sub, email, username)
+*/
 app.get('/getSponsorUserInfo/:token', (request, response) => {
     const { token } = request.params;
 
@@ -127,168 +98,254 @@ app.get('/getSponsorUserInfo/:token', (request, response) => {
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    @desc: Grabs all info for the current driver user
+    @params: None
+    @return: an object containing all driver user info
+*/
 app.get('/getCurrentDriverUser', (request, response) => {
     const db = dbService.get_instance();
-
     const result = db.get_driver(user.sub);
-
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    @desc: Grabs all info for the current sponsor user
+    @params: None
+    @return: an object containing all sponsor user info
+*/
 app.get('/getCurrentSponsorUser', (request, response) => {
     const db = dbService.get_instance();
-
     const result = db.get_sponsor(user.sub);
-
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    @desc: Grabs product info from ebay API using a keyword search
+    @params: Search keyword
+    @return: an object containing all product info
+*/
 app.get('/ebaySearch/:keyword', (request, response) => {
     const { keyword } = request.params;
     const ebay = ebayService.get_instance();
-
     const result = ebay.search(keyword);
-
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
 });
 
+/*
+    @desc: Grabs all applications for the specified driver
+    @params: driverID of the desired driver
+    @return: an object containing all related applications
+*/
 app.get('/getAppsByDriver/:driverID', (request, response) => {
     const { driverID } = request.params;
     const db = dbService.get_instance();
-
     const result = db.get_driver_apps(driverID);
-
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    @desc: Grabs all applications for the specified sponsor
+    @params: sponsorID of the desired sponsor
+    @return: an object containing all related applications
+*/
 app.get('/getAppsBySponsor/:sponsorID', (request, response) => {
     const { sponsorID } = request.params;
     const db = dbService.get_instance();
-
     const result = db.get_sponsor_apps(sponsorID);
-
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    OBSOLETE
+    @desc: Grabs driver info using their username
+    @params: username of the desired driver
+    @return: an object containing driver info
+*/
 app.get('/getDriver/:username', (request, response) => {
     const { username } = request.params;
     const db = dbService.get_instance();
-
     const result = db.searchDriverByUsername(username);
-
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
 });
 
+/*
+    @desc: Grabs all driver accounts and information
+    @params: None
+    @return: an object containing all driver account info
+*/
 app.get('/getAllDrivers', (request, response) => {
 
 });
 
+/*
+    @desc: Grabs all sponsor accounts and information
+    @params: None
+    @return: an object containing all sponsor account info
+*/
 app.get('/getAllSponsors', (request, response) => {
     const db = dbService.get_instance();
-
     const result = db.get_all_sponsors();
-
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
 });
 
+/*
+    @desc: Grabs all driver accounts approved by the sponsor
+    @params: sponsorID of the desired sponsor
+    @return: an object containing all driver account info for the sponsor
+*/
 app.get('/getDrivers/:sponsorID', (request, response) => {
     const { sponsorID } = request.params;
-    console.log(sponsorID);
-
     const db = dbService.get_instance();
-
     const result = db.get_drivers_by_sponsor(sponsorID);
-
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));
-
 });
 
-// UPDATE
+
+//-----CREATE ROUTES-----//
+/*
+    @desc: Creates a new application
+    @params: object containing application information
+    @return: an object with application entry information
+*/
+app.post('/sendApp', (request, response) => {
+    const applicationInfo = request.body;
+    const db = dbService.get_instance();
+    const result = db.send_application(applicationInfo);
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
+/*
+    @desc: Creates a new points log entry
+    @params: object containing point log information
+    @return: an object with point log entry information
+*/
+app.post('/sendPoints', (request, response) => {
+    const pointInfo = request.body;
+    const db = dbService.get_instance();
+    const result = db.send_points(pointInfo);
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
+/*
+    @desc: Sets information for the current user
+    @params: object containing basic user information (email, sub, username)
+    @return: None
+*/
+app.post('/setCurrentUser', (request, response) => {
+    const currentUserInfo = request.body;
+    user = userService.get_instance(currentUserInfo);
+});
+
+//-----UPDATE ROUTES-----//
+/*
+    @desc: Updates specified driver account information
+    @params: Object containing the driverID and a subobject with the updated information
+    @return: an int denoting success or failure
+*/
 app.patch('/updateDriverInfo', (request, response) => {
     const driverID = request.body.id;
     const profileInfo = request.body.body;
     const db = dbService.get_instance();
-
     const result = db.update_driver_info(driverID, profileInfo);
-
     result
         .then(data => response.json({ success: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    @desc: Updates specified sponsor account information
+    @params: Object containing the sponsorID and a subobject with the updated information
+    @return: an int denoting success or failure
+*/
 app.patch('/updateSponsorInfo', (request, response) => {
     const sponsorID = request.body.id;
     const profileInfo = request.body.body;
     const db = dbService.get_instance();
-
     const result = db.update_sponsor_info(sponsorID, profileInfo);
-
     result
         .then(data => response.json({ success: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    @desc: Updates application with accept or reject status
+    @params: Object containing the appID and new status
+    @return: an int denoting success or failure
+*/
 app.patch('/appDecision', (request, response) => {
     const { key, value } = request.body;
-
     const db = dbService.get_instance();
-
     const result = db.update_application(key, value);
-
     result
         .then(data => response.json({ success: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    UNFINISHED
+    @desc: Updates specified password
+    @params: N/A
+    @return: N/A
+*/
 app.patch('/updatePass', (request, response) => {
 
 
 });
 
-// DELETE
+//-----DELETE ROUTES-----//
+/*
+    @desc: Deletes the specified application, effectively removing the sponsor
+    @params: Key which is the appID
+    @return: an int denoting success or failure
+*/
 app.delete('/deleteApplication/:key', (request, response) => {
     const { key } = request.params;
-
     const db = dbService.get_instance();
-
     const result = db.delete_app_by_key(key);
-
     result
         .then(data => response.json({ success: data }))
         .catch(err => console.log(err));
-
 });
 
+/*
+    UNFINISHED
+    @desc: Deletes the specified driver account
+    @params: N/A
+    @return: N/A
+*/
 app.delete('/delete/:driverId', (request, response) => {
 
 });
 
+/*
+    UNFINISHED
+    @desc: Deletes the specified sponsor account
+    @params: N/A
+    @return: N/A
+*/
 app.delete('/delete/:sponsorId', (request, response) => {
 
 });

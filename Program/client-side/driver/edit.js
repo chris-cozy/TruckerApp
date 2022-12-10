@@ -31,29 +31,21 @@ document.addEventListener('DOMContentLoaded', function () {
             lastNameInput.defaultValue = currentUser.lastName;
             emailInput.defaultValue = currentUser.email;
             phoneNumInput.defaultValue = currentUser.phoneNum;
-
-            //drivingExpInput.defaultValue = 'a';
-
+            drivingExpInput.defaultValue = 0;
             shippingStreetInput.defaultValue = currentUser.shippingStreet;
-
             shippingCityInput.defaultValue = currentUser.shippingCity;
-
             shippingStateInput.defaultValue = currentUser.shippingState;
-
             shippingZipInput.defaultValue = currentUser.shippingZip;
         })
-
-
-
 });
 
-//-----POST-----//
-/*
-    @desc: After 'Save Changes' button is pressed, gathers the form information and places into an object 
-    @params: N/A
-    @return: An object containing the form data
-*/
+
 const updateBtn = document.querySelector('#update');
+/*
+    @desc: Sends updated application information
+    @params: Application completed and update button pressed
+    @return: Nothing
+*/
 updateBtn.onclick = function () {
     const profileInfo = {
         firstName: firstNameInput.value,
@@ -68,7 +60,6 @@ updateBtn.onclick = function () {
             shippingZip: shippingZipInput.value
         }
     }
-
     console.log(profileInfo);
 
     fetch(corsHeader + publicDNS + '/updateDriverInfo', {
@@ -77,7 +68,6 @@ updateBtn.onclick = function () {
         },
         method: 'PATCH',
         body: JSON.stringify({
-            // sub this for the current user's id
             id: currentUser.driverID,
             body: profileInfo
         })
