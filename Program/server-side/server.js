@@ -152,11 +152,23 @@ app.get('/ebaySearch/:keyword', (request, response) => {
         .catch(err => console.log(err));
 });
 
-app.get('/getApplications/:driverID', (request, response) => {
+app.get('/getAppsByDriver/:driverID', (request, response) => {
     const { driverID } = request.params;
     const db = dbService.get_instance();
 
     const result = db.get_driver_apps(driverID);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+
+});
+
+app.get('/getAppsBySponsor/:sponsorID', (request, response) => {
+    const { sponsorID } = request.params;
+    const db = dbService.get_instance();
+
+    const result = db.get_sponsor_apps(sponsorID);
 
     result
         .then(data => response.json({ data: data }))
@@ -213,6 +225,19 @@ app.patch('/updateSponsorInfo', (request, response) => {
     const db = dbService.get_instance();
 
     const result = db.update_sponsor_info(sponsorID, profileInfo);
+
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
+
+});
+
+app.patch('/appDecision', (request, response) => {
+    const { key, value } = request.body;
+
+    const db = dbService.getInstance();
+
+    const result = db.update_application(key, value);
 
     result
         .then(data => response.json({ success: data }))

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Driver | Review Applications</title>
@@ -14,7 +15,7 @@
 
 <body>
     <section class="header">
-        <nav class = "big">
+        <nav class="big">
             <a href="index.html"><img src="logo.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
@@ -27,28 +28,39 @@
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
-
-        <div class="text-box">
-            <h2>*Display application from db here*</h2>
-            <a class="button">Accept</a> 
-            <a class="button">Reject</a>
-            <a class="button">Hold</a>
-        </div>    
+    </section>
+    <section>
+        <div class="text-box" style="text-align:left;display:block;float:inline-start;">
+            <h2>Applications</h2>
+            <br>
+            <table id="table">
+                <thead>
+                    <th>Driver</th>
+                    <th>Date Applied</th>
+                    <th>Status</th>
+                    <th>Accept</th>
+                    <th>Reject</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <br><br>
+        </div>
 
     </section>
 
-<!-- JS for Toggling Nav Menu -->
-<script>
+    <!-- JS for Toggling Nav Menu -->
+    <script>
 
-    var navLinks = document.getElementById("navLinks");
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-400px";
-    }
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+        function hideMenu() {
+            navLinks.style.right = "-400px";
+        }
 
-</script>
+    </script>
 
 </body>
+
 </html>

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
-            fetch(corsHeader + publicDNS + 'getApplications/' + currentUser.driverID)
+            fetch(corsHeader + publicDNS + 'getAppsByDriver/' + currentUser.driverID)
                 .then(response => response.json())
                 .then(data => load_applications(data['data']));
         });
