@@ -214,6 +214,7 @@ app.get('/getAllSponsors', (request, response) => {
 
 app.get('/getDrivers/:sponsorId', (request, response) => {
     const { sponsorID } = request.params;
+    console.log(sponsorID);
 
     const db = dbService.get_instance();
 
