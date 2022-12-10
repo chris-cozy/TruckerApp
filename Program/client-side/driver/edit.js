@@ -22,7 +22,7 @@ let shippingZipInput = document.querySelector('#zip');
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    fetch(corsHeader + publicDNS + 'getCurrentUser')
+    fetch(corsHeader + publicDNS + 'getCurrentDriverUser')
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
@@ -71,7 +71,7 @@ updateBtn.onclick = function () {
 
     console.log(profileInfo);
 
-    fetch(corsHeader + publicDNS + '/updateProfileInfo', {
+    fetch(corsHeader + publicDNS + '/updateDriverInfo', {
         headers: {
             'Content-type': 'application/json'
         },

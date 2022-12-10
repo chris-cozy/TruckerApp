@@ -128,7 +128,7 @@ class dbService {
     }
 
     // Finds a driver with the exact ID, in order to link to their account in the database
-    async search_by_id(driverID) {
+    async get_driver(driverID) {
         if (driverID == null) {
             alert("Invalid Driver.");
         }
@@ -137,6 +137,29 @@ class dbService {
                 const query = "SELECT * From Driver_Account Where driverID = ?";
 
                 connection.query(query, [driverID], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result);
+                });
+            });
+
+            console.log(response);
+            return response;
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // Finds a driver with the exact ID, in order to link to their account in the database
+    async get_sponsor(sponsorID) {
+        if (sponsorID == null) {
+            alert("Invalid Driver.");
+        }
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * From Sponsor_Account Where sponsorID = ?";
+
+                connection.query(query, [sponsorID], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result);
                 });
@@ -293,13 +316,37 @@ class dbService {
     @params: driverID, object containing profile information
     @return: an int denoting success(1) or failure(0)
     */
-    async update_profile_info(driverID, profileInfo) {
+    async update_driver_info(driverID, profileInfo) {
         try {
             const response = await new Promise((resolve, reject) => {
 
                 const query = "UPDATE Driver_Account SET firstName = ?, lastName = ?, email = ?, phoneNum = ?, shippingStreet = ?, shippingCity = ?, shippingState = ?, shippingZip = ? WHERE driverID = ?;";
 
                 connection.query(query, [profileInfo.firstName, profileInfo.lastName, profileInfo.email, profileInfo.phoneNum, profileInfo.shippingAddress.shippingStreet, profileInfo.shippingAddress.shippingCity, profileInfo.shippingAddress.shippingState, profileInfo.shippingAddress.shippingZip, driverID], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.affectedRows);
+                });
+            });
+            return response === 1 ? true : false;
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    /*
+    @desc: Send query to update driver account information
+    @params: driverID, object containing profile information
+    @return: an int denoting success(1) or failure(0)
+    */
+    async update_sponsor_info(sponsorID, profileInfo) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+
+                const query = "UPDATE Sponsor_Account SET firstName = ?, lastName = ?, email = ?, phoneNum = ?, bio = ? WHERE sponsorID = ?;";
+
+                connection.query(query, [profileInfo.firstName, profileInfo.lastName, profileInfo.email, profileInfo.phoneNum, profileInfo.bio, sponsorID], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.affectedRows);
                 });

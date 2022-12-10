@@ -13,7 +13,7 @@ let bioInput = document.querySelector('#bio');
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    fetch(corsHeader + publicDNS + 'getCurrentUser')
+    fetch(corsHeader + publicDNS + 'getCurrentSponsorUser')
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
