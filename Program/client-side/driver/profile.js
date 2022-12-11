@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(currentUser);
             load_personal_info(currentUser);
             load_points(currentUser);
-            load_sponsors(currentUser);
+
+            fetch(corsHeader + publicDNS + 'getSponsors/' + currentUser.driverID)
+                .then(response => response.json())
+                .then(data => load_sponsors(data['data']));
         })
 });
 
@@ -86,6 +89,10 @@ function load_sponsors(data) {
         return;
     }
     let tableHtml = "";
+
+    data.forEach(function ({ firstName, lastName }) {
+        tableHtml += `<p>${firstName} ${lastName}</p>`;
+    });
 
     sponsors.innerHTML = tableHtml;
 }
