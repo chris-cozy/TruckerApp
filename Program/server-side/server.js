@@ -258,7 +258,7 @@ app.post('/sendPoints', (request, response) => {
     const pointInfo = request.body;
     const db = dbService.get_instance();
     const result = db.send_points(pointInfo);
-    db.update_point(pointInfo.driverID);
+    db.update_points(pointInfo.driverID);
 
     result
         .then(data => response.json({ data: data }))
