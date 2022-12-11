@@ -1,35 +1,69 @@
 const publicDNS = 'http://ec2-54-87-82-227.compute-1.amazonaws.com:3306/';
 const localHost = 'http://localhost:5000/';
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
+let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', function () {
+    fetch(corsHeader + publicDNS + 'getCurrentDriverUser')
+        .then(response => response.json())
+        .then(data => { currentUser = data.data[0] })
+        .then(() => {
+            console.log(currentUser);
+            load_points(currentUser);
+        });
 
+    fetch(corsHeader + publicDNS + 'getPointHistory/' + currentUser.driverID)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            load_point_history(data);
+        });
 });
 
-/* Shows all point management actions by a given sponsor, for drivers to view their points history
-    To be used for reference in js code
-    async displayPointDistribution(sponsorID) {
-        if (sponsorID == NULL) {
-            alert("Invalid Sponsor.");
-        }
-        try {
-            const response = await new Promise((resolve, reject) => {
-                    const query1 = "SELECT Driver_Username From Points_Management Where sponsorID = ?"; 
-                    const query2 = "SELECT points From Points_Management Where sponsorID = ?";
+/*
+    @desc: Loads points into html page
+    @params: Data object of point
+    @return: Nothing
+*/
+function load_points(data) {
+    const points = document.querySelector('#points');
 
-                    connection.query(query1, [sponsorID], (err, result) =>{...});
-                    connection.query(query2, [sponsorID], (err, result) =>{...});
-                
-                connection.query(query, [sponsorID], (err, result) => {
-                    if (err) reject(new Error(err.message));
-                });
-            });
-
-            console.log(response);
-            return(response);
-        } catch (error){
-            console.log(error);
-        }
+    if (data == null) {
+        points.innerHTML = "<p>No Point Data</p>";
+        return;
     }
-    */
 
+    let tableHtml = "";
+
+    if (data.points == null) {
+        tableHtml += `<p>No Point Data</p>`;
+    } else {
+        tableHtml += `<p>${data.points}</p>`;
+    }
+    points.innerHTML = tableHtml;
+}
+
+/*
+    @desc: Loads point history data into html page
+    @params: object of point history data
+    @return: Nothing
+*/
+function load_point_history(data) {
+    const table = document.querySelector('table tbody');
+    if (data == null || data.length === 0) {
+        table.innerHTML = "<tr><td class='no-data' colspan='4'>No Point History</td></tr>";
+        return;
+    }
+
+    let tableHtml = "";
+    data.forEach(function ({ sponsorID, pointAmount, reason, dateChanged }) {
+        tableHtml += "<tr>";
+        tableHtml += `<td>${sponsorID}</td>`;
+        tableHtml += `<td>${pointAmount}</td>`;
+        tableHtml += `<td>${reason}</td>`;
+        tableHtml += `<td>${new Date(dateChanged).toLocaleString()}</td>`;
+        tableHtml += "</tr>"
+    });
+
+    table.innerHTML = tableHtml;
+}

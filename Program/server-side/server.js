@@ -219,6 +219,20 @@ app.get('/getDrivers/:sponsorID', (request, response) => {
         .catch(err => console.log(err));
 });
 
+/*
+    @desc: Grabs the point history of the driver
+    @params: driver's driverID
+    @return: an object containing the point history
+*/
+app.get('/getPointHistory/:driverID', (request, response) => {
+    const { driverID } = request.params;
+    const db = dbService.get_instance();
+    const result = db.driver_point_report(driverID);
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
 
 //-----CREATE ROUTES-----//
 /*
@@ -244,6 +258,8 @@ app.post('/sendPoints', (request, response) => {
     const pointInfo = request.body;
     const db = dbService.get_instance();
     const result = db.send_points(pointInfo);
+    db.update_point(pointInfo.driverID);
+
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));

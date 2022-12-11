@@ -413,7 +413,6 @@ class dbService {
     }
 
     /*
-        UNFINISHED
         @desc: Saves the values of the driver's current points and updates driver's total points after new change
         @params: driver's driverID
         @return: N/A
@@ -422,22 +421,35 @@ class dbService {
         if (driverID == NULL) {
             alert("Invalid Driver.");
         }
-        const pointChangeAmount = "SELECT Change_Amount FROM Points_Management WHERE driverID = ?";
-        const currentPoints = "SELECT points FROM Driver_Account WHERE driverID = ?";
         try {
-            const response = await new Promise((resolve, reject) => {
-                const query = "UPDATE Driver_Account SET points = ? WHERE driverID = ?";
+            const pointTotal = await new Promise((resolve, reject) => {
+                const pointTotalQuery = "SELECT SUM(pointAmount) FROM Points_Log WHERE driverID = ?;";
 
-                connection.query(query, [(currentPoints + pointChangeAmount), driverID], (err, result) => {
+                connection.query(pointTotalQuery, [driverID], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result);
                 });
             });
-            console.log(response);
-            return response;
+            console.log(pointTotal);
+
+            try {
+                const response = await new Promise((resolve, reject) => {
+                    const query = "UPDATE Driver_Account SET points = ? WHERE driverID = ?";
+
+                    connection.query(query, [pointTotal, driverID], (err, result) => {
+                        if (err) reject(new Error(err.message));
+                        resolve(result.affectedRows);
+                    });
+                });
+                console.log(response);
+                return response === 1 ? true : false;
+            } catch (error) {
+                console.log(error);
+            }
         } catch (error) {
             console.log(error);
         }
+
     }
 
     /*
