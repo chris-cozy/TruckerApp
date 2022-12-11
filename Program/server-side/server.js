@@ -127,6 +127,19 @@ app.get('/getCurrentSponsorUser', (request, response) => {
 });
 
 /*
+    @desc: Resets the current user info
+    @params: None
+    @return: None
+*/
+app.get('/resetUser', (request, response) => {
+
+    const result = userService.delete_instance();
+    result
+        .then(data => response.json({ success: data }))
+        .catch(err => console.log(err));
+});
+
+/*
     @desc: Grabs product info from ebay API using a keyword search
     @params: Search keyword
     @return: an object containing all product info

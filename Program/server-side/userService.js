@@ -23,6 +23,16 @@ class user {
     static get_instance(userInfo = null) {
         return instance ? instance : new user(userInfo);
     }
+
+    /*
+        @desc: Deletes instance of class. The return statment checks if instance is deleted.
+        @params: None
+        @return: true or false
+    */
+    static delete_instance() {
+        instance = null;
+        return instance === null ? true : false;
+    }
 }
 
 //-----MODULE EXPORT-----//
