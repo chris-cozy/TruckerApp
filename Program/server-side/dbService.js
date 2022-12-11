@@ -418,7 +418,7 @@ class dbService {
         @return: N/A
     */
     async update_points(driverID) {
-        if (driverID == NULL) {
+        if (driverID == null) {
             alert("Invalid Driver.");
         }
         try {
