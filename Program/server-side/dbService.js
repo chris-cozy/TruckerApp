@@ -168,7 +168,7 @@ class dbService {
         }
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * From Applications Where driverID = ?";
+                const query = "SELECT * FROM Applications INNER JOIN Sponsor_Account ON Applications.sponsorID=Sponsor_Account.sponsorID WHERE driverID = ?";
 
                 connection.query(query, [driverID], (err, result) => {
                     if (err) reject(new Error(err.message));
@@ -193,7 +193,7 @@ class dbService {
         }
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * From Applications Where sponsorID = ?";
+                const query = "SELECT * FROM Applications INNER JOIN Driver_Account ON Applications.driverID=Driver_Account.driverID WHERE sponsorID = ?";
 
                 connection.query(query, [sponsorID], (err, result) => {
                     if (err) reject(new Error(err.message));

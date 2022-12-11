@@ -38,9 +38,9 @@ function load_applications(data) {
 
     let tableHtml = "";
 
-    data.forEach(function ({ driverID, dateCreated, status, appID }) {
+    data.forEach(function ({ firstName, lastName, dateCreated, status, appID }) {
         tableHtml += "<tr>";
-        tableHtml += `<td>${driverID}</td>`;
+        tableHtml += `<td>${firstName} ${lastName}</td>`;
         tableHtml += `<td>${new Date(dateCreated).toLocaleString()}</td>`;
         if (status == 0) {
             tableHtml += `<td>Pending</td>`;
