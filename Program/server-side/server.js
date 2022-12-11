@@ -251,10 +251,24 @@ app.get('/getSponsors/:driverID', (request, response) => {
     @params: driver's driverID
     @return: an object containing the point history
 */
-app.get('/getPointHistory/:driverID', (request, response) => {
+app.get('/getDriverPointHistory/:driverID', (request, response) => {
     const { driverID } = request.params;
     const db = dbService.get_instance();
     const result = db.driver_point_report(driverID);
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
+/*
+    @desc: Grabs the point history of the sponsor
+    @params: sponsor's sponsorID
+    @return: an object containing the point history
+*/
+app.get('/getSponsorPointHistory/:sponsorID', (request, response) => {
+    const { sponsorID } = request.params;
+    const db = dbService.get_instance();
+    const result = db.sponsor_point_report(sponsorID);
     result
         .then(data => response.json({ data: data }))
         .catch(err => console.log(err));

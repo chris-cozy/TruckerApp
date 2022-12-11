@@ -4,14 +4,13 @@ const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch(corsHeader + publicDNS + 'getCurrentDriverUser')
+    fetch(corsHeader + publicDNS + 'getCurrentSponsorUser')
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
             console.log(currentUser);
-            load_points(currentUser);
 
-            fetch(corsHeader + publicDNS + 'getDriverPointHistory/' + currentUser.driverID)
+            fetch(corsHeader + publicDNS + 'getSponsorPointHistory/' + currentUser.sponsorID)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
@@ -22,28 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-/*
-    @desc: Loads points into html page
-    @params: Data object of point
-    @return: Nothing
-*/
-function load_points(data) {
-    const points = document.querySelector('#points');
-
-    if (data == null) {
-        points.innerHTML = "<h1>No Point Data</h1>";
-        return;
-    }
-
-    let tableHtml = "";
-
-    if (data.points == null) {
-        tableHtml += `<h1>No Point Data</h1>`;
-    } else {
-        tableHtml += `<h1>${data.points} Points</h1>`;
-    }
-    points.innerHTML = tableHtml;
-}
 
 /*
     @desc: Loads point history data into html page
