@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             fetch(corsHeader + publicDNS + 'getDrivers/' + currentUser.sponsorID)
                 .then(response => response.json())
-                .then(data => load_drivers(data['data']));
+                .then(data => {
+                    console.log(data);
+                    load_drivers(data['data']);
+                });
         })
 
 
