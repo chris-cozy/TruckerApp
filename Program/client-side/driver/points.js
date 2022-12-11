@@ -3,33 +3,35 @@ const localHost = 'http://localhost:5000/';
 const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 
 document.addEventListener('DOMContentLoaded', function () {
+    fetch(corsHeader + publicDNS + 'getCurrentDriverUser')
+        .then(response => response.json())
+        .then(data => { currentUser = data.data[0] })
+        .then(() => {
+            console.log(currentUser);
+            load_points(currentUser);
+        })
 
 });
 
-/* Shows all point management actions by a given sponsor, for drivers to view their points history
-    To be used for reference in js code
-    async displayPointDistribution(sponsorID) {
-        if (sponsorID == NULL) {
-            alert("Invalid Sponsor.");
-        }
-        try {
-            const response = await new Promise((resolve, reject) => {
-                    const query1 = "SELECT Driver_Username From Points_Management Where sponsorID = ?"; 
-                    const query2 = "SELECT points From Points_Management Where sponsorID = ?";
+/*
+    @desc: Loads points into html page
+    @params: Data object of point
+    @return: Nothing
+*/
+function load_points(data) {
+    const points = document.querySelector('#points');
 
-                    connection.query(query1, [sponsorID], (err, result) =>{...});
-                    connection.query(query2, [sponsorID], (err, result) =>{...});
-                
-                connection.query(query, [sponsorID], (err, result) => {
-                    if (err) reject(new Error(err.message));
-                });
-            });
-
-            console.log(response);
-            return(response);
-        } catch (error){
-            console.log(error);
-        }
+    if (data == null) {
+        points.innerHTML = "<p>No point data</p>";
+        return;
     }
-    */
 
+    let tableHtml = "";
+
+    if (data.points == null) {
+        tableHtml += `<p>No point data</p>`;
+    } else {
+        tableHtml += `<p>${data.points}</p>`;
+    }
+    points.innerHTML = tableHtml;
+}
