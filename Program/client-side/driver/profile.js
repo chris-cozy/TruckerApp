@@ -16,7 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             fetch(corsHeader + publicDNS + 'getSponsors/' + currentUser.driverID)
                 .then(response => response.json())
-                .then(data => load_sponsors(data['data']));
+                .then(data => {
+                    console.log(data);
+                    load_sponsors(data['data'])
+                });
         })
 });
 
