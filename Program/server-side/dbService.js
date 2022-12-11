@@ -436,7 +436,7 @@ class dbService {
                 const response = await new Promise((resolve, reject) => {
                     const query = "UPDATE Driver_Account SET points = ? WHERE driverID = ?";
 
-                    connection.query(query, [pointTotal, driverID], (err, result) => {
+                    connection.query(query, [pointTotal['SUM(pointAmount'], driverID], (err, result) => {
                         if (err) reject(new Error(err.message));
                         resolve(result.affectedRows);
                     });
