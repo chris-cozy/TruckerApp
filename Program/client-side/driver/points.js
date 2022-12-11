@@ -10,14 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(() => {
             console.log(currentUser);
             load_points(currentUser);
+
+            fetch(corsHeader + publicDNS + 'getPointHistory/' + currentUser.driverID)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    load_point_history(data);
+                });
         });
 
-    fetch(corsHeader + publicDNS + 'getPointHistory/' + currentUser.driverID)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            load_point_history(data);
-        });
+
 });
 
 /*

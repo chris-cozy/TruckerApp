@@ -239,7 +239,7 @@ class dbService {
         @return: object with point log information
     */
     async driver_point_report(driverID) {
-        if (driverID == NULL) {
+        if (driverID == null) {
             alert("Invalid Driver.");
         }
         try {
