@@ -430,7 +430,7 @@ class dbService {
                     resolve(result);
                 });
             });
-            console.log(pointTotal[0]['SUM(pointAmount']);
+            console.log(pointTotal[0]);
 
             try {
                 const response = await new Promise((resolve, reject) => {
