@@ -413,7 +413,6 @@ class dbService {
     }
 
     /*
-        UNFINISHED
         @desc: Saves the values of the driver's current points and updates driver's total points after new change
         @params: driver's driverID
         @return: N/A
