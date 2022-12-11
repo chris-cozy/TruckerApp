@@ -233,6 +233,20 @@ app.get('/getDrivers/:sponsorID', (request, response) => {
 });
 
 /*
+    @desc: Grabs all sponsor accounts for a driver
+    @params: driverID of the desired driver
+    @return: an object containing all sponsor account info for the driver
+*/
+app.get('/getSponsors/:driverID', (request, response) => {
+    const { driverID } = request.params;
+    const db = dbService.get_instance();
+    const result = db.get_sponsors_by_driver(driverID);
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
+/*
     @desc: Grabs the point history of the driver
     @params: driver's driverID
     @return: an object containing the point history

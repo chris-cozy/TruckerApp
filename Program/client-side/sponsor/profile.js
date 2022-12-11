@@ -12,7 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(() => {
             console.log(currentUser);
             load_personal_info(currentUser);
-            load_drivers(currentUser);
+
+            fetch(corsHeader + publicDNS + 'getDrivers/' + currentUser.sponsorID)
+                .then(response => response.json())
+                .then(data => load_drivers(data['data']));
         })
 
 
@@ -71,6 +74,10 @@ function load_drivers(data) {
         return;
     }
     let tableHtml = "";
+
+    data.forEach(function ({ firstName, lastName }) {
+        tableHtml += `<p>${firstName} ${lastName}</p>`;
+    });
 
     sponsors.innerHTML = tableHtml;
 }
