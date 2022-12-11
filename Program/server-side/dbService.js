@@ -430,13 +430,13 @@ class dbService {
                     resolve(result);
                 });
             });
-            console.log(pointTotal[0]);
+            console.log(pointTotal[0]['SUM(pointAmount)']);
 
             try {
                 const response = await new Promise((resolve, reject) => {
                     const query = "UPDATE Driver_Account SET points = ? WHERE driverID = ?";
 
-                    connection.query(query, [pointTotal[0]['SUM(pointAmount'], driverID], (err, result) => {
+                    connection.query(query, [pointTotal[0]['SUM(pointAmount)'], driverID], (err, result) => {
                         if (err) reject(new Error(err.message));
                         resolve(result.affectedRows);
                     });
