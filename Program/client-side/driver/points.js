@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    load_point_history(data);
+                    load_point_history(data['data']);
                 });
         });
 
