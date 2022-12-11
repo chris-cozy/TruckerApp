@@ -31,16 +31,16 @@ function load_points(data) {
     const points = document.querySelector('#points');
 
     if (data == null) {
-        points.innerHTML = "<p>No Point Data</p>";
+        points.innerHTML = "<h1>No Point Data</h1>";
         return;
     }
 
     let tableHtml = "";
 
     if (data.points == null) {
-        tableHtml += `<p>No Point Data</p>`;
+        tableHtml += `<h1>No Point Data</h1>`;
     } else {
-        tableHtml += `<p>${data.points}</p>`;
+        tableHtml += `<h1>${data.points} Points</h1>`;
     }
     points.innerHTML = tableHtml;
 }
