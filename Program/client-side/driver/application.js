@@ -77,7 +77,7 @@ function load_sponsor_list(data) {
 
     let optionHTML = "";
 
-    data.forEach(function ({ username, firstName, lastName, organization, sponsorID }) {
+    data.forEach(function ({ firstName, lastName, sponsorID }) {
         optionHTML += `<option value=${sponsorID}>${firstName} ${lastName}</option>`;
     });
 
