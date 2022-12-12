@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    load_products(data)
+                    load_products(data['data'])
                 });
         });
 
