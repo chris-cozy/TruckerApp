@@ -58,7 +58,7 @@ function add_to_catalog(ID) {
                 imageUrl: image['imageUrl'],
                 title: title,
                 condition: condition,
-                price: price
+                price: price.value
             }
         }
     });
