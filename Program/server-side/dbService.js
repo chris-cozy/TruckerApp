@@ -285,6 +285,31 @@ class dbService {
         }
     }
 
+    /*
+        @desc: Grabs all of the sponsor's products
+        @params: sponsor's sponsorID
+        @return: object with product information
+    */
+    async get_sponsor_products(sponsorID) {
+        if (sponsorID == null) {
+            alert("Invalid Sponsor.");
+        }
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM Product_Catalog WHERE sponsorID = ?;";
+
+                connection.query(query, [sponsorID], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result);
+                });
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     /*
         @desc: Display all info related to point changes for a driver, for use in reporting

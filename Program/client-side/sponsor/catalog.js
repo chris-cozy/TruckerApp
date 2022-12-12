@@ -4,23 +4,22 @@ const corsHeader = 'https://cors-anywhere.herokuapp.com/'
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch(corsHeader + publicDNS + 'getCurrentDriverUser')
+    fetch(corsHeader + publicDNS + 'getCurrentSponsorUser')
         .then(response => response.json())
         .then(data => { currentUser = data.data[0] })
         .then(() => {
             console.log(currentUser);
 
-            fetch(corsHeader + publicDNS + 'getAvailableProducts/' + currentUser.driverID)
+            fetch(corsHeader + publicDNS + 'getSponsorProducts/' + currentUser.sponsorID)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    load_products(data)
+                    load_products(data);
                 });
         });
 
 
 });
-
 
 /*
     @desc: Loads product data into html page
@@ -36,9 +35,8 @@ function load_products(data) {
 
     let tableHtml = "";
 
-    data.forEach(function ({ firstName, lastName, title, condition, imageUrl, price }) {
+    data.forEach(function ({ title, condition, imageUrl, price }) {
         tableHtml += "<tr>";
-        tableHtml += `<td>${firstName} ${lastName}</td>`;
         if (imageUrl != null) {
             tableHtml += `<td><img src= ${imageUrl}></img></td>`;
         } else {
