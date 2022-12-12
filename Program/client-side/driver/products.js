@@ -17,7 +17,10 @@ searchBtn.onclick = function () {
 
     fetch(corsHeader + publicDNS + 'ebaySearch/' + keyword)
         .then(response => response.json())
-        .then(data => load_products(data['data']['itemSummaries']));
+        .then(data => {
+            console.log(data);
+            load_products(data['data']['itemSummaries'])
+        });
 }
 
 /*
