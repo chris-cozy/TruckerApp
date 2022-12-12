@@ -378,7 +378,7 @@ class dbService {
         try {
             console.log(itemInfo);
             const response = await new Promise((resolve, reject) => {
-                const query = "INSERT INTO Product_Catalog (productID, sponsorID, title, imageUrl, condition, price) VALUES (?, ?, ?, ?, ?, ?);";
+                const query = "INSERT INTO Product_Catalog (productID, sponsorID, title, imageUrl, cond, price) VALUES (?, ?, ?, ?, ?, ?);";
 
                 connection.query(query, [itemInfo.itemID, itemInfo.sponsorID, itemInfo.title, itemInfo.imageUrl, itemInfo.condition, itemInfo.price], (err, result) => {
                     if (err) reject(new Error(err.message));
