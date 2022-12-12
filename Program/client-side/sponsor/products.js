@@ -24,6 +24,18 @@ searchBtn.onclick = function () {
 }
 
 /*
+    @desc: Adds a product to the catalog
+    @params: Add button pressed on product row
+    @return: Nothing
+*/
+document.querySelector('table tbody').addEventListener('click', function (event) {
+    console.log(event.target);
+    if (event.target.className === 'add-item') {
+        console.log(event.target.dataset.id);
+    }
+});
+
+/*
     @desc: Loads product data into html page
     @params: Data object of product summaries
     @return: Nothing
