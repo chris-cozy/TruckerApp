@@ -36,6 +36,10 @@ Driver Account:
 test_driver
 !Password1
 
+Admin Account:
+admin
+Admin123!
+
 Sponsor Account:
 test_sponsor
 !Password1
