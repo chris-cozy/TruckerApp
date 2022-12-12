@@ -32,23 +32,35 @@
 
 
 
-        <div class="text-box">
+        <div class="text-box" style="text-align: left;">
             <h1>Products</h1>
-            <p>*display products here*</p>
+            <div>
+                <input placeholder="search by keyword" id="search-input">
+                <button id="search-btn">Search</button>
+            </div>
+            <br><br>
+            <table>
+                <thead>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Condition</th>
+                    <th>Price (USD)</th>
+                    <th>Add</th>
+                </thead>
+                <tbody id="product-table"></tbody>
+            </table>
         </div>
-        <!-- Buttons for cart and such -->
-        <!-- currently only link to this page, not implemented-->
+
+
         <div style="float: right; transform: translate(-50%,+50%);">
-            <a href="products.html" class="button">Edit Catalog</a>
-            <a href="products.html" class="button">Edit Point Value</a>
+            <a href="catalog.html" class="button">Catalog</a>
             <a href="products.html" class="button">Order History</a>
         </div>
 
     </section>
 
-    <!-- JS for Toggling Nav Menu -->
+    <script src="products.js"></script>
     <script>
-
         var navLinks = document.getElementById("navLinks");
         function showMenu() {
             navLinks.style.right = "0";
@@ -56,7 +68,6 @@
         function hideMenu() {
             navLinks.style.right = "-400px";
         }
-
     </script>
 
 </body>
