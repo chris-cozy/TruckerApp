@@ -288,6 +288,20 @@ app.get('/getAvailableProducts/:driverID', (request, response) => {
         .catch(err => console.log(err));
 });
 
+/*
+    @desc: Grabs the products in sponsor's catalog
+    @params: sponsor's sponsorID
+    @return: an object containing the product information
+*/
+app.get('/getSponsorProducts/:sponsorID', (request, response) => {
+    const { sponsorID } = request.params;
+    const db = dbService.get_instance();
+    const result = db.get_sponsor_products(sponsorID);
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
 
 //-----CREATE ROUTES-----//
 /*
