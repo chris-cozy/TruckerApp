@@ -274,6 +274,20 @@ app.get('/getSponsorPointHistory/:sponsorID', (request, response) => {
         .catch(err => console.log(err));
 });
 
+/*
+    @desc: Grabs the products available to the driver
+    @params: driver's driverID
+    @return: an object containing the product information
+*/
+app.get('/getAvailableProducts/:driverID', (request, response) => {
+    const { driverID } = request.params;
+    const db = dbService.get_instance();
+    const result = db.get_available_products(driverID);
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
 
 //-----CREATE ROUTES-----//
 /*
