@@ -369,6 +369,30 @@ class dbService {
         }
     }
 
+    /*
+        @desc: Adds item to the catalog
+        @params: object containing item information
+        @return: object with item entry information
+    */
+    async add_to_catalog(itemInfo) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "INSERT INTO Product_Catalog (productID, sponsorID, title, imageUrl, condition, price) VALUES (?, ?, ?, ?, ?, ?);";
+
+                connection.query(query, [itemInfo.itemID, itemInfo.sponsorID, itemInfo.title, itemInfo.imageUrl, itemInfo.condition, itemInfo.price], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.insertId);
+                });
+            });
+            console.log(response);
+            return {
+                insertId: response,
+            };
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     //-----EDIT QUERIES-----//
     /*

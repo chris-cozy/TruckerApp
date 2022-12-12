@@ -36,7 +36,7 @@ class ebayService {
                     .then((data) => {
                         ebay.searchItems({
                             keyword: item,
-                            limit: 3,
+                            limit: 2,
                             filter: { priceCurrency: 'USD' }
                         })
                             .then((data) => {

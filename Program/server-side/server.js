@@ -307,6 +307,21 @@ app.post('/sendPoints', (request, response) => {
 });
 
 /*
+    @desc: Adds an item to a sponsor's catalog
+    @params: object containing item information
+    @return: an object with point log entry information
+*/
+app.post('/addToCatalog', (request, response) => {
+    const itemInfo = request.body;
+    const db = dbService.get_instance();
+    const result = db.add_to_catalog(itemInfo);
+
+    result
+        .then(data => response.json({ data: data }))
+        .catch(err => console.log(err));
+});
+
+/*
     @desc: Sets information for the current user
     @params: object containing basic user information (email, sub, username)
     @return: None
