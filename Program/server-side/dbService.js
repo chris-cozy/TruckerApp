@@ -376,6 +376,7 @@ class dbService {
     */
     async add_to_catalog(itemInfo) {
         try {
+            console.log(itemInfo);
             const response = await new Promise((resolve, reject) => {
                 const query = "INSERT INTO Product_Catalog (productID, sponsorID, title, imageUrl, condition, price) VALUES (?, ?, ?, ?, ?, ?);";
 
