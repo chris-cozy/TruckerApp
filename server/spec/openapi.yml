@@ -1,0 +1,978 @@
+openapi: 3.0.0
+info:
+  title: TruckerTrack
+  description: The backend API for TruckerTrack
+  version: 1.0.0
+
+paths:
+  /v1/drivers:
+    get:
+      tags:
+        - Driver
+      summary: Get all drivers' information
+      parameters:
+        - name: sponsor_id
+          in: query
+          description: To limit drivers to those under a certain sponsor
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned drivers' information
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Driver"
+        "404":
+          $ref: "#/components/responses/404DriverError"
+
+    post:
+      tags:
+        - Driver
+      summary: Create a new driver
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Driver"
+      responses:
+        "201":
+          description: HTTP 201 - Driver created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Driver"
+        "400":
+          $ref: "#/components/responses/400Error"
+
+    delete:
+      tags:
+        - Driver
+      summary: Delete all drivers
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted all drivers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Driver"
+        "404":
+          $ref: "#/components/responses/404DriverError"
+
+  /v1/drivers/{driver_id}:
+    get:
+      tags:
+        - Driver
+      summary: Get specified driver's information
+      parameters:
+        - name: driver_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned driver information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Driver"
+        "404":
+          $ref: "#/components/responses/404DriverError"
+
+    put:
+      tags:
+        - Driver
+      summary: Update specified driver's information
+      parameters:
+        - name: driver_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Driver"
+      responses:
+        "200":
+          description: HTTP 200 - Successfully updated driver information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Driver"
+        "404":
+          $ref: "#/components/responses/404DriverError"
+
+    delete:
+      tags:
+        - Driver
+      summary: Delete specified driver
+      parameters:
+        - name: driver_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted driver
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Driver"
+        "404":
+          $ref: "#/components/responses/404DriverError"
+
+  /v1/sponsors:
+    get:
+      tags:
+        - Sponsor
+      summary: Get all sponsors' information
+      parameters:
+        - name: driver_id
+          in: query
+          description: To limit sponsors to those for a certain driver
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned sponsors' information
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Sponsor"
+        "404":
+          $ref: "#/components/responses/404SponsorError"
+
+    post:
+      tags:
+        - Sponsor
+      summary: Create a new sponsor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Sponsor"
+      responses:
+        "201":
+          description: HTTP 201 - Sponsor created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sponsor"
+        "400":
+          $ref: "#/components/responses/400Error"
+
+    delete:
+      tags:
+        - Sponsor
+      summary: Delete all sponsors
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted all sponsors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Sponsor"
+        "404":
+          $ref: "#/components/responses/404SponsorError"
+
+  /v1/sponsors/{sponsor_id}:
+    get:
+      tags:
+        - Sponsor
+      summary: Get specified sponsor's information
+      parameters:
+        - name: sponsor_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned sponsor information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sponsor"
+        "404":
+          $ref: "#/components/responses/404SponsorError"
+
+    put:
+      tags:
+        - Sponsor
+      summary: Update specified sponsor's information
+      parameters:
+        - name: sponsor_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Sponsor"
+      responses:
+        "200":
+          description: HTTP 200 - Successfully updated sponsor information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sponsor"
+        "404":
+          $ref: "#/components/responses/404SponsorError"
+
+    delete:
+      tags:
+        - Sponsor
+      summary: Delete specified sponsor
+      parameters:
+        - name: sponsor_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted sponsor
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sponsor"
+        "404":
+          $ref: "#/components/responses/404SponsorError"
+
+  /v1/applications:
+    get:
+      tags:
+        - Application
+      summary: Get all applications
+      parameters:
+        - name: sponsor_id
+          in: query
+          description: To limit applications to those for a certain sponsor
+          required: false
+          schema:
+            type: integer
+        - name: driver_id
+          in: query
+          description: To limit applications to those for a certain driver
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned all applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Application"
+        "404":
+          $ref: "#/components/responses/404ApplicationError"
+
+    post:
+      tags:
+        - Application
+      summary: Create a new application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Application"
+      responses:
+        "201":
+          description: HTTP 201 - Application created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Application"
+        "400":
+          $ref: "#/components/responses/400Error"
+          
+    delete:
+      tags:
+        - Application
+      summary: Delete all applications
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted all applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Application"
+        "404":
+          $ref: "#/components/responses/404ApplicationError"
+
+  /v1/applications/{application_id}:
+    get:
+      tags:
+        - Application
+      summary: Get specified application
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned application
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Application"
+        "404":
+          $ref: "#/components/responses/404ApplicationError"
+
+    put:
+      tags:
+        - Application
+      summary: Update specified application
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Application"
+      responses:
+        "200":
+          description: HTTP 200 - Successfully updated application
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Application"
+        "404":
+          $ref: "#/components/responses/404ApplicationError"
+
+    delete:
+      tags:
+        - Application
+      summary: Delete specified application
+      parameters:
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted application
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Application"
+        "404":
+          $ref: "#/components/responses/404ApplicationError"
+
+  /v1/products:
+    get:
+      tags:
+        - Product
+      summary: Get all available products
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned all products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404ProductError"
+
+    post:
+      tags:
+        - Product
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "201":
+          description: HTTP 201 - Product created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          $ref: "#/components/responses/400Error"
+
+    delete:
+      tags:
+        - Product
+      summary: Delete all products
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted all products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404ProductError"
+
+  /v1/products/{product_id}:
+    get:
+      tags:
+        - Product
+      summary: Get specified product
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404ProductError"
+
+    put:
+      tags:
+        - Product
+      summary: Update specified product
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "200":
+          description: HTTP 200 - Successfully updated product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404ProductError"
+
+    delete:
+      tags:
+        - Product
+      summary: Delete specified product
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404ProductError"
+
+  /v1/products/{driver_id}:
+    get:
+      tags:
+        - Product
+      summary: Get products available to the specified driver
+      parameters:
+        - name: driver_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned products
+          content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404DriverError"
+
+  /v1/products/{sponsor_id}:
+    get:
+      tags:
+        - Product
+      summary: Get products in the specified sponsor's catalogue
+      parameters:
+        - name: sponsor_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned products
+          content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404SponsorError"
+
+    post:
+      tags:
+        - Product
+      summary: Add a product to a sponsor's catalogue
+      parameters:
+        - name: sponsor_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "201":
+          description: HTTP 201 - Product added successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404SponsorError"
+
+  /v1/points:
+    get:
+      tags:
+        - Point
+      summary: Get all point log entries
+      parameters:
+        - name: sponsor_id
+          in: query
+          description: To limit point entries to those for a certain sponsor
+          required: false
+          schema:
+            type: integer
+        - name: driver_id
+          in: query
+          description: To limit point entries to those for a certain driver
+          required: false
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned all point log entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Point"
+        "404":
+          $ref: "#/components/responses/404PointError"
+
+    post:
+      tags:
+        - Point
+      summary: Create a new point log entry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Point"
+      responses:
+        "201":
+          description: HTTP 201 - Point log entry created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Point"
+        "400":
+          $ref: "#/components/responses/400Error"
+
+    delete:
+      tags:
+        - Point
+      summary: Delete all point log entries
+      responses:
+        "200":
+          description: HTTP 200 - Successfully deleted all point log entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Point"
+        "404":
+          $ref: "#/components/responses/404PointError"
+
+  /v1/auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: HTTP 201 - User registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          $ref: "#/components/responses/400Error"
+
+  /v1/auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Log in an existing user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: HTTP 200 - User logged in successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "401":
+          $ref: "#/components/responses/401UnauthorizedError"
+
+  /v1/auth/logout:
+    delete:
+      tags:
+          - Auth
+        summary: Log out the current user
+        responses:
+          "200":
+            description: HTTP 200 - User logged out successfully
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/User"
+          "401":
+            $ref: "#/components/responses/401UnauthorizedError"
+
+  /v1/ebay/{keyword}:
+    get:
+      tags:
+        - Ebay
+      summary: Search ebay products by keyword
+      parameters:
+        - name: keyword
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: HTTP 200 - Successfully returned products
+          content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/Product"
+        "404":
+          $ref: "#/components/responses/404ProductError"
+
+
+components:
+  schemas:
+    Driver:
+      type: object
+      properties:
+        id:
+          type: integer
+        sponsor_id:
+          type: integer
+        biography:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone_number:
+          type: string
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            zip_code:
+              type: string
+        dob:
+          type: datetime
+        drivers_license_number:
+          type: integer
+        cdl_class:
+          type: string
+        years_of_experience:
+          type: integer
+        vehicle_id:
+          type: integer
+        accident_count:
+          type: integer
+        violation_count:
+          type: integer
+        suspended_license_incident:
+          type: string
+    
+    Vehicle:
+      type: object
+      properties:
+        vehicle_type:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        license_plate:
+          type: string
+        registration_expiry:
+          type: datetime
+        insurance:
+          type: object
+          properties:
+            provider:
+              type: string
+            policy_number:
+              type: integer
+            policy_expiry:
+              type: datetime
+
+
+    Sponsor:
+      type: object
+      properties:
+        id:
+          type: integer
+        biography:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        phone_number:
+          type: string
+        company:
+          type: string
+
+    Application:
+      type: object
+      properties:
+        driver_id:
+          type: integer
+        sponsor_id:
+          type: integer
+        reason_for_sponsorship:
+          type: string
+        terms_agreement:
+          type: string
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        sponsor_id:
+          type: integer
+        title:
+          type: string
+        image_url:
+          type: string
+        condition:
+          type: string
+        price:
+          type: string
+
+    Point:
+      type: object
+      properties:
+        driver_id:
+          type: integer
+        sponsor_id:
+          type: integer
+        amount:
+          type: integer
+        reason:
+          type: string
+        date:
+          type: datetime
+    
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        user_type:
+          type: string
+
+  responses:
+    400Error:
+      description: HTTP 400 - Invalid request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+    404DriverError:
+      description: HTTP 404 - Driver not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+    404SponsorError:
+      description: HTTP 404 - Sponsor not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    
+    404ApplicationError:
+      description: HTTP 404 - Application not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+    404ProductError:
+      description: HTTP 404 - Product not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+    404PointError:
+      description: HTTP 404 - Point log entry not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+    401UnauthorizedError:
+      description: HTTP 401 - Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+
+  x-rate-limits:
+    description: Rate limiting is applied to prevent abuse of the API. Requests beyond the rate limit will receive a '429 Too Many Requests' response.
+    headers:
+      X-RateLimit-Limit:
+        description: The maximum number of requests allowed within the rate limit window.
+      X-RateLimit-Remaining:
+        description: The number of remaining requests within the current rate limit window.
+      X-RateLimit-Reset:
+        description: The time at which the rate limit window will reset.
+    global:
+      rateLimit: 30
+      rateLimitPeriod: minute
+
+tags:
+  - name: Driver
+    description: Operations related to drivers
+  - name: Sponsor
+    description: Operations related to sponsors
+  - name: Application
+    description: Operations related to applications
+  - name: Product
+    description: Operations related to products
+  - name: Point
+    description: Operations related to points
+  - name: Auth
+    description: Operations related to authentication
+  - name: Ebay
+    description: Operations related to ebay API
