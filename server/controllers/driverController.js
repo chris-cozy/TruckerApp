@@ -143,7 +143,7 @@ async function getDriverById(req, res) {
   }
 }
 
-async function updateDriver(req, res) {
+async function updateDriverById(req, res) {
   try {
     const driver_id = req.params.driver_id;
     const response = await new Promise((resolve, reject) => {
@@ -222,6 +222,6 @@ module.exports = {
   createDriver,
   deleteAllDrivers,
   getDriverById,
-  updateDriver,
+  updateDriverById,
   deleteDriverById,
 };
