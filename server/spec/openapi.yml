@@ -743,6 +743,8 @@ components:
       properties:
         id:
           type: integer
+        sponsor_id:
+          type: integer
         biography:
           type: string
         first_name:
