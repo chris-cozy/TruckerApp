@@ -872,7 +872,7 @@ components:
       properties:
         id:
           type: integer
-        username:
+        email:
           type: string
         user_type:
           type: string
