@@ -19,25 +19,25 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Include the Passport local configuration
-require("./middleware/passport-local");
+// require("./middleware/passport-local");
 
 // Import route files
-const applicationRoutes = require("./routes/application");
-const authRoutes = require("./routes/auth");
-const driverRoutes = require("./routes/driver");
-const ebayRoutes = require("./routes/ebay");
-const pointRoutes = require("./routes/point");
-const productRoutes = require("./routes/product");
-const sponsorRoutes = require("./routes/sponsor");
+//const applicationRoutes = require("./routes/application");
+//const authRoutes = require("./routes/auth");
+// const driverRoutes = require("./routes/driver");
+//const ebayRoutes = require("./routes/ebay");
+//const pointRoutes = require("./routes/point");
+//const productRoutes = require("./routes/product");
+//const sponsorRoutes = require("./routes/sponsor");
 
 // Mount routers onto specific paths
-app.use("/v1/applications", applicationRoutes);
-app.use("/v1/auth", authRoutes);
-app.use("/v1/drivers", driverRoutes);
-app.use("/v1/ebay", ebayRoutes);
-app.use("/v1/points", pointRoutes);
-app.use("/v1/products", productRoutes);
-app.use("/v1/sponsors", sponsorRoutes);
+//app.use("/v1/applications", applicationRoutes);
+//app.use("/v1/auth", authRoutes);
+// app.use("/v1/drivers", driverRoutes);
+//app.use("/v1/ebay", ebayRoutes);
+//app.use("/v1/points", pointRoutes);
+//app.use("/v1/products", productRoutes);
+//app.use("/v1/sponsors", sponsorRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
