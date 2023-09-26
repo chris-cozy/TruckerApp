@@ -9,7 +9,6 @@ CREATE TABLE users (
 -- Addresses table
 CREATE TABLE addresses (
     address_id SERIAL PRIMARY KEY,
-    user_id INT UNIQUE REFERENCES users(user_id),
     street VARCHAR(255),
     city VARCHAR(50),
     state VARCHAR(50),
@@ -32,7 +31,8 @@ CREATE TABLE drivers (
     accident_count INT,
     violation_count INT,
     suspended_license_incident BOOLEAN,
-    point_balance INT
+    point_balance INT,
+    address_id INT REFERENCES addresses(address_id)
 );
 -- Sponsors table
 CREATE TABLE sponsors (
@@ -55,7 +55,8 @@ CREATE TABLE admins (
 CREATE TABLE organizations (
     organization_id SERIAL PRIMARY KEY,
     name VARCHAR(100),
-    biography TEXT
+    biography TEXT,
+    address_id INT REFERENCES addresses(address_id)
 );
 -- Vehicles table
 CREATE TABLE vehicles (
@@ -75,7 +76,8 @@ CREATE TABLE applications (
     driver_id INT REFERENCES drivers(driver_id),
     sponsor_id INT REFERENCES sponsors(sponsor_id),
     reason_for_sponsorship TEXT,
-    terms_agreement BOOLEAN
+    terms_agreement BOOLEAN,
+    UNIQUE (sponsor_id, driver_id)
 );
 -- Product Categories table
 CREATE TABLE product_categories (
