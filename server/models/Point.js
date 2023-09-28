@@ -1,15 +1,46 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const Sponsor = require("./Sponsor");
-const Driver = require("./Driver");
 
-const Point = sequelize.define("Point", {
-  amount: DataTypes.INTEGER,
-  reason: DataTypes.TEXT,
-  date: DataTypes.DATE,
-});
-
-Point.belongsTo(Sponsor, { foreignKey: "sponsor_id" });
-Point.belongsTo(Driver, { foreignKey: "driver_id" });
+const Point = sequelize.define(
+  "Point",
+  {
+    point_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    driver_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Drivers",
+        key: "user_id",
+      },
+    },
+    sponsor_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Sponsors",
+        key: "user_id",
+      },
+    },
+    amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    reason: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.TIMESTAMP,
+      allowNull: false,
+    },
+  },
+  {
+    timestamps: false, // Disable Sequelize's default timestamps (created_at, updated_at)
+  }
+);
 
 module.exports = Point;

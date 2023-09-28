@@ -1,38 +1,47 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const Order = sequelize.define(
-  "Order",
+const OrderProduct = sequelize.define(
+  "OrderProduct",
   {
-    order_id: {
+    order_product_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    driver_id: {
+    order_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "Drivers",
-        key: "user_id",
+        model: "Orders",
+        key: "order_id",
       },
+    },
+    product_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Products",
+        key: "product_id",
+      },
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     points_cost: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    usd_cost: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
-    date: {
-      type: DataTypes.TIMESTAMP,
-      allowNull: false,
-    },
   },
   {
     timestamps: false, // Disable Sequelize's default timestamps (created_at, updated_at)
+    uniqueKeys: {
+      unique_order_product: {
+        fields: ["order_id", "product_id"],
+      },
+    },
   }
 );
 
-module.exports = Order;
+module.exports = OrderProduct;

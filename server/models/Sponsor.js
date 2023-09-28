@@ -1,21 +1,38 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
-const User = require("./User");
-const Organization = require("./Organization");
 
-const Sponsor = sequelize.define("Sponsor", {
-  user_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: true,
+const Sponsor = sequelize.define(
+  "Sponsor",
+  {
+    user_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      references: {
+        model: "Users",
+        key: "user_id",
+      },
+    },
+    organization_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Organizations",
+        key: "organization_id",
+      },
+    },
+    biography: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    phone_number: {
+      type: DataTypes.STRING(15),
+      allowNull: false,
+    },
   },
-  biography: DataTypes.TEXT,
-  first_name: DataTypes.STRING(50),
-  last_name: DataTypes.STRING(50),
-  phone_number: DataTypes.STRING(15),
-});
-
-Sponsor.belongsTo(User, { foreignKey: "user_id" });
-Sponsor.belongsTo(Organization, { foreignKey: "organization_id" });
+  {
+    timestamps: false, // Disable Sequelize's default timestamps (created_at, updated_at)
+  }
+);
 
 module.exports = Sponsor;

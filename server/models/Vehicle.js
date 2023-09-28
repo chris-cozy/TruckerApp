@@ -1,18 +1,51 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const Vehicle = sequelize.define("Vehicle", {
-  vehicle_type: DataTypes.STRING(50),
-  make: DataTypes.STRING(50),
-  model: DataTypes.STRING(50),
-  license_plate: {
-    type: DataTypes.STRING(20),
-    unique: true,
+const Vehicle = sequelize.define(
+  "Vehicle",
+  {
+    vehicle_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    vehicle_type: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    make: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    model: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    license_plate: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
+      unique: true,
+    },
+    registration_expiry: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    insurance_provider: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    insurance_policy_number: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    insurance_policy_expiry: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   },
-  registration_expiry: DataTypes.DATE,
-  insurance_provider: DataTypes.STRING(100),
-  insurance_policy_number: DataTypes.STRING(50),
-  insurance_policy_expiry: DataTypes.DATE,
-});
+  {
+    timestamps: false, // Disable Sequelize's default timestamps (created_at, updated_at)
+  }
+);
 
 module.exports = Vehicle;
