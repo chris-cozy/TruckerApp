@@ -49,7 +49,7 @@ The application will be accessible at http://localhost:3000 (or another port if 
 Thank you for considering contributing to Trucker Track! Whether you want to report a bug, suggest a feature, or submit a pull request, your contributions are highly appreciated. Please follow our Contributing Guidelines to get started.
 
 ## License
-Trucker Track is open-source software licensed under the MIT License.\\
+Trucker Track is open-source software licensed under the MIT License.\
 
-Note: Trucker Track is currently undergoing a tech stack shift and overhaul. Stay tuned for exciting updates and enhancements! For more information, contact us at truckertrack@example.com.
+Note: Trucker Track is currently undergoing a tech stack shift and overhaul. Stay tuned for exciting updates and enhancements!
 
